@@ -3,7 +3,7 @@ package Controllers;
 import Models.Endereco;
 
 
-import Models.Funcionario;
+import Models.OperadorCaixa;
 import Views.TelaCadastroFuncionario;
 
 import java.util.Date;
@@ -11,14 +11,12 @@ import java.util.Date;
 public class ControllerGerente {
     private TelaCadastroFuncionario view;
 
-    // Construtor que recebe a visualização (View)
-    // Construtor que recebe a visualização (View)
     public ControllerGerente(TelaCadastroFuncionario view) {
         this.view = view;
 
-        // Configura os botões para interagir com a lógica de controle
+        // Configura btn para cadastrar funcionario
         view.getBtnCadastrar().setOnAction(e -> cadastrarFuncionario());
-        // Adicione os outros eventos de botão aqui conforme necessário
+
     }
 
     // Método para cadastrar um novo funcionário
@@ -31,6 +29,7 @@ public class ControllerGerente {
         String telefone = view.getTelefoneField().getText();
         String sexo = view.getSexoComboBox().getValue();
         String status = view.getStatusComboBox().getValue();
+        String cargo = view.getCargoComboBox().getValue();
 
         // endereco
         String rua = view.getRuaField().getText();
@@ -41,13 +40,13 @@ public class ControllerGerente {
 
         // Verifique se algum campo está em branco
         if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || sexo == "Opções" ||
-                sexo == null || status == null || status == "Opções" || estado == "Opções" ||
+                sexo == null || status == null || status == "Opções" ||
+                estado == "Opções" || cargo == "Opções" || cargo == null ||
                 rua.isEmpty() || bairro.isEmpty() || cidade.isEmpty() || estado == null || cep.isEmpty()) {
             // Se algum campo estiver em branco, exiba uma mensagem de erro
             view.getRespostaLabel().setText("Por favor, preencha todos os campos.");
             view.getRespostaLabel().setStyle("-fx-text-fill: red;");
-        }
-        else {
+        } else {
             // Crie um novo objeto Funcionario com os dados fornecidos
             Endereco endereco = new Endereco(
                     "Rua A",
@@ -57,7 +56,7 @@ public class ControllerGerente {
                     "CEP A",
                     123
             );
-            Funcionario funcionario = new Funcionario(
+            OperadorCaixa funcionario = new OperadorCaixa(
                     "João",
                     "123.456.789-00",
                     new Date(),
@@ -69,7 +68,6 @@ public class ControllerGerente {
                     "Ativo",
                     endereco
             );
-            // Aqui você pode chamar métodos para adicionar o novo funcionário ao banco de dados, por exemplo
 
             // Exiba uma mensagem de sucesso ou atualize a visualização conforme necessário
             view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");

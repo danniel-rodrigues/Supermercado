@@ -1,7 +1,6 @@
 package Models;
 
 public class Endereco {
-    private int id; // Variável para armazenar o ID do endereço
     private String rua;
     private String bairro;
     private String cidade;
@@ -9,23 +8,17 @@ public class Endereco {
     private String cep;
 
     private int numero;
+    // criado para fazer join na db
+    private String cpf;
 
-    public Endereco(String rua, String bairro, String cidade, String estado, String cep, int numero) {
+    public Endereco(String rua, String bairro, String cidade, String estado, String cep, int numero, String cpf) {
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
         this.cep = cep;
         this.numero = numero;
-    }
-
-    // Getter e setter para o ID do endereço
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.cpf = cpf;
     }
 
     public String getRua() {
@@ -74,5 +67,13 @@ public class Endereco {
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public void setCpf(String cpf){
+        this.cpf = cpf;
     }
 }

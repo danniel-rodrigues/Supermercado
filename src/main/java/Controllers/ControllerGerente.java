@@ -54,7 +54,8 @@ public class ControllerGerente {
                     "Cidade A",
                     "Estado A",
                     "CEP A",
-                    123
+                    123,
+                    "123.456.789-00"
             );
             OperadorCaixa funcionario = new OperadorCaixa(
                     "João",

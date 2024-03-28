@@ -2,6 +2,9 @@ package Controllers;
 
 
 
+import Auxiliar.CPF;
+import Auxiliar.Data;
+import DAO.EnderecoDAO;
 import DAO.OperadorCaixaDAO;
 import Models.Endereco;
 
@@ -10,6 +13,9 @@ import Models.OperadorCaixa;
 import Views.TelaCadastroFuncionario;
 
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class ControllerGerente {
     private TelaCadastroFuncionario view;
@@ -33,6 +39,7 @@ public class ControllerGerente {
         String sexo = view.getSexoComboBox().getValue();
         String status = view.getStatusComboBox().getValue();
         String cargo = view.getCargoComboBox().getValue();
+        String nascimento = view.getDataNascimentoField().getText();
 
         // endereco
         String rua = view.getRuaField().getText();
@@ -41,6 +48,8 @@ public class ControllerGerente {
         String estado = view.getEstadoComboBox().getValue();
         String cep = view.getCepField().getText();
         String numero = view.getNumeroField().getText();
+
+        String formato = "dd/MM/yyyy";
 
         // Verifique se algum campo está em branco
         if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || sexo == "Opções" ||
@@ -51,34 +60,38 @@ public class ControllerGerente {
             view.getRespostaLabel().setText("Por favor, preencha todos os campos.");
             view.getRespostaLabel().setStyle("-fx-text-fill: red;");
         } else {
-            // Crie um novo objeto Funcionario com os dados fornecidos
-            Endereco endereco = new Endereco(
-                    rua,
-                    bairro,
-                    cidade,
-                    estado,
-                    cep,
-                    numero,
-                    cpf
-            );
-            OperadorCaixa funcionario = new OperadorCaixa(
-                    nome,
-                    cpf,
-                    new Date(),
-                    email,
-                    cep,
-                    sexo,
-                    "joao",
-                    "senha123",
-                    status,
-                    endereco
-            );
+            if (CPF.validarCPF(cpf) || Data.validarData(nascimento, formato)){
+                // Crie um novo objeto Funcionario com os dados fornecidos
+                Endereco endereco = new Endereco(
+                        rua,
+                        bairro,
+                        cidade,
+                        estado,
+                        cep,
+                        numero,
+                        CPF.formatarCPF(cpf)
+                );
+                OperadorCaixa funcionario = new OperadorCaixa(
+                        nome,
+                        CPF.formatarCPF(cpf),
+                        Data.converterStringParaDate(nascimento, formato),
+                        email,
+                        cep,
+                        sexo,
+                        "joao",
+                        "senha123",
+                        status,
+                        endereco
+                );
 
-            OperadorCaixaDAO.adicionarOperador(funcionario);
-            view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
-            view.getRespostaLabel().setStyle("-fx-text-fill: green;");
-            // Limpe os campos de entrada após o cadastro
-            view.limparCampos();
+                OperadorCaixaDAO.adicionarOperador(funcionario);
+                EnderecoDAO.adicionarEndereco(endereco);
+
+                view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
+                view.getRespostaLabel().setStyle("-fx-text-fill: green;");
+                // Limpe os campos de entrada após o cadastro
+                view.limparCampos();
+            }
         }
 
 

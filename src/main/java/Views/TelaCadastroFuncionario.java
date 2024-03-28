@@ -1,5 +1,6 @@
 package Views;
 
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -51,40 +52,63 @@ public class TelaCadastroFuncionario{
         HBox hbox7 = new HBox(10);
         // h1
         // nome
-        Label lblNome = new Label("NOME: ");
+        Label lblNome = new Label("NOME:");
         nome = new TextField();
-        nome.setPrefWidth(250);
+        nome.setMaxWidth(250);
+
+        HBox.setHgrow(lblNome, Priority.NEVER);
+        HBox.setHgrow(nome, Priority.ALWAYS);
+
         // cpf
-        Label lblCPF = new Label("CPF: ");
-         cpf = new TextField();
-        nome.setPrefWidth(250);
+        Label lblCPF = new Label("CPF:");
+        cpf = new TextField();
+        cpf.setMaxWidth(250);
+        lblCPF.setPadding(new Insets(0, 0, 0, 20));
+
+        HBox.setHgrow(lblCPF, Priority.NEVER);
+        HBox.setHgrow(cpf, Priority.ALWAYS);
+
         hbox1.getChildren().addAll(lblNome,nome, lblCPF, cpf);
         hbox1.setMinHeight(20);
         hbox1.setAlignment(Pos.CENTER_LEFT);
 
 
         //h2
-        // data nascimeneto
-        Label lblData = new Label("DATA DE NASCIMENTO: ");
+        // data nascimento
+        Label lblData = new Label("DATA DE NASCIMENTO:");
         dataNascimento = new TextField();
-        dataNascimento.setPrefWidth(100);
+        dataNascimento.setMaxWidth(100);
+
+        HBox.setHgrow(lblData, Priority.NEVER);
+        HBox.setHgrow(dataNascimento, Priority.ALWAYS);
+
         // email
-        Label lblEmail = new Label("EMAIL: ");
-         email = new TextField();
-        email.setPrefWidth(200);
+        Label lblEmail = new Label("EMAIL:");
+        email = new TextField();
+        email.setMaxWidth(200);
+        lblEmail.setPadding(new Insets(0, 0, 0, 50));
+
+        HBox.setHgrow(lblEmail, Priority.NEVER);
+        HBox.setHgrow(email, Priority.ALWAYS);
+
         hbox2.getChildren().addAll(lblData, dataNascimento, lblEmail, email);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER_LEFT);
 
         //h3
         // telefone
-        Label lblTelefone = new Label("TELEFONE: ");
+        Label lblTelefone = new Label("TELEFONE:");
         telefone = new TextField();
-        telefone.setPrefWidth(150);
+        telefone.setMaxWidth(150);
+
+        HBox.setHgrow(lblTelefone, Priority.NEVER);
+        HBox.setHgrow(telefone, Priority.ALWAYS);
+
         // sexo
-        Label lblSexo = new Label("SEXO: ");
-        sexo = new ComboBox<String>();
-        sexo.setPrefWidth(200);
+        Label lblSexo = new Label("SEXO:");
+        sexo = new ComboBox<>();
+        sexo.setMaxWidth(200);
+        lblSexo.setPadding(new Insets(0, 0, 0, 70));
         sexo.getItems().addAll("Masculino", "Feminino", "Outros");
         // Aplicando estilos CSS personalizados
         sexo.setStyle(
@@ -93,15 +117,19 @@ public class TelaCadastroFuncionario{
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        sexo.setValue("Opções");
+        sexo.setValue("Selecione");
+
+        HBox.setHgrow(lblSexo, Priority.NEVER);
+        HBox.setHgrow(sexo, Priority.ALWAYS);
+
         hbox3.getChildren().addAll(lblTelefone, telefone, lblSexo, sexo);
         hbox3.setAlignment(Pos.CENTER_LEFT);
 
         // h4
         // cargo
-        Label lblCargo = new Label("CARGO: ");
-        cargo = new ComboBox<String>();
-        cargo.setPrefWidth(200);
+        Label lblCargo = new Label("CARGO:");
+        cargo = new ComboBox<>();
+        cargo.setMaxWidth(200);
         cargo.getItems().addAll("Gerente", "OperadorCaixa");
         // Aplicando estilos CSS personalizados
         cargo.setStyle(
@@ -110,11 +138,16 @@ public class TelaCadastroFuncionario{
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        cargo.setValue("Opções");
+        cargo.setValue("Selecione");
+
+        HBox.setHgrow(lblCargo, Priority.NEVER);
+        HBox.setHgrow(cargo, Priority.ALWAYS);
+
         // status
-        Label lblStatus = new Label("STATUS: ");
-         status = new ComboBox<String>();
-        status.setPrefWidth(200);
+        Label lblStatus = new Label("STATUS:");
+        status = new ComboBox<>();
+        status.setMaxWidth(200);
+        lblStatus.setPadding(new Insets(0, 0, 0, 35));
         status.getItems().addAll("Ativo", "Inativo", "Desligado");
         // Aplicando estilos CSS personalizados
         status.setStyle(
@@ -123,39 +156,61 @@ public class TelaCadastroFuncionario{
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        status.setValue("Opções");
+        status.setValue("Selecione");
+
+        HBox.setHgrow(lblStatus, Priority.NEVER);
+        HBox.setHgrow(status, Priority.ALWAYS);
+
         hbox4.getChildren().addAll(lblCargo, cargo, lblStatus, status);
         hbox4.setAlignment(Pos.CENTER_LEFT);
 
         // h5
         // rua
-        Label lblRua = new Label("RUA: ");
-         rua = new TextField();
-        rua.setPrefWidth(200);
+        Label lblRua = new Label("RUA:");
+        rua = new TextField();
+        rua.setMaxWidth(200);
+
+        HBox.setHgrow(lblRua, Priority.NEVER);
+        HBox.setHgrow(rua, Priority.ALWAYS);
+
         // bairro
-        Label lblBairro = new Label("BAIRRO: ");
-         bairro = new TextField();
-        bairro.setPrefWidth(200);
+        Label lblBairro = new Label("BAIRRO:");
+        bairro = new TextField();
+        bairro.setMaxWidth(200);
+        lblBairro.setPadding(new Insets(0, 0, 0, 50));
+
+        HBox.setHgrow(lblBairro, Priority.NEVER);
+        HBox.setHgrow(bairro, Priority.ALWAYS);
+
         hbox5.getChildren().addAll(lblRua, rua, lblBairro, bairro);
         hbox5.setAlignment(Pos.CENTER_LEFT);
 
         // h6
         // numero
-        Label lblNumero = new Label("NUMERO: ");
-         numero = new TextField();
-        numero.setPrefWidth(100);
+        Label lblNumero = new Label("NÚMERO:");
+        numero = new TextField();
+        numero.setMaxWidth(100);
+
+        HBox.setHgrow(lblNumero, Priority.NEVER);
+        HBox.setHgrow(numero, Priority.ALWAYS);
+
         // municipio
-        Label lblMunicipio = new Label("MUNICIPIO: ");
-         municipio = new TextField();
-        municipio.setPrefWidth(200);
+        Label lblMunicipio = new Label("MUNICÍPIO:");
+        municipio = new TextField();
+        municipio.setMaxWidth(200);
+        lblMunicipio.setPadding(new Insets(0, 0, 0, 125));
+
+        HBox.setHgrow(lblMunicipio, Priority.NEVER);
+        HBox.setHgrow(municipio, Priority.ALWAYS);
+
         hbox6.getChildren().addAll(lblNumero, numero, lblMunicipio, municipio);
         hbox6.setAlignment(Pos.CENTER_LEFT);
 
         // h7
         // estado
-        Label lblEstado = new Label("ESTADO: ");
-         estado = new ComboBox<String>();
-        estado.setPrefWidth(200);
+        Label lblEstado = new Label("ESTADO:");
+        estado = new ComboBox<>();
+        estado.setMaxWidth(200);
         estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE","DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA","PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
         // Aplicando estilos CSS personalizados
         estado.setStyle(
@@ -164,11 +219,20 @@ public class TelaCadastroFuncionario{
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        estado.setValue("Opções");
+        estado.setValue("Selecione");
+
+        HBox.setHgrow(lblEstado, Priority.NEVER);
+        HBox.setHgrow(estado, Priority.ALWAYS);
+
         // cep
-        Label lblCEP = new Label("CEP: ");
-         cep = new TextField();
-        cep.setPrefWidth(200);
+        Label lblCEP = new Label("CEP:");
+        cep = new TextField();
+        cep.setMaxWidth(200);
+        lblCEP.setPadding(new Insets(0, 0, 0, 30));
+
+        HBox.setHgrow(lblCEP, Priority.NEVER);
+        HBox.setHgrow(cep, Priority.ALWAYS);
+
         hbox7.getChildren().addAll(lblEstado, estado, lblCEP, cep);
         hbox7.setPadding(new Insets(0, 0, 50, 0));
         hbox7.setAlignment(Pos.CENTER_LEFT);
@@ -237,7 +301,7 @@ public class TelaCadastroFuncionario{
         vbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(vbox, 600, 500);
-        stage.setTitle("SuperMercado - Cadastro de Funcionários");
+        stage.setTitle("Supermercado - Cadastro de Funcionários");
         stage.setScene(scene);
         stage.show();
     }

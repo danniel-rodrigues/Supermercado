@@ -24,7 +24,7 @@ public class OperadorCaixaDAO {
     private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS operador_caixa (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "nome TEXT NOT NULL," +
-            "cpf TEXT NOT NULL," +
+            "cpf TEXT NOT NULL UNIQUE," +
             "data_nasc TEXT NOT NULL," +
             "email TEXT NOT NULL," +
             "telefone TEXT NOT NULL," +

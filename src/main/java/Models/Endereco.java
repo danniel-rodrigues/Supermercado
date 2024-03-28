@@ -7,11 +7,11 @@ public class Endereco {
     private String estado;
     private String cep;
 
-    private int numero;
+    private String numero;
     // criado para fazer join na db
     private String cpf;
 
-    public Endereco(String rua, String bairro, String cidade, String estado, String cep, int numero, String cpf) {
+    public Endereco(String rua, String bairro, String cidade, String estado, String cep, String numero, String cpf) {
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -61,11 +61,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

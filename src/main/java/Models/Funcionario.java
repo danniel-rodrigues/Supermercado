@@ -130,8 +130,5 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
-    @Override
-    public String toString(){
-        return "Nome: " + nome + " / CPF: " + cpf  + " / Telefone: " + telefone +  " / Status: " + status;
-    }
+
 }

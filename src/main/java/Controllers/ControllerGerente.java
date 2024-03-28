@@ -1,5 +1,8 @@
 package Controllers;
 
+
+
+import DAO.OperadorCaixaDAO;
 import Models.Endereco;
 
 
@@ -37,6 +40,7 @@ public class ControllerGerente {
         String cidade = view.getMunicipioField().getText();
         String estado = view.getEstadoComboBox().getValue();
         String cep = view.getCepField().getText();
+        String numero = view.getNumeroField().getText();
 
         // Verifique se algum campo está em branco
         if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || sexo == "Opções" ||
@@ -49,28 +53,28 @@ public class ControllerGerente {
         } else {
             // Crie um novo objeto Funcionario com os dados fornecidos
             Endereco endereco = new Endereco(
-                    "Rua A",
-                    "Bairro A",
-                    "Cidade A",
-                    "Estado A",
-                    "CEP A",
-                    123,
-                    "123.456.789-00"
+                    rua,
+                    bairro,
+                    cidade,
+                    estado,
+                    cep,
+                    numero,
+                    cpf
             );
             OperadorCaixa funcionario = new OperadorCaixa(
-                    "João",
-                    "123.456.789-00",
+                    nome,
+                    cpf,
                     new Date(),
-                    "joao@example.com",
-                    "1234-5678",
-                    "Masculino",
+                    email,
+                    cep,
+                    sexo,
                     "joao",
                     "senha123",
-                    "Ativo",
+                    status,
                     endereco
             );
 
-            // Exiba uma mensagem de sucesso ou atualize a visualização conforme necessário
+            OperadorCaixaDAO.adicionarOperador(funcionario);
             view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
             view.getRespostaLabel().setStyle("-fx-text-fill: green;");
             // Limpe os campos de entrada após o cadastro

@@ -1,5 +1,6 @@
 package Views;
 
+import DAO.OperadorCaixaDAO;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -11,7 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 
-import Models.Funcionario;
+import Models.OperadorCaixa;
 import Models.Endereco;
 
 import java.util.Date;
@@ -70,30 +71,16 @@ public class TelaFuncionarios {
 
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDemitir);
 
-        // Criando a lista de funcionários
-        Endereco endereco = new Endereco("Rua A", "Bairro A", "Cidade A", "Estado A", "CEP A", 123, "123.456.789-00");
 
-        // Criando uma lista de funcionários
-        List<Funcionario> listaFuncionarios = new ArrayList<>();
 
-        // Adicionando 10 funcionários à lista
-        listaFuncionarios.add(new Funcionario("João", "123.456.789-00", new Date(), "joao@example.com", "1234-5678", "Masculino", "joao", "senha123", "Ativo", endereco));
 
-        // Adicionando 10 funcionários à lista
-        listaFuncionarios.add(new Funcionario("João", "123.456.789-00", new Date(), "joao@example.com", "1234-5678", "Masculino", "joao", "senha123", "Ativo", endereco));
 
-        // Adicionando 10 funcionários à lista
-        listaFuncionarios.add(new Funcionario("João", "123.456.789-00", new Date(), "joao@example.com", "1234-5678", "Masculino", "joao", "senha123", "Ativo", endereco));
-
-        // Adicionando 10 funcionários à lista
-        listaFuncionarios.add(new Funcionario("João", "123.456.789-95", new Date(), "joao@example.com", "1234-5678", "Masculino", "joao", "senha123", "Ativo", endereco));
-
-        ObservableList<Funcionario> funcionarios = FXCollections.observableArrayList(
-                listaFuncionarios
+        ObservableList<OperadorCaixa> funcionarios = FXCollections.observableArrayList(
+                OperadorCaixaDAO.listarOperadores()
         );
 
         // Criando a ListView e passando a lista de funcionários
-        ListView<Funcionario> listView = new ListView<>(funcionarios);
+        ListView<OperadorCaixa> listView = new ListView<>(funcionarios);
 
         // Definindo a altura de cada item da ListView
         listView.setFixedCellSize(40);

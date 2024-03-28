@@ -170,6 +170,7 @@ public class TelaCadastroFuncionario{
          cep = new TextField();
         cep.setPrefWidth(200);
         hbox7.getChildren().addAll(lblEstado, estado, lblCEP, cep);
+        hbox7.setPadding(new Insets(0, 0, 50, 0));
         hbox7.setAlignment(Pos.CENTER_LEFT);
 
 

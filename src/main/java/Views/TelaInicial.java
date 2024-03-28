@@ -39,6 +39,11 @@ public class TelaInicial {
             telaFuncionarios.show(primaryStage);
         });
 
+        btnFornecedor.setOnAction(e -> {
+            TelaFornecedores telaFornecedores = new TelaFornecedores();
+            telaFornecedores.show(primaryStage);
+        });
+
 
 
 

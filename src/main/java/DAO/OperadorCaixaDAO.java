@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import Models.OperadorCaixa;
 import Models.Endereco;
+
 public class OperadorCaixaDAO {
     // URL de conexão com o banco de dados SQLite
     private static final String URL = "jdbc:sqlite:operador_caixa.db";
@@ -47,7 +48,8 @@ public class OperadorCaixaDAO {
     }
 
     // Metodo para adicionar um operador ao banco de dados
-    public static void adicionarOperador(OperadorCaixa operador) {
+    // Método para adicionar um operador ao banco de dados
+    public static boolean adicionarOperador(OperadorCaixa operador) {
         criarTabela();
         String sql = "INSERT INTO operador_caixa (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -63,11 +65,15 @@ public class OperadorCaixaDAO {
             pstmt.setString(8, operador.getSenha());
             pstmt.setString(9, operador.getStatus());
 
-            pstmt.executeUpdate();
-            System.out.println("Operador adicionado com sucesso.");
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Operador adicionado com sucesso.");
+                return true; // Retorna true se a operação foi bem-sucedida
+            }
         } catch (SQLException e) {
             System.err.println("Erro ao adicionar operador: " + e.getMessage());
         }
+        return false; // Retorna false se a operação falhar por algum motivo
     }
 
     // Método para listar todos os operadores do banco de dados
@@ -79,24 +85,51 @@ public class OperadorCaixaDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                String nome = rs.getString("nome");
-                String cpf = rs.getString("cpf");
-                // Convertendo a String de data para Date usando SimpleDateFormat
-                SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
-                Date dataNasc = sdf.parse(rs.getString("data_nasc"));
-                String email = rs.getString("email");
-                String telefone = rs.getString("telefone");
-                String sexo = rs.getString("sexo");
-                String login = rs.getString("login");
-                String senha = rs.getString("senha");
-                String status = rs.getString("status");
-
-                OperadorCaixa operador = new OperadorCaixa(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, null);
+                OperadorCaixa operador = criarOperador(rs);
                 operadores.add(operador);
             }
-        } catch (SQLException | ParseException e) {
+        } catch (SQLException e) {
             System.err.println("Erro ao listar operadores: " + e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
         return operadores;
+    }
+
+    // Método para criar um operador a partir do ResultSet
+    private static OperadorCaixa criarOperador(ResultSet rs) throws SQLException, ParseException {
+        String nome = rs.getString("nome");
+        String cpf = rs.getString("cpf");
+        // Convertendo a String de data para Date usando SimpleDateFormat
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+        Date dataNasc = sdf.parse(rs.getString("data_nasc"));
+        String email = rs.getString("email");
+        String telefone = rs.getString("telefone");
+        String sexo = rs.getString("sexo");
+        String login = rs.getString("login");
+        String senha = rs.getString("senha");
+        String status = rs.getString("status");
+        Endereco endereco = EnderecoDAO.buscarEnderecoPorCPF(cpf);
+        return new OperadorCaixa(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, endereco);
+    }
+
+    // Método para buscar um operador pelo CPF
+    public static OperadorCaixa buscarOperadorPorCPF(String cpf) {
+        String sql = "SELECT * FROM operador_caixa WHERE cpf = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cpf);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return criarOperador(rs);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar operador por CPF: " + e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return null; // Retorna null se não encontrar nenhum operador com o CPF fornecido
     }
 }

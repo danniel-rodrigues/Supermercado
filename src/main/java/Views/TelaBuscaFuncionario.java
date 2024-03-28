@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerGerente;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,23 +16,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TelaBuscaFuncionario{
+    private Button btnBuscar;
+    private Label lblAviso;
+
+    private TextField cpf;
+
+    private  Stage st;
+    private ControllerGerente controller;
     public void show(Stage stage) {
+        st = stage;
         // texto informativo
         Label lblInfo = new Label("Informe o CPF do funcionário que deseja realizar a alteração\ndo cadastro.\n(Exclusivo para uso do Gerente!)");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("FUNCIONARIO NÃO ENCONTRADO!");
+        lblAviso = new Label("FUNCIONARIO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
-        TextField cpf = new TextField();
+        cpf = new TextField();
         cpf.setPrefHeight(40);
 
         // Adicionar botoes
-        Button btnBuscar = new Button("BUSCAR");
+        btnBuscar = new Button("BUSCAR");
         btnBuscar.setOnAction(e -> {
-            lblAviso.setStyle("-fx-text-fill: red;");
+
         });
+
+        controller = new ControllerGerente(this);
 
         // Adicionando ícones aos botões
         Image glassICon = new Image("assets/images/icons/magnifying-glass.png");
@@ -79,5 +90,21 @@ public class TelaBuscaFuncionario{
         stage.setTitle("SuperMercado - Buscar Funcionário");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Button getBtnBuscar(){
+        return btnBuscar;
+    }
+
+    public Label getLbAviso(){
+        return  lblAviso;
+    }
+
+    public TextField getCpf(){
+        return cpf;
+    }
+
+    public Stage getSt(){
+        return st;
     }
 }

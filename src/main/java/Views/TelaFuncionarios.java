@@ -1,5 +1,6 @@
 package Views;
 
+import Auxiliar.CPF;
 import DAO.OperadorCaixaDAO;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -13,11 +14,10 @@ import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 
 import Models.OperadorCaixa;
-import Models.Endereco;
 
-import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 
 public class TelaFuncionarios {
 
@@ -71,12 +71,20 @@ public class TelaFuncionarios {
 
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDemitir);
 
+        List<OperadorCaixa> operadorCaixas = OperadorCaixaDAO.listarOperadores();
 
+        List<OperadorCaixa> operadoresFormatados = operadorCaixas.stream()
+                .map(operador -> {
+                    // Aplicar a formatação do CPF ao operador
+                    operador.setCpf(CPF.formatarCPF(operador.getCpf()));
+                    return operador;
+                })
+                .collect(Collectors.toList());
 
 
 
         ObservableList<OperadorCaixa> funcionarios = FXCollections.observableArrayList(
-                OperadorCaixaDAO.listarOperadores()
+                operadorCaixas
         );
 
         // Criando a ListView e passando a lista de funcionários

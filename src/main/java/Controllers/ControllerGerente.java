@@ -57,9 +57,9 @@ public class ControllerGerente {
         String formato = "dd/MM/yyyy";
 
         // Verifique se algum campo está em branco
-        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || Objects.equals(sexo, "Opções") ||
-                sexo == null || status == null || status.equals("Opções") ||
-                Objects.equals(estado, "Opções") || Objects.equals(cargo, "Opções") || cargo == null ||
+        if (nome.isEmpty() || cpf.isEmpty() || email.isEmpty() || telefone.isEmpty() || Objects.equals(sexo, "Selecione") ||
+                sexo == null || status == null || status.equals("Selecione") ||
+                Objects.equals(estado, "Selecione") || Objects.equals(cargo, "Selecione") || cargo == null ||
                 rua.isEmpty() || bairro.isEmpty() || cidade.isEmpty() || estado == null || cep.isEmpty()) {
             // Se algum campo estiver em branco, exiba uma mensagem de erro
             view.getRespostaLabel().setText("Por favor, preencha todos os campos.");

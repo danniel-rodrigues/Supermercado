@@ -71,7 +71,7 @@ public class TelaFuncionarios {
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDemitir);
 
         // Criando a lista de funcionários
-        Endereco endereco = new Endereco("Rua A", "Bairro A", "Cidade A", "Estado A", "CEP A", "Complemento A", 123);
+        Endereco endereco = new Endereco("Rua A", "Bairro A", "Cidade A", "Estado A", "CEP A", 123);
 
         // Criando uma lista de funcionários
         List<Funcionario> listaFuncionarios = new ArrayList<>();

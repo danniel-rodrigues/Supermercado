@@ -14,9 +14,33 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import Controllers.ControllerGerente;
+
 
 public class TelaCadastroFuncionario{
+
+    private TextField nome;
+    private TextField cpf;
+    private TextField dataNascimento;
+    private TextField email;
+    private TextField telefone;
+    private ComboBox<String> sexo;
+    private ComboBox<String> cargo;
+    private ComboBox<String> status;
+    private TextField rua;
+    private TextField bairro;
+    private TextField numero;
+    private TextField municipio;
+    private ComboBox<String> estado;
+    private TextField cep;
+    private Button btnCadastrar;
+    private Button btnVoltar;
+    private Label resposta;
+    private ControllerGerente controller;
+
     public void show(Stage stage) {
+
+
 
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
@@ -28,11 +52,11 @@ public class TelaCadastroFuncionario{
         // h1
         // nome
         Label lblNome = new Label("NOME: ");
-        TextField nome = new TextField();
+        nome = new TextField();
         nome.setPrefWidth(250);
         // cpf
         Label lblCPF = new Label("CPF: ");
-        TextField cpf = new TextField();
+         cpf = new TextField();
         nome.setPrefWidth(250);
         hbox1.getChildren().addAll(lblNome,nome, lblCPF, cpf);
         hbox1.setMinHeight(20);
@@ -42,11 +66,11 @@ public class TelaCadastroFuncionario{
         //h2
         // data nascimeneto
         Label lblData = new Label("DATA DE NASCIMENTO: ");
-        TextField dataNascimento = new TextField();
+        dataNascimento = new TextField();
         dataNascimento.setPrefWidth(100);
         // email
         Label lblEmail = new Label("EMAIL: ");
-        TextField email = new TextField();
+         email = new TextField();
         email.setPrefWidth(200);
         hbox2.getChildren().addAll(lblData, dataNascimento, lblEmail, email);
         hbox2.setMinHeight(20);
@@ -55,11 +79,11 @@ public class TelaCadastroFuncionario{
         //h3
         // telefone
         Label lblTelefone = new Label("TELEFONE: ");
-        TextField telefone = new TextField();
+        telefone = new TextField();
         telefone.setPrefWidth(150);
         // sexo
         Label lblSexo = new Label("SEXO: ");
-        ComboBox<String> sexo = new ComboBox<>();
+        sexo = new ComboBox<String>();
         sexo.setPrefWidth(200);
         sexo.getItems().addAll("Masculino", "Feminino", "Outros");
         // Aplicando estilos CSS personalizados
@@ -76,7 +100,7 @@ public class TelaCadastroFuncionario{
         // h4
         // cargo
         Label lblCargo = new Label("CARGO: ");
-        ComboBox<String> cargo = new ComboBox<>();
+        cargo = new ComboBox<String>();
         cargo.setPrefWidth(200);
         cargo.getItems().addAll("Gerente", "OperadorCaixa");
         // Aplicando estilos CSS personalizados
@@ -89,7 +113,7 @@ public class TelaCadastroFuncionario{
         cargo.setValue("Opções");
         // status
         Label lblStatus = new Label("STATUS: ");
-        ComboBox<String> status = new ComboBox<>();
+         status = new ComboBox<String>();
         status.setPrefWidth(200);
         status.getItems().addAll("Ativo", "Inativo", "Desligado");
         // Aplicando estilos CSS personalizados
@@ -106,11 +130,11 @@ public class TelaCadastroFuncionario{
         // h5
         // rua
         Label lblRua = new Label("RUA: ");
-        TextField rua = new TextField();
+         rua = new TextField();
         rua.setPrefWidth(200);
         // bairro
         Label lblBairro = new Label("BAIRRO: ");
-        TextField bairro = new TextField();
+         bairro = new TextField();
         bairro.setPrefWidth(200);
         hbox5.getChildren().addAll(lblRua, rua, lblBairro, bairro);
         hbox5.setAlignment(Pos.CENTER_LEFT);
@@ -118,11 +142,11 @@ public class TelaCadastroFuncionario{
         // h6
         // numero
         Label lblNumero = new Label("NUMERO: ");
-        TextField numero = new TextField();
+         numero = new TextField();
         numero.setPrefWidth(100);
         // municipio
         Label lblMunicipio = new Label("MUNICIPIO: ");
-        TextField municipio = new TextField();
+         municipio = new TextField();
         municipio.setPrefWidth(200);
         hbox6.getChildren().addAll(lblNumero, numero, lblMunicipio, municipio);
         hbox6.setAlignment(Pos.CENTER_LEFT);
@@ -130,7 +154,7 @@ public class TelaCadastroFuncionario{
         // h7
         // estado
         Label lblEstado = new Label("ESTADO: ");
-        ComboBox<String> estado = new ComboBox<>();
+         estado = new ComboBox<String>();
         estado.setPrefWidth(200);
         estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE","DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA","PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
         // Aplicando estilos CSS personalizados
@@ -143,28 +167,34 @@ public class TelaCadastroFuncionario{
         estado.setValue("Opções");
         // cep
         Label lblCEP = new Label("CEP: ");
-        TextField cep = new TextField();
+         cep = new TextField();
         cep.setPrefWidth(200);
         hbox7.getChildren().addAll(lblEstado, estado, lblCEP, cep);
         hbox7.setAlignment(Pos.CENTER_LEFT);
 
 
         // Adicionar botoes
-        Button btnCadastrar = new Button("CADASTRAR");
+        // Adicionar o botão btnCadastrar
+        btnCadastrar = new Button("CADASTRAR");
 
-
-
-        // Adicionando ícones aos botões
+// Adicionando ícones aos botões
         Image plusICon = new Image("assets/images/icons/plus.png");
         ImageView plusIconView = new ImageView(plusICon);
         plusIconView.setFitWidth(20);
         plusIconView.setFitHeight(20);
         btnCadastrar.setGraphic(plusIconView);
-        // Definindo o background dos botões
+// Definindo o background dos botões
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
 
+// Configurando a ação do botão
+        btnCadastrar.setOnAction(e -> {
+            // Coloque aqui o código para lidar com o evento de clique no botão cadastrar
+        });
+        controller = new ControllerGerente(this);
 
-        Button btnVoltar = new Button("VOLTAR");
+
+
+        btnVoltar = new Button("VOLTAR");
 
         // Adicionando ícones aos botões
         Image arrowIcon = new Image("assets/images/icons/arrow.png");
@@ -191,12 +221,9 @@ public class TelaCadastroFuncionario{
         hbox8.setMinHeight(50);
         hbox8.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
+        resposta = new Label("");
 
-        btnCadastrar.setOnAction(e -> {
-            resposta.setText("Existem Campos invalidos/Brancos!".toUpperCase());
-            resposta.setStyle("-fx-text-fill: purple;");
-        });
+
 
         VBox vbox = new VBox();
 
@@ -212,5 +239,88 @@ public class TelaCadastroFuncionario{
         stage.setTitle("SuperMercado - Cadastro de Funcionários");
         stage.setScene(scene);
         stage.show();
+    }
+
+    // Métodos para recuperar os elementos da interface
+
+    public TextField getNomeField() {
+        return nome;
+    }
+
+    public TextField getCpfField() {
+        return cpf;
+    }
+
+    public TextField getDataNascimentoField() {
+        return dataNascimento;
+    }
+
+    public TextField getEmailField() {
+        return email;
+    }
+
+    public TextField getTelefoneField() {
+        return telefone;
+    }
+
+    public ComboBox<String> getSexoComboBox() {
+        return sexo;
+    }
+
+    public ComboBox<String> getCargoComboBox() {
+        return cargo;
+    }
+
+    public ComboBox<String> getStatusComboBox() {
+        return status;
+    }
+
+    public TextField getRuaField() {
+        return rua;
+    }
+
+    public TextField getBairroField() {
+        return bairro;
+    }
+
+    public TextField getNumeroField() {
+        return numero;
+    }
+
+    public TextField getMunicipioField() {
+        return municipio;
+    }
+
+    public ComboBox<String> getEstadoComboBox() {
+        return estado;
+    }
+
+    public TextField getCepField() {
+        return cep;
+    }
+
+    public Button getBtnCadastrar() {
+        return this.btnCadastrar;
+    }
+
+    public Label getRespostaLabel() {
+        return resposta;
+    }
+
+    public void limparCampos() {
+        nome.clear();
+        cpf.clear();
+        dataNascimento.clear();
+        email.clear();
+        telefone.clear();
+        sexo.getSelectionModel().clearSelection();
+        cargo.getSelectionModel().clearSelection();
+        status.getSelectionModel().clearSelection();
+        rua.clear();
+        bairro.clear();
+        numero.clear();
+        municipio.clear();
+        estado.getSelectionModel().clearSelection();
+        cep.clear();
     }
 }

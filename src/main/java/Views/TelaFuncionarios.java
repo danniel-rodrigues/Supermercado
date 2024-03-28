@@ -77,6 +77,7 @@ public class TelaFuncionarios {
                 .map(operador -> {
                     // Aplicar a formatação do CPF ao operador
                     operador.setCpf(CPF.formatarCPF(operador.getCpf()));
+                    operador.setNome(operador.getNome().toUpperCase());
                     return operador;
                 })
                 .collect(Collectors.toList());

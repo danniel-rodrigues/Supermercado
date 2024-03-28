@@ -87,6 +87,31 @@ public class EnderecoDAO {
 
         return endereco;
     }
+
+    // Método para atualizar um endereço no banco de dados
+    public static boolean atualizarEndereco(Endereco endereco) {
+        String sql = "UPDATE endereco SET rua = ?, bairro = ?, cidade = ?, estado = ?, cep = ?, numero = ? WHERE cpf = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, endereco.getRua());
+            pstmt.setString(2, endereco.getBairro());
+            pstmt.setString(3, endereco.getCidade());
+            pstmt.setString(4, endereco.getEstado());
+            pstmt.setString(5, endereco.getCep());
+            pstmt.setString(6, endereco.getNumero());
+            pstmt.setString(7, endereco.getCpf());
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Endereço atualizado com sucesso.");
+                return true; // Retorna true se a operação foi bem-sucedida
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar endereço: " + e.getMessage());
+        }
+        return false; // Retorna false se a operação falhar por algum motivo
+    }
     public static void main(String[] args) {
         String cpf = "12345678901"; // CPF de exemplo
 

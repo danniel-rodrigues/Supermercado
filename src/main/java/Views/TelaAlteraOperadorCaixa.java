@@ -40,8 +40,9 @@ public class TelaAlteraOperadorCaixa {
     private Button btnVoltar;
     private Label resposta;
 
-    public void show(Stage stage, OperadorCaixa operadorCaixa) {
+    private ControllerGerente controllerGerente;
 
+    public void show(Stage stage, OperadorCaixa operadorCaixa) {
 
 
         HBox hbox1 = new HBox(10);
@@ -71,7 +72,7 @@ public class TelaAlteraOperadorCaixa {
         HBox.setHgrow(lblCPF, Priority.NEVER);
         HBox.setHgrow(cpf, Priority.ALWAYS);
 
-        hbox1.getChildren().addAll(lblNome,nome, lblCPF, cpf);
+        hbox1.getChildren().addAll(lblNome, nome, lblCPF, cpf);
         hbox1.setMinHeight(20);
         hbox1.setAlignment(Pos.CENTER_LEFT);
 
@@ -223,7 +224,7 @@ public class TelaAlteraOperadorCaixa {
         Label lblEstado = new Label("ESTADO:");
         estado = new ComboBox<>();
         estado.setMaxWidth(200);
-        estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE","DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA","PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
+        estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
         // Aplicando estilos CSS personalizados
         estado.setStyle(
                 "-fx-background-color: white;" + // Background branco
@@ -253,7 +254,7 @@ public class TelaAlteraOperadorCaixa {
 
         // Adicionar botoes
         // Adicionar o botão btnCadastrar
-        btnCadastrar = new Button("CADASTRAR");
+        btnCadastrar = new Button("ALTERAR");
 
 // Adicionando ícones aos botões
         Image plusICon = new Image("assets/images/icons/plus.png");
@@ -265,9 +266,7 @@ public class TelaAlteraOperadorCaixa {
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
 
 // Configurando a ação do botão
-        btnCadastrar.setOnAction(e -> {
-            // Coloque aqui o código para lidar com o evento de clique no botão cadastrar
-        });
+        controllerGerente = new ControllerGerente(this);
 
         btnVoltar = new Button("VOLTAR");
 
@@ -297,7 +296,6 @@ public class TelaAlteraOperadorCaixa {
         hbox8.setAlignment(Pos.CENTER);
 
         resposta = new Label("");
-
 
 
         VBox vbox = new VBox();

@@ -132,4 +132,32 @@ public class OperadorCaixaDAO {
         }
         return null; // Retorna null se não encontrar nenhum operador com o CPF fornecido
     }
+
+    // Método para atualizar um operador no banco de dados
+    public static boolean atualizarOperador(OperadorCaixa operador) {
+        String sql = "UPDATE operador_caixa SET nome = ?, data_nasc = ?, email = ?, telefone = ?, sexo = ?, login = ?, senha = ?, status = ? WHERE cpf = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, operador.getNome());
+            pstmt.setString(2, operador.getDataNasc().toString()); // Convertendo a data para String por simplicidade
+            pstmt.setString(3, operador.getEmail());
+            pstmt.setString(4, operador.getTelefone());
+            pstmt.setString(5, operador.getSexo());
+            pstmt.setString(6, operador.getLogin());
+            pstmt.setString(7, operador.getSenha());
+            pstmt.setString(8, operador.getStatus());
+            pstmt.setString(9, operador.getCpf());
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Operador atualizado com sucesso.");
+                return true; // Retorna true se a operação foi bem-sucedida
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao atualizar operador: " + e.getMessage());
+        }
+        return false; // Retorna false se a operação falhar por algum motivo
+    }
+
 }

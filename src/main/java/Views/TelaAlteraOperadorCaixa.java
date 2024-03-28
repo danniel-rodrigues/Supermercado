@@ -16,6 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import Controllers.ControllerGerente;
 
 public class TelaAlteraOperadorCaixa {
@@ -77,7 +80,9 @@ public class TelaAlteraOperadorCaixa {
         // data nascimento
         Label lblData = new Label("DATA DE NASCIMENTO:");
         dataNascimento = new TextField();
-        dataNascimento.setText(String.valueOf(operadorCaixa.getDataNasc()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = sdf.format(operadorCaixa.getDataNasc());
+        dataNascimento.setText(dataFormatada);
         dataNascimento.setMaxWidth(100);
 
         HBox.setHgrow(lblData, Priority.NEVER);

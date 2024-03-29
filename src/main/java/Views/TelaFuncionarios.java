@@ -126,7 +126,7 @@ public class TelaFuncionarios {
         vbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(vbox, 600, 500);
-        stage.setTitle("SuperMercado - Funcionários");
+        stage.setTitle("Supermercado - Funcionários");
         stage.setScene(scene);
         stage.show();
     }

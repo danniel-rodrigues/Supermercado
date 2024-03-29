@@ -16,6 +16,6 @@ public class Gerente extends Funcionario{
 
     @Override
     public String toString(){
-        return "Nome: " + nome + " / CPF: " + cpf  + " / Telefone: " + telefone +  " / Status: " + status + " / Cargo: Gerente";
+        return "Nome: " + nome + " | CPF: " + cpf  + " | Telefone: " + telefone +  " | Status: " + status + " | Cargo: Gerente";
     }
 }

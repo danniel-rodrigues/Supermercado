@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import Models.Produto;
+import Models.Funcionario;
 
 public class ProdutoDAO {
     // URL de conexão com o BD SQLite
@@ -17,12 +18,15 @@ public class ProdutoDAO {
 
     // Comando SQL para criar a tabela caso ela não exista
     private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS produto (" +
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "nome TEXT NOT NULL, " +
             "marca TEXT NOT NULL, " +
             "codigo INTEGER NOT NULL UNIQUE, " +
             "tipo TEXT NOT NULL, " +
-            "preco REAL NOT NULL" +
-            "status TEXT NOT NULL" +
+            "preco REAL NOT NULL, " +
+            "status TEXT NOT NULL, " +
+            "id_funcionario TEXT NOT NULL, " +
+            "FOREIGN KEY (id_funcionario) REFERENCES funcionario (id)" +
             ")";
 
     // Método para criar a tabela no banco de dados
@@ -41,8 +45,8 @@ public class ProdutoDAO {
     public static void adicionarProduto(Produto produto) {
         criarTabela();
         String sql = "INSERT INTO produto " +
-                     "(nome, marca, codigo, tipo, preco, status) " +
-                     "VALUES (?, ?, ?, ?, ?, ?)";
+                     "(nome, marca, codigo, tipo, preco, status, id_funcionario) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -52,6 +56,7 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
+            pstmt.setString(7, "@@IDENTITY"); // Utiliza o id do último funcionário cadastrado
 
             pstmt.executeUpdate();
             System.out.println("Produto adicionado com sucesso.");
@@ -88,7 +93,8 @@ public class ProdutoDAO {
         String tipo = rs.getString("tipo");
         Float preco = rs.getFloat("preco");
         String status = rs.getString("status");
-        return new Produto(nome, marca, codigo, tipo, preco, status);
+        Funcionario funcionario = (Funcionario) rs.getObject("funcionario");
+        return new Produto(nome, marca, codigo, tipo, preco, status, funcionario);
     }
 
     // Método para buscar um produto pelo código
@@ -118,7 +124,8 @@ public class ProdutoDAO {
                                             "codigo = ?, " +
                                             "tipo = ?, " +
                                             "preco = ?, " +
-                                            "status = ?";
+                                            "status = ?, " +
+                                            "funcionario = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -128,6 +135,7 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
+            pstmt.setObject(7, produto.getFuncionario());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

@@ -11,18 +11,21 @@ public class Produto {
     protected String tipo;
     protected float preco;
     protected String status;
+    protected Funcionario funcionario;
     public Produto(String nome,
                    String marca,
                    Integer codigo,
                    String tipo,
                    float preco,
-                   String status) {
+                   String status,
+                   Funcionario funcionario) {
             this.nome = nome;
             this.marca = marca;
             this.codigo = codigo;
             this.tipo = tipo;
             this.preco = preco;
             this.status = status;
+            this.funcionario = funcionario;
     }
 
     // Retorna o nome do produto
@@ -84,4 +87,10 @@ public class Produto {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    // Retorna o funcionario que cadastrou o produto
+    public Funcionario getFuncionario() {return funcionario;}
+
+    // Define o funcionário que cadastrou o produto
+    public void setFuncionario(Funcionario funcionario) {this.funcionario = funcionario;}
 }

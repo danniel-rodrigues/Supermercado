@@ -8,6 +8,7 @@ import java.util.Date;
 
 // Classe responsável pela lógica de negócios relacionada à entidade funcionário
 public class Funcionario {
+    protected int id;
     protected String nome;
     protected String cpf;
     protected Date dataNasc;
@@ -32,6 +33,12 @@ public class Funcionario {
         this.status = status;
         this.endereco = endereco;
     }
+
+    // Retorna o id do funcionário
+    public int getId() {return id;}
+
+    // Define o id do funcionário
+    public void setId(int id) {this.id = id;}
 
     // Retorna o nome do funcionário
     public String getNome() {

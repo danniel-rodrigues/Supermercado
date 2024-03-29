@@ -17,11 +17,12 @@ public class Item extends Produto {
                 String tipo,
                 float preco,
                 String status,
+                Funcionario funcionario,
                 Date dataValidade,
                 Date dataFabricacao,
                 float peso,
                 String lote) {
-        super(nome, marca, codigo, tipo, preco, status);
+        super(nome, marca, codigo, tipo, preco, status, funcionario);
         this.dataValidade = dataValidade;
         this.dataFabricacao = dataFabricacao;
         this.peso = peso;

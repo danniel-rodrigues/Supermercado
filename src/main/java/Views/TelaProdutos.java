@@ -33,8 +33,8 @@ public class TelaProdutos {
             telaCadastroProduto.show(stage);
         });
         btnAlterarCadastro.setOnAction(e -> {
-//            TelaBuscaFuncionario telaBuscaFuncionario = new TelaBuscaFuncionario();
-//            telaBuscaFuncionario.show(stage);
+            TelaBuscarProduto telaBuscarProduto = new TelaBuscarProduto();
+            telaBuscarProduto.show(stage);
         });
 
         btnDesativar.setOnAction(e -> {

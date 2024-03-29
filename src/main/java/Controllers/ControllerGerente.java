@@ -127,7 +127,7 @@ public class ControllerGerente {
                 telaAlteraOperadorCaixa.show(viewB.getSt(), operadorCaixa);
             }
         } else {
-            viewB.getLbAviso().setText("CPF ínvalido".toUpperCase());
+            viewB.getLbAviso().setText("CPF Inválido".toUpperCase());
             viewB.getLbAviso().setStyle("-fx-text-fill: red;");
         }
 

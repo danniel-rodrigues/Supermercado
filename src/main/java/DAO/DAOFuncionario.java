@@ -49,7 +49,7 @@ public class DAOFuncionario {
     // Método para adicionar um funcionario ao banco de dados
     public static boolean adicionarFuncionario(Funcionario funcionario) {
         criarTabela();
-        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -44,6 +44,11 @@ public class TelaInicial {
             telaFornecedores.show(primaryStage);
         });
 
+        btnProduto.setOnAction(e -> {
+            TelaProdutos telaProdutos = new TelaProdutos();
+            telaProdutos.show(primaryStage);
+        });
+
 
 
 

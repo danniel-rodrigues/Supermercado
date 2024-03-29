@@ -5,35 +5,24 @@ package Models;
 * à entidade 'Produto'.
 * */
 public class Produto {
-    protected int id;
     protected String nome;
     protected String marca;
     protected Integer codigo;
     protected String tipo;
     protected float preco;
-
-    public Produto(int id,
-                   String nome,
+    protected String status;
+    public Produto(String nome,
                    String marca,
                    Integer codigo,
                    String tipo,
-                   float preco) {
-            this.id = id;
+                   float preco,
+                   String status) {
             this.nome = nome;
             this.marca = marca;
             this.codigo = codigo;
             this.tipo = tipo;
             this.preco = preco;
-    }
-
-    // Retorna o id do produto
-    public int getId() {
-        return id;
-    }
-
-    // Define o id do produto
-    public void setId(int id) {
-        this.id = id;
+            this.status = status;
     }
 
     // Retorna o nome do produto
@@ -84,5 +73,15 @@ public class Produto {
     // Define o preço do produto
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    // Retorna o status do produto
+    public String getStatus() {
+        return status;
+    }
+
+    // Define o status do produto
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

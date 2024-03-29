@@ -60,4 +60,13 @@ public class Fornecedor {
         System.out.println("Contato: " + contato);
         System.out.println("Email: " + email);
     }
+
+    //implentação do método cadastrarFornecedor
+    public void cadastrarFornecedor() {
+
+         // lógica para cadastrar o fornecedor
+        // 
+       // 
+      //
+    }
 }

@@ -47,7 +47,6 @@ public class OperadorCaixaDAO {
         }
     }
 
-    // Metodo para adicionar um operador ao banco de dados
     // Método para adicionar um operador ao banco de dados
     public static boolean adicionarOperador(OperadorCaixa operador) {
         criarTabela();

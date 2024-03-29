@@ -9,11 +9,9 @@ import java.util.Date;
 public class OperadorCaixa extends Funcionario{
     private final StringProperty nome_a;
     private final StringProperty cpf_a;
-
     private final StringProperty status_a;
     private final StringProperty telefone_a;
     private final StringProperty cargo;
-
     private final StringProperty emailPropety;
 
     public OperadorCaixa(String nome, String cpf, Date dataNasc, String email,

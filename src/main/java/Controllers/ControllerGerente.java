@@ -3,11 +3,14 @@ package Controllers;
 
 import Auxiliar.CPF;
 import Auxiliar.Data;
+import DAO.DaoGerente;
 import DAO.EnderecoDAO;
 import DAO.OperadorCaixaDAO;
 import Models.Endereco;
 
 
+import Models.Funcionario;
+import Models.Gerente;
 import Models.OperadorCaixa;
 import Views.TelaAlteraOperadorCaixa;
 import Views.TelaBuscaFuncionario;
@@ -84,29 +87,36 @@ public class ControllerGerente {
                         numero,
                         cpf
                 );
-                OperadorCaixa funcionario = new OperadorCaixa(
-                        nome,
-                        cpf,
-                        Data.converterStringParaDate(nascimento, formato),
-                        email,
-                        cep,
-                        sexo,
-                        "joao",
-                        "senha123",
-                        status,
-                        endereco
-                );
 
-                if (OperadorCaixaDAO.adicionarOperador(funcionario)) {
-                    EnderecoDAO.adicionarEndereco(endereco);
-
-                    view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
-                    view.getRespostaLabel().setStyle("-fx-text-fill: green;");
-                    // Limpe os campos de entrada após o cadastro
-                    view.limparCampos();
-                } else {
-                    view.getRespostaLabel().setText("Erro na inserção!");
-                    view.getRespostaLabel().setStyle("-fx-text-fill: red;");
+                // Verifica o cargo correto e adiciona o funcionario
+                if(cargo.equals("Gerente")){
+                    Gerente gerente = new Gerente(
+                            nome,
+                            cpf,
+                            Data.converterStringParaDate(nascimento, formato),
+                            email,
+                            cep,
+                            sexo,
+                            "joao",
+                            "senha123",
+                            status,
+                            endereco
+                    );
+                    adicionaGerente(gerente, endereco);
+                }else{
+                    OperadorCaixa operador = new OperadorCaixa(
+                            nome,
+                            cpf,
+                            Data.converterStringParaDate(nascimento, formato),
+                            email,
+                            cep,
+                            sexo,
+                            "joao",
+                            "senha123",
+                            status,
+                            endereco
+                    );
+                    adicionaOperador(operador, endereco);
                 }
             }
         }
@@ -200,6 +210,36 @@ public class ControllerGerente {
                     viewC.getRespostaLabel().setStyle("-fx-text-fill: red;");
                 }
             }
+        }
+    }
+
+    public void adicionaGerente(Gerente gerente, Endereco endereco){
+        // Adiciona um gerente ao Banco
+        if (DaoGerente.adicionarGerente(gerente)) {
+            EnderecoDAO.adicionarEndereco(endereco);
+
+            view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
+            view.getRespostaLabel().setStyle("-fx-text-fill: green;");
+            // Limpe os campos de entrada após o cadastro
+            view.limparCampos();
+        } else {
+            view.getRespostaLabel().setText("Erro na inserção!");
+            view.getRespostaLabel().setStyle("-fx-text-fill: red;");
+        }
+    }
+
+    public void adicionaOperador(OperadorCaixa operador, Endereco endereco){
+        // Adiciona um operador ao banco
+        if (OperadorCaixaDAO.adicionarOperador(operador)) {
+            EnderecoDAO.adicionarEndereco(endereco);
+
+            view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
+            view.getRespostaLabel().setStyle("-fx-text-fill: green;");
+            // Limpe os campos de entrada após o cadastro
+            view.limparCampos();
+        } else {
+            view.getRespostaLabel().setText("Erro na inserção!");
+            view.getRespostaLabel().setStyle("-fx-text-fill: red;");
         }
     }
 

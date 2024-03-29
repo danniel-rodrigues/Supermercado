@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DaoGerente {
+public class GerenteDAO {
     // URL de conexão com o banco de dados SQLite
     private static final String URL = "jdbc:sqlite:gerente.db";
 

@@ -3,16 +3,12 @@ package Controllers;
 
 import Auxiliar.CPF;
 import Auxiliar.Data;
-import DAO.DAOFuncionario;
-import DAO.DaoGerente;
+import DAO.FuncionarioDAO;
 import DAO.EnderecoDAO;
-import DAO.OperadorCaixaDAO;
 import Models.Endereco;
 
 
 import Models.Funcionario;
-import Models.Gerente;
-import Models.OperadorCaixa;
 import Views.TelaAlteraOperadorCaixa;
 import Views.TelaBuscaFuncionario;
 import Views.TelaCadastroFuncionario;
@@ -112,7 +108,7 @@ public class ControllerGerente {
         String cpf = viewB.getCpf().getText();
 
         if (CPF.validarCPF(cpf) || !cpf.isEmpty()) {
-            Funcionario funcionario = DAOFuncionario.buscarFuncionarioPorCPF(cpf);
+            Funcionario funcionario = FuncionarioDAO.buscarFuncionarioPorCPF(cpf);
             if (funcionario == null) {
                 viewB.getLbAviso().setText("CPF não encontrado".toUpperCase());
                 viewB.getLbAviso().setStyle("-fx-text-fill: red;");
@@ -182,7 +178,7 @@ public class ControllerGerente {
                         endereco
                 );
 
-                if (DAOFuncionario.atualizarFuncionario(funcionario)) {
+                if (FuncionarioDAO.atualizarFuncionario(funcionario)) {
                     EnderecoDAO.atualizarEndereco(endereco);
 
                     viewC.getRespostaLabel().setText("Funcionário alterado com sucesso!".toUpperCase());
@@ -199,7 +195,7 @@ public class ControllerGerente {
 
     public void adicionaFuncionario(Funcionario funcionario, Endereco endereco){
         // Adiciona um funcionario ao banco
-        if (DAOFuncionario.adicionarFuncionario(funcionario)) {
+        if (FuncionarioDAO.adicionarFuncionario(funcionario)) {
             EnderecoDAO.adicionarEndereco(endereco);
 
             view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");

@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class DAOFuncionario {
+public class FuncionarioDAO {
     // URL de conexão com o banco de dados SQLite
     private static final String URL = "jdbc:sqlite:supermercado.db";
 
@@ -156,5 +156,19 @@ public class DAOFuncionario {
             System.err.println("Erro ao atualizar funcionario: " + e.getMessage());
         }
         return false; // Retorna false se a operação falhar por algum motivo
+    }
+
+    public static boolean removerFuncionario(String cpf){
+        String sql = "DELETE FROM funcionario WHERE cpf = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cpf);
+            ResultSet rs = pstmt.executeQuery();
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao demitir funcionario: " + e.getMessage());
+        }
+        return false; // Retorna null se não encontrar nenhum funcionario com o CPF fornecido
     }
 }

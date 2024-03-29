@@ -1,8 +1,7 @@
 package Views;
 
 import Auxiliar.CPF;
-import DAO.DAOFuncionario;
-import DAO.OperadorCaixaDAO;
+import DAO.FuncionarioDAO;
 import Models.Funcionario;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,8 +14,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
-
-import Models.OperadorCaixa;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,7 +71,7 @@ public class TelaFuncionarios {
 
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDemitir);
 
-        List<Funcionario> funcionarios = DAOFuncionario.listarFuncionarios();
+        List<Funcionario> funcionarios = FuncionarioDAO.listarFuncionarios();
 
         List<Funcionario> funcionariosFormatados = funcionarios.stream()
                 .map(funcionario -> {

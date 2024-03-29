@@ -11,17 +11,17 @@ public class Item extends Produto {
     private Date dataFabricacao;
     private float peso;
     private String lote;
-    public Item(int id,
-                String nome,
+    public Item(String nome,
                 String marca,
                 Integer codigo,
                 String tipo,
                 float preco,
+                String status,
                 Date dataValidade,
                 Date dataFabricacao,
                 float peso,
                 String lote) {
-        super(id, nome, marca, codigo, tipo, preco);
+        super(nome, marca, codigo, tipo, preco, status);
         this.dataValidade = dataValidade;
         this.dataFabricacao = dataFabricacao;
         this.peso = peso;

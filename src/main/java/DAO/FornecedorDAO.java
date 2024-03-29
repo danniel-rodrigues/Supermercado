@@ -1,17 +1,13 @@
 package DAO;
 
-import Models.Endereco;
 import Models.Fornecedor;
 
 import java.sql.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-public class DAOFornecedor {
+public class FornecedorDAO {
     // URL de conexão com o banco de dados SQLite
     private static final String URL = "jdbc:sqlite:supermercado.db";
 

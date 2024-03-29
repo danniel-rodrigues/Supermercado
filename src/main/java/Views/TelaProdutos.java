@@ -29,8 +29,8 @@ public class TelaProdutos {
 
         // Definindo a rota dos botões
         btnCadastrar.setOnAction(e -> {
-//            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
-//            telaCadastroFuncionario.show(stage);
+            TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
+            telaCadastroProduto.show(stage);
         });
         btnAlterarCadastro.setOnAction(e -> {
 //            TelaBuscaFuncionario telaBuscaFuncionario = new TelaBuscaFuncionario();

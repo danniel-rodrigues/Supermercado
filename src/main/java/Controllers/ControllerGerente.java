@@ -9,7 +9,7 @@ import Models.Endereco;
 
 
 import Models.Funcionario;
-import Views.TelaAlteraOperadorCaixa;
+import Views.TelaAlteraFuncionario;
 import Views.TelaBuscaFuncionario;
 import Views.TelaCadastroFuncionario;
 
@@ -19,7 +19,7 @@ public class ControllerGerente {
     private TelaCadastroFuncionario view;
     private TelaBuscaFuncionario viewB;
 
-    private TelaAlteraOperadorCaixa viewC;
+    private TelaAlteraFuncionario viewC;
 
     public ControllerGerente(TelaCadastroFuncionario view) {
         this.view = view;
@@ -35,7 +35,7 @@ public class ControllerGerente {
         view.getBtnBuscar().setOnAction(e -> alterarFuncionario());
     }
 
-    public ControllerGerente(TelaAlteraOperadorCaixa view) {
+    public ControllerGerente(TelaAlteraFuncionario view) {
         viewC = view;
 
         view.getBtnCadastrar().setOnAction(e -> AlterarDados());
@@ -113,8 +113,8 @@ public class ControllerGerente {
                 viewB.getLbAviso().setText("CPF não encontrado".toUpperCase());
                 viewB.getLbAviso().setStyle("-fx-text-fill: red;");
             } else {
-                TelaAlteraOperadorCaixa telaAlteraOperadorCaixa = new TelaAlteraOperadorCaixa();
-                telaAlteraOperadorCaixa.show(viewB.getSt(), funcionario);
+                TelaAlteraFuncionario telaAlteraFuncionario = new TelaAlteraFuncionario();
+                telaAlteraFuncionario.show(viewB.getSt(), funcionario);
             }
         } else {
             viewB.getLbAviso().setText("CPF Inválido".toUpperCase());

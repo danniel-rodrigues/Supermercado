@@ -10,7 +10,7 @@ import java.sql.Statement;
 import Models.Endereco;
 public class EnderecoDAO {
     // URL de conexão com o banco de dados SQLite
-    private static final String URL = "jdbc:sqlite:endereco.db";
+    private static final String URL = "jdbc:sqlite:supermercado.db";
 
     // Comando SQL para criar a tabela caso ela não exista
     private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS endereco (" +

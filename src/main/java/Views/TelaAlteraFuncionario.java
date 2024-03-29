@@ -1,7 +1,6 @@
 package Views;
 
 import Models.Funcionario;
-import Models.OperadorCaixa;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -18,11 +17,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import Controllers.ControllerGerente;
 
-public class TelaAlteraOperadorCaixa {
+public class TelaAlteraFuncionario {
     private TextField nome;
     private TextField cpf;
     private TextField dataNascimento;

@@ -106,9 +106,19 @@ public class TelaFuncionarios {
         TableColumn<OperadorCaixa, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailPropetyProperty());
 
+        TableView<OperadorCaixa> tableView = null;
+
+
         // Adicionando as colunas à TableView
-        TableView<OperadorCaixa> tableView = new TableView<>();
+        tableView = new TableView<>();
         tableView.getColumns().addAll(nomeColumn, cpfColumn, telefoneColumn, cargoColumn, statusColumn, emailColumn);
+
+        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6)); // Coluna de nome ocupará  do espaço
+        cpfColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+        telefoneColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+        cargoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+        statusColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+        emailColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
 
         // Definindo os itens da TableView
         tableView.setItems(funcionarios);

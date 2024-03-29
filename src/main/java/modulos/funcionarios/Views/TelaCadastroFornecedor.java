@@ -1,18 +1,17 @@
-package Views;
+package modulos.funcionarios.Views;
 
-import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.geometry.Insets;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-// Adicionar imagem
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class TelaCadastroFornecedor {
     public void show(Stage stage) {
@@ -27,6 +26,7 @@ public class TelaCadastroFornecedor {
         // Nome
         Label lblNome = new Label("Nome:");
         TextField txtNome = new TextField();
+//        txtNome.setPrefWidth(250);
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
         hbox1.setMinHeight(20);

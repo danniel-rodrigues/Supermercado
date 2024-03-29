@@ -1,28 +1,23 @@
-package Views;
+package modulos.funcionarios.Views;
 
-import Models.Funcionario;
-import Models.OperadorCaixa;
-import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.geometry.Insets;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-// Adicionar imagem
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import modulos.funcionarios.Controllers.ControllerGerente;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import Controllers.ControllerGerente;
+public class TelaCadastroFuncionario{
 
-public class TelaAlteraOperadorCaixa {
     private TextField nome;
     private TextField cpf;
     private TextField dataNascimento;
@@ -40,10 +35,10 @@ public class TelaAlteraOperadorCaixa {
     private Button btnCadastrar;
     private Button btnVoltar;
     private Label resposta;
+    private ControllerGerente controller;
 
-    private ControllerGerente controllerGerente;
+    public void show(Stage stage) {
 
-    public void show(Stage stage, Funcionario funcionario) {
 
 
         HBox hbox1 = new HBox(10);
@@ -57,7 +52,6 @@ public class TelaAlteraOperadorCaixa {
         // nome
         Label lblNome = new Label("NOME:");
         nome = new TextField();
-        nome.setText(funcionario.getNome());
         nome.setMaxWidth(250);
 
         HBox.setHgrow(lblNome, Priority.NEVER);
@@ -66,14 +60,13 @@ public class TelaAlteraOperadorCaixa {
         // cpf
         Label lblCPF = new Label("CPF:");
         cpf = new TextField();
-        cpf.setText(funcionario.getCpf());
         cpf.setMaxWidth(250);
         lblCPF.setPadding(new Insets(0, 0, 0, 20));
 
         HBox.setHgrow(lblCPF, Priority.NEVER);
         HBox.setHgrow(cpf, Priority.ALWAYS);
 
-        hbox1.getChildren().addAll(lblNome, nome, lblCPF, cpf);
+        hbox1.getChildren().addAll(lblNome,nome, lblCPF, cpf);
         hbox1.setMinHeight(20);
         hbox1.setAlignment(Pos.CENTER_LEFT);
 
@@ -82,9 +75,6 @@ public class TelaAlteraOperadorCaixa {
         // data nascimento
         Label lblData = new Label("DATA DE NASCIMENTO:");
         dataNascimento = new TextField();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = sdf.format(funcionario.getDataNasc());
-        dataNascimento.setText(dataFormatada);
         dataNascimento.setMaxWidth(100);
 
         HBox.setHgrow(lblData, Priority.NEVER);
@@ -93,7 +83,6 @@ public class TelaAlteraOperadorCaixa {
         // email
         Label lblEmail = new Label("EMAIL:");
         email = new TextField();
-        email.setText(funcionario.getEmail());
         email.setMaxWidth(200);
         lblEmail.setPadding(new Insets(0, 0, 0, 50));
 
@@ -108,7 +97,6 @@ public class TelaAlteraOperadorCaixa {
         // telefone
         Label lblTelefone = new Label("TELEFONE:");
         telefone = new TextField();
-        telefone.setText(funcionario.getTelefone());
         telefone.setMaxWidth(150);
 
         HBox.setHgrow(lblTelefone, Priority.NEVER);
@@ -127,7 +115,7 @@ public class TelaAlteraOperadorCaixa {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        sexo.setValue(funcionario.getSexo());
+        sexo.setValue("Selecione");
 
         HBox.setHgrow(lblSexo, Priority.NEVER);
         HBox.setHgrow(sexo, Priority.ALWAYS);
@@ -148,7 +136,7 @@ public class TelaAlteraOperadorCaixa {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        cargo.setValue("OperadorCaixa");
+        cargo.setValue("Selecione");
 
         HBox.setHgrow(lblCargo, Priority.NEVER);
         HBox.setHgrow(cargo, Priority.ALWAYS);
@@ -166,7 +154,7 @@ public class TelaAlteraOperadorCaixa {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        status.setValue(funcionario.getStatus());
+        status.setValue("Selecione");
 
         HBox.setHgrow(lblStatus, Priority.NEVER);
         HBox.setHgrow(status, Priority.ALWAYS);
@@ -178,7 +166,6 @@ public class TelaAlteraOperadorCaixa {
         // rua
         Label lblRua = new Label("RUA:");
         rua = new TextField();
-        rua.setText(funcionario.getEndereco().getRua());
         rua.setMaxWidth(200);
 
         HBox.setHgrow(lblRua, Priority.NEVER);
@@ -187,7 +174,6 @@ public class TelaAlteraOperadorCaixa {
         // bairro
         Label lblBairro = new Label("BAIRRO:");
         bairro = new TextField();
-        bairro.setText(funcionario.getEndereco().getBairro());
         bairro.setMaxWidth(200);
         lblBairro.setPadding(new Insets(0, 0, 0, 50));
 
@@ -201,7 +187,6 @@ public class TelaAlteraOperadorCaixa {
         // numero
         Label lblNumero = new Label("NÚMERO:");
         numero = new TextField();
-        numero.setText(funcionario.getEndereco().getNumero());
         numero.setMaxWidth(100);
 
         HBox.setHgrow(lblNumero, Priority.NEVER);
@@ -210,7 +195,6 @@ public class TelaAlteraOperadorCaixa {
         // municipio
         Label lblMunicipio = new Label("MUNICÍPIO:");
         municipio = new TextField();
-        municipio.setText(funcionario.getEndereco().getCidade());
         municipio.setMaxWidth(200);
         lblMunicipio.setPadding(new Insets(0, 0, 0, 125));
 
@@ -225,7 +209,7 @@ public class TelaAlteraOperadorCaixa {
         Label lblEstado = new Label("ESTADO:");
         estado = new ComboBox<>();
         estado.setMaxWidth(200);
-        estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
+        estado.getItems().addAll("AC", "AL", "AP", "AM", "BA", "CE","DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA","PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO");
         // Aplicando estilos CSS personalizados
         estado.setStyle(
                 "-fx-background-color: white;" + // Background branco
@@ -233,7 +217,7 @@ public class TelaAlteraOperadorCaixa {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        estado.setValue(funcionario.getEndereco().getEstado());
+        estado.setValue("Selecione");
 
         HBox.setHgrow(lblEstado, Priority.NEVER);
         HBox.setHgrow(estado, Priority.ALWAYS);
@@ -241,7 +225,6 @@ public class TelaAlteraOperadorCaixa {
         // cep
         Label lblCEP = new Label("CEP:");
         cep = new TextField();
-        cep.setText(funcionario.getEndereco().getCep());
         cep.setMaxWidth(200);
         lblCEP.setPadding(new Insets(0, 0, 0, 30));
 
@@ -255,7 +238,7 @@ public class TelaAlteraOperadorCaixa {
 
         // Adicionar botoes
         // Adicionar o botão btnCadastrar
-        btnCadastrar = new Button("ALTERAR");
+        btnCadastrar = new Button("CADASTRAR");
 
 // Adicionando ícones aos botões
         Image plusICon = new Image("assets/images/icons/plus.png");
@@ -267,7 +250,12 @@ public class TelaAlteraOperadorCaixa {
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
 
 // Configurando a ação do botão
-        controllerGerente = new ControllerGerente(this);
+        btnCadastrar.setOnAction(e -> {
+            // Coloque aqui o código para lidar com o evento de clique no botão cadastrar
+        });
+        controller = new ControllerGerente(this);
+
+
 
         btnVoltar = new Button("VOLTAR");
 
@@ -299,6 +287,7 @@ public class TelaAlteraOperadorCaixa {
         resposta = new Label("");
 
 
+
         VBox vbox = new VBox();
 
         // padding
@@ -310,7 +299,7 @@ public class TelaAlteraOperadorCaixa {
         vbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(vbox, 600, 500);
-        stage.setTitle("Supermercado - Alterar dados de Funcionários");
+        stage.setTitle("Supermercado - Cadastro de Funcionários");
         stage.setScene(scene);
         stage.show();
     }

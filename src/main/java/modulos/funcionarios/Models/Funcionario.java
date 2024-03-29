@@ -1,8 +1,5 @@
-package Models;
+package modulos.funcionarios.Models;
 
-
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import java.util.Date;
 
@@ -133,32 +130,5 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
-    public StringProperty nomeProperty(){
-        return new SimpleStringProperty(nome);
-    }
 
-    public StringProperty cpfProperty(){
-        return new SimpleStringProperty(cpf);
-    }
-
-    public StringProperty telefoneProperty(){
-        return new SimpleStringProperty(telefone);
-    }
-
-    public StringProperty cargoProperty(){
-        return new SimpleStringProperty("cargo");
-    }
-
-    public StringProperty statusProperty(){
-        return new SimpleStringProperty(status);
-    }
-
-    public StringProperty emailProperty(){
-        return new SimpleStringProperty(email);
-    }
-
-    @Override
-    public String toString(){
-        return "Nome: " + nome + " / CPF: " + cpf  + " / Telefone: " + telefone +  " / Status: " + status + " / Cargo: cargo";
-    }
 }

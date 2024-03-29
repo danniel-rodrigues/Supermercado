@@ -1,19 +1,18 @@
-package Views;
+package modulos.funcionarios.Views;
 
-import Controllers.ControllerGerente;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.geometry.Insets;
-import javafx.scene.text.Font;
-import javafx.scene.control.Button;
-// Adicionar imagem
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import modulos.funcionarios.Controllers.ControllerGerente;
 
 public class TelaBuscaFuncionario{
     private Button btnBuscar;
@@ -30,7 +29,7 @@ public class TelaBuscaFuncionario{
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
+        lblAviso = new Label("FUNCIONARIO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
         cpf = new TextField();

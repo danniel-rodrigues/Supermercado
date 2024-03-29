@@ -1,21 +1,15 @@
-package Controllers;
+package modulos.funcionarios.Controllers;
 
 
-import Auxiliar.CPF;
-import Auxiliar.Data;
-import DAO.DAOFuncionario;
-import DAO.DaoGerente;
-import DAO.EnderecoDAO;
-import DAO.OperadorCaixaDAO;
-import Models.Endereco;
-
-
-import Models.Funcionario;
-import Models.Gerente;
-import Models.OperadorCaixa;
-import Views.TelaAlteraOperadorCaixa;
-import Views.TelaBuscaFuncionario;
-import Views.TelaCadastroFuncionario;
+import modulos.funcionarios.Auxiliar.CPF;
+import modulos.funcionarios.Auxiliar.Data;
+import modulos.funcionarios.DAO.EnderecoDAO;
+import modulos.funcionarios.DAO.OperadorCaixaDAO;
+import modulos.funcionarios.Models.Endereco;
+import modulos.funcionarios.Models.OperadorCaixa;
+import modulos.funcionarios.Views.TelaAlteraOperadorCaixa;
+import modulos.funcionarios.Views.TelaBuscaFuncionario;
+import modulos.funcionarios.Views.TelaCadastroFuncionario;
 
 import java.util.Objects;
 
@@ -36,7 +30,7 @@ public class ControllerGerente {
     public ControllerGerente(TelaBuscaFuncionario view) {
         this.viewB = view;
         // buscar funcionario na Tabela
-        view.getBtnBuscar().setOnAction(e -> alterarFuncionario());
+        view.getBtnBuscar().setOnAction(e -> alterarOperadorCaixa());
     }
 
     public ControllerGerente(TelaAlteraOperadorCaixa view) {
@@ -88,7 +82,7 @@ public class ControllerGerente {
                         numero,
                         cpf
                 );
-                Funcionario funcionario = new Funcionario(
+                OperadorCaixa funcionario = new OperadorCaixa(
                         nome,
                         cpf,
                         Data.converterStringParaDate(nascimento, formato),
@@ -101,24 +95,34 @@ public class ControllerGerente {
                         endereco
                 );
 
-                adicionaFuncionario(funcionario, endereco);
+                if (OperadorCaixaDAO.adicionarOperador(funcionario)) {
+                    EnderecoDAO.adicionarEndereco(endereco);
+
+                    view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
+                    view.getRespostaLabel().setStyle("-fx-text-fill: green;");
+                    // Limpe os campos de entrada após o cadastro
+                    view.limparCampos();
+                } else {
+                    view.getRespostaLabel().setText("Erro na inserção!");
+                    view.getRespostaLabel().setStyle("-fx-text-fill: red;");
+                }
             }
         }
 
 
     }
 
-    public void alterarFuncionario() {
+    public void alterarOperadorCaixa() {
         String cpf = viewB.getCpf().getText();
 
         if (CPF.validarCPF(cpf) || !cpf.isEmpty()) {
-            Funcionario funcionario = DAOFuncionario.buscarFuncionarioPorCPF(cpf);
-            if (funcionario == null) {
+            OperadorCaixa operadorCaixa = OperadorCaixaDAO.buscarOperadorPorCPF(cpf);
+            if (operadorCaixa == null) {
                 viewB.getLbAviso().setText("CPF não encontrado".toUpperCase());
                 viewB.getLbAviso().setStyle("-fx-text-fill: red;");
             } else {
                 TelaAlteraOperadorCaixa telaAlteraOperadorCaixa = new TelaAlteraOperadorCaixa();
-                telaAlteraOperadorCaixa.show(viewB.getSt(), funcionario);
+                telaAlteraOperadorCaixa.show(viewB.getSt(), operadorCaixa);
             }
         } else {
             viewB.getLbAviso().setText("CPF Inválido".toUpperCase());
@@ -169,7 +173,7 @@ public class ControllerGerente {
                         numero,
                         cpf
                 );
-                Funcionario funcionario = new Funcionario(
+                OperadorCaixa funcionario = new OperadorCaixa(
                         nome,
                         cpf,
                         Data.converterStringParaDate(nascimento, formato),
@@ -182,7 +186,7 @@ public class ControllerGerente {
                         endereco
                 );
 
-                if (DAOFuncionario.atualizarFuncionario(funcionario)) {
+                if (OperadorCaixaDAO.atualizarOperador(funcionario)) {
                     EnderecoDAO.atualizarEndereco(endereco);
 
                     viewC.getRespostaLabel().setText("Funcionário alterado com sucesso!".toUpperCase());
@@ -194,21 +198,6 @@ public class ControllerGerente {
                     viewC.getRespostaLabel().setStyle("-fx-text-fill: red;");
                 }
             }
-        }
-    }
-
-    public void adicionaFuncionario(Funcionario funcionario, Endereco endereco){
-        // Adiciona um funcionario ao banco
-        if (DAOFuncionario.adicionarFuncionario(funcionario)) {
-            EnderecoDAO.adicionarEndereco(endereco);
-
-            view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
-            view.getRespostaLabel().setStyle("-fx-text-fill: green;");
-            // Limpe os campos de entrada após o cadastro
-            view.limparCampos();
-        } else {
-            view.getRespostaLabel().setText("Erro na inserção!");
-            view.getRespostaLabel().setStyle("-fx-text-fill: red;");
         }
     }
 

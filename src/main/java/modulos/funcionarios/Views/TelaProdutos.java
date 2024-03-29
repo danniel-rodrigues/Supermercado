@@ -1,20 +1,18 @@
-package Views;
+package modulos.funcionarios.Views;
 
-import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.control.Button;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Models.Produto;
 
 public class TelaProdutos {
     public void show(Stage stage) {
@@ -29,12 +27,12 @@ public class TelaProdutos {
 
         // Definindo a rota dos botões
         btnCadastrar.setOnAction(e -> {
-            TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
-            telaCadastroProduto.show(stage);
+//            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
+//            telaCadastroFuncionario.show(stage);
         });
         btnAlterarCadastro.setOnAction(e -> {
-            TelaBuscarProduto telaBuscarProduto = new TelaBuscarProduto();
-            telaBuscarProduto.show(stage);
+//            TelaBuscaFuncionario telaBuscaFuncionario = new TelaBuscaFuncionario();
+//            telaBuscaFuncionario.show(stage);
         });
 
         btnDesativar.setOnAction(e -> {

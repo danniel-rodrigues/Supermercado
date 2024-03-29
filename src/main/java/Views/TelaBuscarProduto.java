@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.ControllerGerente;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,36 +14,33 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class TelaBuscaFuncionario{
-    private Button btnBuscar;
-    private Label lblAviso;
+public class TelaBuscarProduto {
 
-    private TextField cpf;
-
-    private  Stage st;
-    private ControllerGerente controller;
     public void show(Stage stage) {
-        st = stage;
-        // texto informativo
-        Label lblInfo = new Label("Informe o CPF do funcionário que deseja realizar a alteração\ndo cadastro.\n(Exclusivo para uso do Gerente!)");
+        // Texto informativo
+        Label lblInfo = new Label("Informe o CÓDIGO referente ao produto que deseja realizar\na alteração de informações.");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
+        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
-        cpf = new TextField();
-        cpf.setPrefHeight(40);
+        TextField txtCodigo = new TextField();
+        txtCodigo.setPrefHeight(40);
 
         // Adicionar botoes
-        btnBuscar = new Button("BUSCAR");
+        Button btnBuscar = new Button("BUSCAR");
         btnBuscar.setOnAction(e -> {
 
         });
 
-        controller = new ControllerGerente(this);
+        Button btnVoltar = new Button("VOLTAR");
+        btnVoltar.setOnAction(e -> {
+            TelaProdutos telaProdutos = new TelaProdutos();
+            telaProdutos.show(stage);
+        });
 
-        // Adicionando ícones aos botões
+        // Adicionando ícone ao botão Buscar
         Image glassICon = new Image("assets/images/icons/magnifying-glass.png");
         ImageView glassIConView = new ImageView(glassICon);
         glassIConView.setFitWidth(20);
@@ -53,14 +49,7 @@ public class TelaBuscaFuncionario{
         // Definindo o background dos botões
         btnBuscar.setStyle("-fx-background-color: #F79516;");
 
-
-        Button btnVoltar = new Button("VOLTAR");
-        btnVoltar.setOnAction(e -> {
-            TelaFuncionarios telaFuncionarios = new TelaFuncionarios();
-            telaFuncionarios.show(stage);
-        });
-
-        // Adicionando ícones aos botões
+        // Adicionando ícone ao botão Voltar
         Image arrowIcon = new Image("assets/images/icons/arrow.png");
         ImageView arrowIconView = new ImageView(arrowIcon);
         arrowIconView.setFitWidth(20);
@@ -79,7 +68,7 @@ public class TelaBuscaFuncionario{
         hbox1.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, cpf, hbox1, lblAviso);
+        vbox.getChildren().addAll(lblInfo, txtCodigo, hbox1, lblAviso);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -87,24 +76,8 @@ public class TelaBuscaFuncionario{
         vbox.setPadding(padding);
 
         Scene scene = new Scene(vbox, 600, 500);
-        stage.setTitle("SuperMercado - Buscar Funcionário");
+        stage.setTitle("Supermercado - Buscar Produto");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public Button getBtnBuscar(){
-        return btnBuscar;
-    }
-
-    public Label getLbAviso(){
-        return  lblAviso;
-    }
-
-    public TextField getCpf(){
-        return cpf;
-    }
-
-    public Stage getSt(){
-        return st;
     }
 }

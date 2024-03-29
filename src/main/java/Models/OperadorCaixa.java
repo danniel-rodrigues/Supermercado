@@ -14,7 +14,7 @@ public class OperadorCaixa extends Funcionario{
     private final StringProperty telefone_a;
     private final StringProperty cargo;
 
-    private final StringProperty email_a;
+    private final StringProperty emailPropety;
 
     public OperadorCaixa(String nome, String cpf, Date dataNasc, String email,
                          String telefone, String sexo, String login, String senha, String status, Endereco endereco){
@@ -25,7 +25,7 @@ public class OperadorCaixa extends Funcionario{
         status_a = new SimpleStringProperty(status);
         telefone_a = new SimpleStringProperty(telefone);
         cargo = new SimpleStringProperty("Operador Caixa");
-        email_a = new SimpleStringProperty(email);
+        emailPropety = new SimpleStringProperty(email);
 
 
     }
@@ -46,7 +46,7 @@ public class OperadorCaixa extends Funcionario{
 
     public StringProperty cargoProperty(){return cargo;}
 
-    public StringProperty emailProperty(){return email_a;}
+    public StringProperty emailPropetyProperty(){return emailPropety;}
 
     @Override
     public String toString(){

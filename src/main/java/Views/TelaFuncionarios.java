@@ -2,10 +2,6 @@ package Views;
 
 import Auxiliar.CPF;
 import DAO.OperadorCaixaDAO;
-import Views.TelaBuscaFuncionario;
-import Views.TelaCadastroFuncionario;
-import Views.TelaDemitirFuncionario;
-import Views.TelaInicial;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -108,7 +104,7 @@ public class TelaFuncionarios {
         statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
         TableColumn<OperadorCaixa, String> emailColumn = new TableColumn<>("Email");
-        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailPropetyProperty());
 
         // Adicionando as colunas à TableView
         TableView<OperadorCaixa> tableView = new TableView<>();

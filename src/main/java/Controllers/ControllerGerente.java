@@ -138,7 +138,7 @@ public class ControllerGerente {
         // funcionario
         String nome = viewC.getNomeField().getText();
         String cpf = viewC.getCpfField().getText();
-        String email = viewC.getBtnCadastrar().getText();
+        String email = viewC.getEmailField().getText();
         String telefone = viewC.getTelefoneField().getText();
         String sexo = viewC.getSexoComboBox().getValue();
         String status = viewC.getStatusComboBox().getValue();

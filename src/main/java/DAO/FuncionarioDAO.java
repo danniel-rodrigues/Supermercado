@@ -158,17 +158,22 @@ public class FuncionarioDAO {
         return false; // Retorna false se a operação falhar por algum motivo
     }
 
-    public static boolean removerFuncionario(String cpf){
-        String sql = "DELETE FROM funcionario WHERE cpf = ?";
+    // Altera o status do Funcionario para "Desligado", mas mantem ele no banco
+    public static boolean demitirFuncionario(String cpf){
+        String sql = "UPDATE funcionario SET status = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, cpf);
-            ResultSet rs = pstmt.executeQuery();
+            pstmt.setString(1, "Desligado");
 
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Funcionario demitido com sucesso.");
+                return true; // Retorna true se a operação foi bem-sucedida
+            }
         } catch (SQLException e) {
             System.err.println("Erro ao demitir funcionario: " + e.getMessage());
         }
-        return false; // Retorna null se não encontrar nenhum funcionario com o CPF fornecido
+        return false; // Retorna false se a operação falhar por algum motivo
     }
 }

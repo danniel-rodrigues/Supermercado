@@ -1,54 +1,55 @@
 package Models;
 
-import java.util.Date;
 
 /*
  * Classe responsável pela lógica de negócios relacionada
- * à entidade 'Remessa'.
+ * à entidFornecedorade 'Remessa'.
  * */
 public class Remessa {
-    private int id;
-    private Date dataEnvio;
-    private Date dataRecebimento;
+    private final Integer id;
+    private int idFornecedor;
+    private String dataEnvio;
+    private String dataRecebimento;
     private String estado;
 
-    public Remessa(int id,
-                   Date dataEnvio,
-                   Date dataRecebimento,
+    public Remessa(Integer id,int idFornecedor,
+                   String dataEnvio,
+                   String dataRecebimento,
                    String estado) {
         this.id = id;
+        this.idFornecedor = idFornecedor;
         this.dataEnvio = dataEnvio;
         this.dataRecebimento = dataRecebimento;
         this.estado = estado;
     }
 
-    // Retorna o id da remessa
-    public int getId() {
-        return id;
+    // Retorna o idFornecedor da remessa
+    public int getFornecedorId() {
+        return idFornecedor;
     }
 
-    // Define o id da remessa
-    public void setId(int id) {
-        this.id = id;
+    // Define o idFornecedor da remessa
+    public void setFornecedorId(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
     }
 
     // Retorna a data de envio da remessa
-    public Date getDataEnvio() {
+    public String getDataEnvio() {
         return dataEnvio;
     }
 
     // Define a data de envio da remessa
-    public void setDataEnvio(Date dataEnvio) {
+    public void setDataEnvio(String dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
 
     // Retorna a data de recebimento da remessa
-    public Date getDataRecebimento() {
+    public String getDataRecebimento() {
         return dataRecebimento;
     }
 
     // Define a data de recebimento da remessa
-    public void setDataRecebimento(Date dataRecebimento) {
+    public void setDataRecebimento(String dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -61,4 +62,9 @@ public class Remessa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public int getId() {
+        return id;
+    }
+
 }

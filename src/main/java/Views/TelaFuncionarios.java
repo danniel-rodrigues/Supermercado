@@ -1,7 +1,9 @@
 package Views;
 
 import Auxiliar.CPF;
+import DAO.DAOFuncionario;
 import DAO.OperadorCaixaDAO;
+import Models.Funcionario;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -72,41 +74,41 @@ public class TelaFuncionarios {
 
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDemitir);
 
-        List<OperadorCaixa> operadorCaixas = OperadorCaixaDAO.listarOperadores();
+        List<Funcionario> funcionarios = DAOFuncionario.listarFuncionarios();
 
-        List<OperadorCaixa> operadoresFormatados = operadorCaixas.stream()
-                .map(operador -> {
+        List<Funcionario> funcionariosFormatados = funcionarios.stream()
+                .map(funcionario -> {
                     // Aplicar a formatação do CPF ao operador
-                    operador.setCpf(CPF.formatarCPF(operador.getCpf()));
-                    operador.setNome(operador.getNome().toUpperCase());
-                    return operador;
+                    funcionario.setCpf(CPF.formatarCPF(funcionario.getCpf()));
+                    funcionario.setNome(funcionario.getNome().toUpperCase());
+                    return funcionario;
                 })
                 .collect(Collectors.toList());
 
-        ObservableList<OperadorCaixa> funcionarios = FXCollections.observableArrayList(
-                operadoresFormatados
+        ObservableList<Funcionario> funcionariosListados = FXCollections.observableArrayList(
+                funcionariosFormatados
         );
 
         // Criando as colunas da TableView
-        TableColumn<OperadorCaixa, String> nomeColumn = new TableColumn<>("Nome");
+        TableColumn<Funcionario, String> nomeColumn = new TableColumn<>("Nome");
         nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 
-        TableColumn<OperadorCaixa, String> cpfColumn = new TableColumn<>("CPF");
+        TableColumn<Funcionario, String> cpfColumn = new TableColumn<>("CPF");
         cpfColumn.setCellValueFactory(cellData -> cellData.getValue().cpfProperty());
 
-        TableColumn<OperadorCaixa, String> telefoneColumn = new TableColumn<>("Telefone");
+        TableColumn<Funcionario, String> telefoneColumn = new TableColumn<>("Telefone");
         telefoneColumn.setCellValueFactory(cellData -> cellData.getValue().telefoneProperty());
 
-        TableColumn<OperadorCaixa, String> cargoColumn = new TableColumn<>("Cargo");
+        TableColumn<Funcionario, String> cargoColumn = new TableColumn<>("Cargo");
         cargoColumn.setCellValueFactory(cellData -> cellData.getValue().cargoProperty());
 
-        TableColumn<OperadorCaixa, String> statusColumn = new TableColumn<>("Status");
+        TableColumn<Funcionario, String> statusColumn = new TableColumn<>("Status");
         statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
 
-        TableColumn<OperadorCaixa, String> emailColumn = new TableColumn<>("Email");
-        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailPropetyProperty());
+        TableColumn<Funcionario, String> emailColumn = new TableColumn<>("Email");
+        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 
-        TableView<OperadorCaixa> tableView = null;
+        TableView<Funcionario> tableView = null;
 
 
         // Adicionando as colunas à TableView
@@ -121,7 +123,7 @@ public class TelaFuncionarios {
         emailColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
 
         // Definindo os itens da TableView
-        tableView.setItems(funcionarios);
+        tableView.setItems(funcionariosListados);
 
         VBox vbox = new VBox();
         // Definindo o espaçamento interno

@@ -194,9 +194,9 @@ public class ControllerGerente {
     }
 
     public void adicionaFuncionario(Funcionario funcionario, Endereco endereco){
-        // Adiciona um funcionario ao banco
-        if (FuncionarioDAO.adicionarFuncionario(funcionario)) {
-            EnderecoDAO.adicionarEndereco(endereco);
+        // Adiciona um funcionario ao banco e seu respectivo endereco
+        if (EnderecoDAO.adicionarEndereco(endereco)) {
+            FuncionarioDAO.adicionarFuncionario(funcionario);
 
             view.getRespostaLabel().setText("Funcionário cadastrado com sucesso!");
             view.getRespostaLabel().setStyle("-fx-text-fill: green;");

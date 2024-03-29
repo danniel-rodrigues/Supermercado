@@ -31,7 +31,9 @@ public class FuncionarioDAO {
             "sexo TEXT NOT NULL," +
             "login TEXT NOT NULL," +
             "senha TEXT NOT NULL," +
-            "status TEXT NOT NULL" +
+            "status TEXT NOT NULL," +
+            "id_endereco TEXT NOT NULL," +
+            "FOREIGN KEY (id_endereco) REFERENCES endereco (id)" +
             ")";
 
     // Metodo para criar a tabela no banco de dados
@@ -49,7 +51,7 @@ public class FuncionarioDAO {
     // Método para adicionar um funcionario ao banco de dados
     public static boolean adicionarFuncionario(Funcionario funcionario) {
         criarTabela();
-        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -62,6 +64,7 @@ public class FuncionarioDAO {
             pstmt.setString(7, funcionario.getLogin());
             pstmt.setString(8, funcionario.getSenha());
             pstmt.setString(9, funcionario.getStatus());
+            pstmt.setString(10, "@@IDENTITY");  // Utiliza o id do ultimo endereco cadastrado
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

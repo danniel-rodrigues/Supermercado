@@ -20,7 +20,8 @@ public class EnderecoDAO {
             "estado TEXT NOT NULL," +
             "cep TEXT NOT NULL," +
             "numero TEXT NOT NULL," +
-            "cpf TEXT NOT NULL" +
+            "cpf TEXT NOT NULL," +
+            "id INTEGER PRIMAY KEY AUTO INCREMENT" +
             ")";
 
     // Método para criar a tabela no banco de dados
@@ -36,7 +37,7 @@ public class EnderecoDAO {
     }
 
     // Método para adicionar um endereço ao banco de dados
-    public static void adicionarEndereco(Endereco endereco) {
+    public static boolean adicionarEndereco(Endereco endereco) {
         criarTabela();
         String sql = "INSERT INTO endereco (rua, bairro, cidade, estado, cep, numero, cpf) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -52,9 +53,11 @@ public class EnderecoDAO {
 
             pstmt.executeUpdate();
             System.out.println("Endereço adicionado com sucesso.");
+            return true;    // retorna true se a tabela for criada
         } catch (SQLException e) {
             System.err.println("Erro ao adicionar endereço: " + e.getMessage());
         }
+        return false;   // Retorna false em caso de erro
     }
 
     // Método para retornar um endereço pelo CPF

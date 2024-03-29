@@ -19,20 +19,12 @@ import Models.Endereco;
 
 public class OperadorCaixaDAO {
     // URL de conexão com o banco de dados SQLite
-    private static final String URL = "jdbc:sqlite:operador_caixa.db";
+    private static final String URL = "jdbc:sqlite:supermercado.db";
 
     // SQL para criar a tabela caso ela não exista
-    private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS operador_caixa (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "nome TEXT NOT NULL," +
-            "cpf TEXT NOT NULL UNIQUE," +
-            "data_nasc TEXT NOT NULL," +
-            "email TEXT NOT NULL," +
-            "telefone TEXT NOT NULL," +
-            "sexo TEXT NOT NULL," +
-            "login TEXT NOT NULL," +
-            "senha TEXT NOT NULL," +
-            "status TEXT NOT NULL" +
+    private static final String CREATE_TABLE_SQL = "CREATE TABLE IF NOT EXISTS operadorCaixa (" +
+            "id_funcionario INTEGER PRIMARY KEY," +
+            "FOREIGN KEY (id_funcionario) REFERENCES funcionario (id)" +
             ")";
 
     // Metodo para criar a tabela no banco de dados
@@ -41,7 +33,7 @@ public class OperadorCaixaDAO {
              Statement stmt = conn.createStatement()) {
             // Executando o comando SQL para criar a tabela
             stmt.execute(CREATE_TABLE_SQL);
-            System.out.println("Tabela 'operador_caixa' criada com sucesso.");
+            System.out.println("Tabela 'operadorCaixa' criada com sucesso.");
         } catch (SQLException e) {
             System.err.println("Erro ao criar tabela: " + e.getMessage());
         }
@@ -50,19 +42,11 @@ public class OperadorCaixaDAO {
     // Método para adicionar um operador ao banco de dados
     public static boolean adicionarOperador(OperadorCaixa operador) {
         criarTabela();
-        String sql = "INSERT INTO operador_caixa (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO operadorCaixa (id) VALUES (?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, operador.getNome());
-            pstmt.setString(2, operador.getCpf());
-            pstmt.setString(3, operador.getDataNasc().toString()); // Convertendo a data para String por simplicidade
-            pstmt.setString(4, operador.getEmail());
-            pstmt.setString(5, operador.getTelefone());
-            pstmt.setString(6, operador.getSexo());
-            pstmt.setString(7, operador.getLogin());
-            pstmt.setString(8, operador.getSenha());
-            pstmt.setString(9, operador.getStatus());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

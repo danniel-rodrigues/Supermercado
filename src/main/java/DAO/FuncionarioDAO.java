@@ -99,6 +99,7 @@ public class FuncionarioDAO {
 
     // Método para criar um funcionario a partir do ResultSet
     private static Funcionario criarFuncioario(ResultSet rs) throws SQLException, ParseException {
+        int id = rs.getInt("id");
         String nome = rs.getString("nome");
         String cpf = rs.getString("cpf");
         // Convertendo a String de data para Date usando SimpleDateFormat
@@ -111,7 +112,9 @@ public class FuncionarioDAO {
         String senha = rs.getString("senha");
         String status = rs.getString("status");
         Endereco endereco = EnderecoDAO.buscarEnderecoPorCPF(cpf);
-        return new Funcionario(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, endereco);
+        Funcionario funcionario = new Funcionario(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, endereco);
+        funcionario.setId(id);
+        return funcionario;
     }
 
     // Método para buscar um funcionario pelo CPF
@@ -132,6 +135,26 @@ public class FuncionarioDAO {
             throw new RuntimeException(e);
         }
         return null; // Retorna null se não encontrar nenhum funcionario com o CPF fornecido
+    }
+
+    // Método para buscar um funcionario pelo ID
+    public static Funcionario buscarFuncionarioPorId(int id) {
+        String sql = "SELECT * FROM funcionario WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return criarFuncioario(rs);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar funcionario por ID: " + e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return null; // Retorna null se não encontrar nenhum funcionario com o id fornecido
     }
 
     // Método para atualizar um funcionario no banco de dados

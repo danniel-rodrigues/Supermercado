@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class TelaBuscaFuncionario{
+public class TelaBuscarFuncionario {
     private Button btnBuscar;
     private Label lblAviso;
 
@@ -87,7 +87,7 @@ public class TelaBuscaFuncionario{
         vbox.setPadding(padding);
 
         Scene scene = new Scene(vbox, 600, 500);
-        stage.setTitle("SuperMercado - Buscar Funcionário");
+        stage.setTitle("Supermercado - Buscar Funcionário");
         stage.setScene(scene);
         stage.show();
     }

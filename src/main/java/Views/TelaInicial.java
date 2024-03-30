@@ -178,7 +178,7 @@ public class TelaInicial {
 
         scene = new Scene(vbox, 600, 500);
 
-        primaryStage.setTitle("SuperMercado - Tela Inicial");
+        primaryStage.setTitle("Supermercado - Tela Inicial");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

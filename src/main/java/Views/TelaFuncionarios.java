@@ -37,8 +37,8 @@ public class TelaFuncionarios {
             telaCadastroFuncionario.show(stage);
         });
         btnAlterarCadastro.setOnAction(e -> {
-            TelaBuscaFuncionario telaBuscaFuncionario = new TelaBuscaFuncionario();
-            telaBuscaFuncionario.show(stage);
+            TelaBuscarFuncionario telaBuscarFuncionario = new TelaBuscarFuncionario();
+            telaBuscarFuncionario.show(stage);
         });
 
         btnDemitir.setOnAction(e -> {

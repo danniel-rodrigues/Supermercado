@@ -2,9 +2,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import Views.TelaInicial;
-import Views.TelaFuncionarios;
-import Views.TelaCadastroFuncionario;
-import Views.TelaBuscaFuncionario;
 
 
 public class Main extends Application {

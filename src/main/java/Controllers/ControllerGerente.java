@@ -10,14 +10,14 @@ import Models.Endereco;
 
 import Models.Funcionario;
 import Views.TelaAlteraFuncionario;
-import Views.TelaBuscaFuncionario;
+import Views.TelaBuscarFuncionario;
 import Views.TelaCadastroFuncionario;
 
 import java.util.Objects;
 
 public class ControllerGerente {
     private TelaCadastroFuncionario view;
-    private TelaBuscaFuncionario viewB;
+    private TelaBuscarFuncionario viewB;
 
     private TelaAlteraFuncionario viewC;
 
@@ -29,7 +29,7 @@ public class ControllerGerente {
 
     }
 
-    public ControllerGerente(TelaBuscaFuncionario view) {
+    public ControllerGerente(TelaBuscarFuncionario view) {
         this.viewB = view;
         // buscar funcionario na Tabela
         view.getBtnBuscar().setOnAction(e -> alterarFuncionario());

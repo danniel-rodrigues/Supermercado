@@ -63,6 +63,7 @@ public class TelaCadastroFuncionario{
         Label lblCPF = new Label("CPF:");
         cpf = new TextField();
         cpf.setMaxWidth(250);
+        cpf.setPromptText("Apenas números");
         lblCPF.setPadding(new Insets(0, 0, 0, 20));
 
         HBox.setHgrow(lblCPF, Priority.NEVER);
@@ -78,6 +79,7 @@ public class TelaCadastroFuncionario{
         Label lblData = new Label("DATA DE NASCIMENTO:");
         dataNascimento = new TextField();
         dataNascimento.setMaxWidth(100);
+        dataNascimento.setPromptText("DD/MM/AAAA");
 
         HBox.setHgrow(lblData, Priority.NEVER);
         HBox.setHgrow(dataNascimento, Priority.ALWAYS);

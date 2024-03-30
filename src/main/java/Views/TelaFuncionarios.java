@@ -112,7 +112,7 @@ public class TelaFuncionarios {
         tableView = new TableView<>();
         tableView.getColumns().addAll(nomeColumn, cpfColumn, telefoneColumn, cargoColumn, statusColumn, emailColumn);
 
-        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6)); // Coluna de nome ocupará  do espaço
+        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6)); // Coluna de nome ocupará do espaço
         cpfColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
         telefoneColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
         cargoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));

@@ -40,6 +40,7 @@ public class TelaCadastroFornecedor {
         Label lblCNPJ = new Label("CNPJ:");
         TextField txtCNPJ = new TextField();
         txtCNPJ.setMaxWidth(250);
+        txtCNPJ.setPromptText("Apenas números");
         hbox2.getChildren().addAll(lblCNPJ, txtCNPJ);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);

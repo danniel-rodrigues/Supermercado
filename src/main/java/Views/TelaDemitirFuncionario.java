@@ -26,6 +26,7 @@ public class TelaDemitirFuncionario{
 
         TextField cpf = new TextField();
         cpf.setPrefHeight(40);
+        cpf.setPromptText("Apenas números");
 
         // Adicionar botoes
         Button btnBuscar = new Button("BUSCAR");

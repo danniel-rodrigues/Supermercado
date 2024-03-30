@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 
 import Controllers.ControllerGerente;
 
-public class TelaAlteraFuncionario {
+public class TelaAlterarFuncionario {
     private TextField nome;
     private TextField cpf;
     private TextField dataNascimento;

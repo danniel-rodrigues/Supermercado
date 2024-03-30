@@ -38,8 +38,8 @@ public class TelaProdutos {
         });
 
         btnDesativar.setOnAction(e -> {
-//            TelaDemitirFuncionario telaDemitirFuncionario = new TelaDemitirFuncionario();
-//            telaDemitirFuncionario.show(stage);
+            TelaDesativarProduto telaDesativarProduto = new TelaDesativarProduto();
+            telaDesativarProduto.show(stage);
         });
 
         btnVoltarInicio.setOnAction(e -> {

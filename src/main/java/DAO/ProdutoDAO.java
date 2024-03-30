@@ -25,7 +25,7 @@ public class ProdutoDAO {
             "tipo TEXT NOT NULL, " +
             "preco REAL NOT NULL, " +
             "status TEXT NOT NULL, " +
-            "id_funcionario TEXT NOT NULL, " +
+            "id_funcionario INTEGER NOT NULL, " +
             "FOREIGN KEY (id_funcionario) REFERENCES funcionario (id)" +
             ")";
 
@@ -56,7 +56,7 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-            pstmt.setString(7, "@@IDENTITY"); // Utiliza o id do último funcionário cadastrado
+            pstmt.setInt(7, produto.getFuncionario().getId());
 
             pstmt.executeUpdate();
             System.out.println("Produto adicionado com sucesso.");
@@ -93,7 +93,11 @@ public class ProdutoDAO {
         String tipo = rs.getString("tipo");
         Float preco = rs.getFloat("preco");
         String status = rs.getString("status");
-        Funcionario funcionario = (Funcionario) rs.getObject("funcionario");
+        Integer id_funcionario = rs.getInt("id_funcionario");
+
+        // Criando um objeto to tipo Funcionario para passar como parâmetro na criação do objeto Produto
+        Funcionario funcionario = FuncionarioDAO.buscarFuncionarioPorId(id_funcionario);
+
         return new Produto(nome, marca, codigo, tipo, preco, status, funcionario);
     }
 
@@ -125,7 +129,7 @@ public class ProdutoDAO {
                                             "tipo = ?, " +
                                             "preco = ?, " +
                                             "status = ?, " +
-                                            "funcionario = ?";
+                                            "id_funcionario = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -135,7 +139,7 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-            pstmt.setObject(7, produto.getFuncionario());
+            pstmt.setObject(7, produto.getFuncionario().getId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

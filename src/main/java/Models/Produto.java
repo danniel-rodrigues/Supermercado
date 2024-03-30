@@ -1,5 +1,7 @@
 package Models;
 
+import javafx.beans.property.*;
+
 /*
 * Classe responsável pela lógica de negócios relacionada
 * à entidade 'Produto'.
@@ -93,4 +95,24 @@ public class Produto {
 
     // Define o funcionário que cadastrou o produto
     public void setFuncionario(Funcionario funcionario) {this.funcionario = funcionario;}
+
+    public StringProperty nomeProperty(){
+        return new SimpleStringProperty(nome);
+    }
+
+    public StringProperty marcaProperty(){
+        return new SimpleStringProperty(marca);
+    }
+
+    public ObjectProperty<Integer> codigoProperty(){
+        return new SimpleObjectProperty<>(codigo);
+    }
+
+    public StringProperty tipoProperty(){
+        return new SimpleStringProperty(tipo);
+    }
+
+    public ObjectProperty<Float> precoProperty(){
+        return new SimpleObjectProperty<>(preco);
+    }
 }

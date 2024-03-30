@@ -1,6 +1,11 @@
 package Views;
 
+import Auxiliar.CPF;
+import DAO.ProdutoDAO;
+import Models.Funcionario;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -13,6 +18,7 @@ import javafx.geometry.Insets;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import Models.Produto;
 
@@ -68,28 +74,47 @@ public class TelaProdutos {
 
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro, btnDesativar);
 
-        // Criando uma lista de funcionários
-        List<Integer> listaExemplo = new ArrayList<>();
-        listaExemplo.add(1);
-        listaExemplo.add(2);
-        listaExemplo.add(3);
-        listaExemplo.add(4);
+        List<Produto> produtos = ProdutoDAO.listarProdutos();
 
-        ObservableList<Integer> exemplo = FXCollections.observableArrayList(
-                listaExemplo
-        );
+        ObservableList<Produto> produtosListados = FXCollections.observableArrayList(produtos);
 
-        // Criando a ListView e passando a lista de funcionários
-        ListView<Integer> listView = new ListView<>(exemplo);
+        // Criando as colunas da TableView
+        TableColumn<Produto, String> nomeColumn = new TableColumn<>("Nome");
+        nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 
-        // Definindo a altura de cada item da ListView
-        listView.setFixedCellSize(40);
+        TableColumn<Produto, String> marcaColumn = new TableColumn<>("Marca");
+        marcaColumn.setCellValueFactory(cellData -> cellData.getValue().marcaProperty());
+
+        TableColumn<Produto, Integer> codigoColumn = new TableColumn<>("Codigo");
+        codigoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProperty());
+
+        TableColumn<Produto, String> tipoColumn = new TableColumn<>("Tipo");
+        tipoColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
+
+        TableColumn<Produto, Float> precoColumn = new TableColumn<>("Preco");
+        precoColumn.setCellValueFactory(cellData -> cellData.getValue().precoProperty());
+
+        TableView<Produto> tableView = null;
+
+
+        // Adicionando as colunas à TableView
+        tableView = new TableView<>();
+        tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoColumn, tipoColumn, precoColumn);
+
+        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5)); // Coluna de nome ocupará do espaço
+        marcaColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+        codigoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+        tipoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+        precoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+
+        // Definindo os itens da TableView
+        tableView.setItems(produtosListados);
 
         VBox vbox = new VBox();
         // Definindo o espaçamento interno
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
-        vbox.getChildren().addAll(hbox, listView, btnVoltarInicio);
+        vbox.getChildren().addAll(hbox, tableView, btnVoltarInicio);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

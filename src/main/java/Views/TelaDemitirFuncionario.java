@@ -21,7 +21,7 @@ public class TelaDemitirFuncionario{
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("FUNCIONARIO NÃO ENCONTRADO!");
+        Label lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
         TextField cpf = new TextField();

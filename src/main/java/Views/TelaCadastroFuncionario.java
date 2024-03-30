@@ -251,12 +251,7 @@ public class TelaCadastroFuncionario{
 // Definindo o background dos botões
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
 
-// Configurando a ação do botão
-        btnCadastrar.setOnAction(e -> {
-            // Coloque aqui o código para lidar com o evento de clique no botão cadastrar
-        });
         controller = new ControllerGerente(this);
-
 
 
         btnVoltar = new Button("VOLTAR");
@@ -270,6 +265,7 @@ public class TelaCadastroFuncionario{
         // Definindo o background dos botões
         btnVoltar.setStyle("-fx-background-color: #F79516;");
 
+        // Configurando ação do botão Voltar
         btnVoltar.setOnAction(e -> {
             TelaFuncionarios telaFuncionarios = new TelaFuncionarios();
             telaFuncionarios.show(stage);

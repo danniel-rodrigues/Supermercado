@@ -40,7 +40,7 @@ public class TelaCaixa {
             telaInicial.show(stage);
         });
 
-        
+
         // Criando TableView para exibir os itens registrados
         TableView<Item> tableView = new TableView<>();
         TableColumn<Item, String> nomeColumn = new TableColumn<>("Nome");

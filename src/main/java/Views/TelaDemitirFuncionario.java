@@ -75,7 +75,7 @@ public class TelaDemitirFuncionario{
         Insets padding = new Insets(60);
         vbox.setPadding(padding);
 
-        Scene scene = new Scene(vbox, 600, 500);
+        Scene scene = new Scene(vbox, 600, 350);
         stage.setTitle("Supermercado - Demitir Funcionário");
         stage.setScene(scene);
         stage.show();

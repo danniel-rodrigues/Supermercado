@@ -79,7 +79,7 @@ public class TelaProdutos {
                 listaExemplo
         );
 
-        // Criando a ListView e passando a lista de funcionários
+        // Criando a ListView e passando a lista de produtos
         ListView<Integer> listView = new ListView<>(exemplo);
 
         // Definindo a altura de cada item da ListView

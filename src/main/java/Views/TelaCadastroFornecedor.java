@@ -25,7 +25,7 @@ public class TelaCadastroFornecedor {
 
         // H1
         // Nome
-        Label lblNome = new Label("Nome:");
+        Label lblNome = new Label("NOME:");
         TextField txtNome = new TextField();
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
@@ -49,7 +49,7 @@ public class TelaCadastroFornecedor {
 
         // H3
         // email
-        Label lblEmail = new Label("E-mail:");
+        Label lblEmail = new Label("E-MAIL:");
         TextField txtEmail = new TextField();
         txtEmail.setMaxWidth(250);
         hbox3.getChildren().addAll(lblEmail, txtEmail);
@@ -61,7 +61,7 @@ public class TelaCadastroFornecedor {
 
         // H4
         // telefone
-        Label lblTelefone = new Label("Telefone:");
+        Label lblTelefone = new Label("TELEFONE:");
         TextField txtTelefone = new TextField();
         txtTelefone.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTelefone, txtTelefone);

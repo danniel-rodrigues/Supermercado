@@ -54,6 +54,11 @@ public class TelaInicial {
             telaRemessaFornecimento.show(primaryStage);
         });
 
+        btnSecao.setOnAction(e -> {
+            TelaSecoes telaSecoes = new TelaSecoes();
+            telaSecoes.show(primaryStage);
+        });
+
 
 
 

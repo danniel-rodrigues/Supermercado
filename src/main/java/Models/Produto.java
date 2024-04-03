@@ -3,9 +3,9 @@ package Models;
 import javafx.beans.property.*;
 
 /*
-* Classe responsável pela lógica de negócios relacionada
-* à entidade 'Produto'.
-* */
+ * Classe responsável pela lógica de negócios relacionada
+ * à entidade 'Produto'.
+ * */
 public class Produto {
     protected String nome;
     protected String marca;
@@ -21,13 +21,13 @@ public class Produto {
                    float preco,
                    String status,
                    Funcionario funcionario) {
-            this.nome = nome;
-            this.marca = marca;
-            this.codigo = codigo;
-            this.tipo = tipo;
-            this.preco = preco;
-            this.status = status;
-            this.funcionario = funcionario;
+        this.nome = nome;
+        this.marca = marca;
+        this.codigo = codigo;
+        this.tipo = tipo;
+        this.preco = preco;
+        this.status = status;
+        this.funcionario = funcionario;
     }
 
     // Retorna o nome do produto

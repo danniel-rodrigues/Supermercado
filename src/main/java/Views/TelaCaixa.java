@@ -16,8 +16,14 @@ import modulos.funcionarios.Models.Item;
 
 public class TelaCaixa {
     public void show(Stage stage) {
+
+        HBox hbox = new HBox(); // Criando um HBox
+        hbox.setSpacing(8); // Espaçamento entre os botões
+        hbox.setAlignment(Pos.CENTER);
+
         // Criando botões
         Button btnRegistrarItem = new Button("Registrar Item");
+        Button btnReportarPreco = new Button("Reportar Preço");
         Button btnCancelarItem = new Button("Cancelar Item");
         Button btnConcluirCompra = new Button("Concluir Compra");
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
@@ -34,6 +40,9 @@ public class TelaCaixa {
         btnConcluirCompra.setOnAction(e -> {
             // Implemente a lógica para concluir a compra aqui
         });
+        btnConcluirCompra.setOnAction(e -> {
+            // Implemente a lógica para reportar o preço aqui
+        });
 
         btnVoltarInicio.setOnAction(e -> {
             TelaInicial telaInicial = new TelaInicial();
@@ -41,18 +50,47 @@ public class TelaCaixa {
         });
 
 
-        // Criando TableView para exibir os itens registrados
+        // Definindo a largura mínima dos botões
+        btnCancelarItem.setMinWidth(130);
+        btnCancelarItem.setMinHeight(50);
+
+        btnRegistrarItem.setMinWidth(130);
+        btnRegistrarItem.setMinHeight(50);
+
+        btnConcluirCompra.setMinWidth(130);
+        btnConcluirCompra.setMinHeight(50);
+
+        btnReportarPreco.setMinWidth(130);
+        btnReportarPreco.setMinHeight(50);
+
+        btnVoltarInicio.setMinWidth(450);
+        btnVoltarInicio.setMinHeight(50);
+
+        //definindo os estilo dos botões
+        btnRegistrarItem.setStyle("-fx-background-color: #F79516;");
+        btnCancelarItem.setStyle("-fx-background-color: #F79516;");
+        btnConcluirCompra.setStyle("-fx-background-color: #F79516;");
+        btnVoltarInicio.setStyle("-fx-background-color: #F79516;");
+        btnReportarPreco.setStyle("-fx-background-color: #F79516;");
+
+        hbox.getChildren().addAll(btnRegistrarItem, btnCancelarItem, btnConcluirCompra, btnReportarPreco);
+
+
+        //Criando TableView para exibir os itens registrados
         TableView<Item> tableView = new TableView<>();
         TableColumn<Item, String> nomeColumn = new TableColumn<>("Nome");
         TableColumn<Item, Float> precoColumn = new TableColumn<>("Preço");
+        ObservableList<String> items = FXCollections.observableArrayList( );
+        //tableView.setItems(items);
         tableView.getColumns().addAll(nomeColumn, precoColumn);
+
 
         // Criando VBox para organizar os elementos
         VBox vbox = new VBox();
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.CENTER);
         vbox.setPadding(new Insets(20));
-        vbox.getChildren().addAll(btnRegistrarItem, btnCancelarItem, btnConcluirCompra, tableView);
+        vbox.getChildren().addAll(hbox, tableView, btnVoltarInicio);
 
         // Criando a cena e exibindo no palco
         Scene scene = new Scene(vbox, 600, 400);

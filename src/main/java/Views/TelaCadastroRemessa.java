@@ -109,8 +109,8 @@ public class TelaCadastroRemessa {
         });
 
         btnVoltar.setOnAction(e -> {
-            TelaRemessaFornecimento telaRemessaFornecimento = new TelaRemessaFornecimento();
-            telaRemessaFornecimento.show(stage);
+            TelaFornecimento telaFornecimento = new TelaFornecimento();
+            telaFornecimento.show(stage);
         });
 
         VBox vbox = new VBox();

@@ -14,24 +14,20 @@ import javafx.geometry.Pos;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelaRemessaFornecimento {
+public class TelaFornecimento {
     public void show(Stage stage) {
         HBox hbox = new HBox(); // Criando um HBox
         hbox.setSpacing(10); // Espaçamento entre os botões
         hbox.setAlignment(Pos.CENTER);
         // Adicionando botões ao HBox
         Button btnCadastrar = new Button("CADASTRAR");
-        Button btnAlterarRemessa = new Button("ALTERAR REMESSA");
+//        Button btnAlterarRemessa = new Button("ALTERAR REMESSA");
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
 
         // Definindo a ação dos botões
         btnCadastrar.setOnAction(e -> {
             TelaCadastroRemessa telaCadastroRemessa = new TelaCadastroRemessa();
             telaCadastroRemessa.show(stage);
-        });
-        btnAlterarRemessa.setOnAction(e -> {
-//            TelaBuscarProduto telaBuscarProduto = new TelaBuscarProduto();
-//            telaBuscarProduto.show(stage);
         });
 
         btnVoltarInicio.setOnAction(e -> {
@@ -43,18 +39,14 @@ public class TelaRemessaFornecimento {
         btnCadastrar.setMinWidth(150);
         btnCadastrar.setMinHeight(50);
 
-        btnAlterarRemessa.setMinWidth(150);
-        btnAlterarRemessa.setMinHeight(50);
-
         btnVoltarInicio.setMinWidth(450);
         btnVoltarInicio.setMinHeight(50);
 
         // Definindo o background dos botões
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
-        btnAlterarRemessa.setStyle("-fx-background-color: #F79516;");
         btnVoltarInicio.setStyle("-fx-background-color: #F79516;");
 
-        hbox.getChildren().addAll(btnCadastrar, btnAlterarRemessa);
+        hbox.getChildren().addAll(btnCadastrar);
 
         // Criando uma lista de funcionários
         List<Integer> listaExemplo = new ArrayList<>();

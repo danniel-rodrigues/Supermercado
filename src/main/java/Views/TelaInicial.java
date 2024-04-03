@@ -50,8 +50,8 @@ public class TelaInicial {
         });
 
         btnFornecimento.setOnAction(e -> {
-            TelaRemessaFornecimento telaRemessaFornecimento = new TelaRemessaFornecimento();
-            telaRemessaFornecimento.show(primaryStage);
+            TelaFornecimento telaFornecimento = new TelaFornecimento();
+            telaFornecimento.show(primaryStage);
         });
 
         btnSecao.setOnAction(e -> {

@@ -59,6 +59,11 @@ public class TelaInicial {
             telaSecoes.show(primaryStage);
         });
 
+        btnEstoque.setOnAction(e -> {
+            TelaEstoque telaEstoque = new TelaEstoque();
+            telaEstoque.show(primaryStage);
+        });
+
 
 
 

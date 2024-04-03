@@ -1,9 +1,6 @@
 package Views;
 
-import Auxiliar.CPF;
 import DAO.ProdutoDAO;
-import Models.Funcionario;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -16,9 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import Models.Produto;
 
@@ -94,18 +89,25 @@ public class TelaProdutos {
         TableColumn<Produto, Float> precoColumn = new TableColumn<>("Preco");
         precoColumn.setCellValueFactory(cellData -> cellData.getValue().precoProperty());
 
-        TableView<Produto> tableView = null;
-
 
         // Adicionando as colunas à TableView
-        tableView = new TableView<>();
+        TableView<Produto> tableView = new TableView<>();
         tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoColumn, tipoColumn, precoColumn);
 
-        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5)); // Coluna de nome ocupará do espaço
-        marcaColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        codigoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        tipoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        precoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+//        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5)); // Coluna de nome ocupará do espaço
+//        marcaColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+//        codigoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+//        tipoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+//        precoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
+
+        // Redimensionando as colunas para preencher o espaço disponível igualmente
+        double larguraColuna = 1.0 / tableView.getColumns().size();
+        tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
+
+        // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
+        });
 
         // Definindo os itens da TableView
         tableView.setItems(produtosListados);

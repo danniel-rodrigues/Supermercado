@@ -105,19 +105,26 @@ public class TelaFuncionarios {
         TableColumn<Funcionario, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 
-        TableView<Funcionario> tableView = null;
-
 
         // Adicionando as colunas à TableView
-        tableView = new TableView<>();
+        TableView<Funcionario> tableView = new TableView<>();
         tableView.getColumns().addAll(nomeColumn, cpfColumn, telefoneColumn, cargoColumn, statusColumn, emailColumn);
 
-        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6)); // Coluna de nome ocupará  do espaço
-        cpfColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
-        telefoneColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
-        cargoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
-        statusColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
-        emailColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+//        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6)); // Coluna de nome ocupará  do espaço
+//        cpfColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+//        telefoneColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+//        cargoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+//        statusColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+//        emailColumn.prefWidthProperty().bind(tableView.widthProperty().divide(6));
+
+        // Redimensionando as colunas para preencher o espaço disponível igualmente
+        double larguraColuna = 1.0 / tableView.getColumns().size();
+        tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
+
+        // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
+        });
 
         // Definindo os itens da TableView
         tableView.setItems(funcionariosListados);

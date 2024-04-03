@@ -1,6 +1,7 @@
 package modulos.funcionarios.Views;
 
 
+import Views.TelaCaixa;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,6 +34,7 @@ public class TelaInicial {
         Button btnCaixa = new Button("CAIXA");
         Button btnFornecedor = new Button("FORNECEDOR");
 
+
         btnFuncionarios.setOnAction(e -> {
             TelaFuncionarios telaFuncionarios = new TelaFuncionarios();
             telaFuncionarios.show(primaryStage);
@@ -47,6 +49,12 @@ public class TelaInicial {
             TelaProdutos telaProdutos = new TelaProdutos();
             telaProdutos.show(primaryStage);
         });
+        //telaCaixa add
+        btnCaixa.setOnAction(e -> {
+            TelaCaixa telaCaixa = new TelaCaixa();
+            telaCaixa.show(primaryStage);
+        });
+
 
 
 

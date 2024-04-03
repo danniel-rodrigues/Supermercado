@@ -1,8 +1,5 @@
 package Views;
 
-import Auxiliar.CPF;
-import DAO.ProdutoDAO;
-import Models.Funcionario;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;

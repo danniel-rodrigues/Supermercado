@@ -24,7 +24,7 @@ public class TelaCadastroProduto {
 
         // H1
         // Nome
-        Label lblNome = new Label("Nome:");
+        Label lblNome = new Label("NOME:");
         TextField txtNome = new TextField();
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
@@ -36,7 +36,7 @@ public class TelaCadastroProduto {
 
         // H2
         // marca
-        Label lblMarca = new Label("Marca:");
+        Label lblMarca = new Label("MARCA:");
         TextField txtMarca = new TextField();
         txtMarca.setMaxWidth(250);
         hbox2.getChildren().addAll(lblMarca, txtMarca);
@@ -48,7 +48,7 @@ public class TelaCadastroProduto {
 
         // H3
         // código
-        Label lblCodigo = new Label("Código:");
+        Label lblCodigo = new Label("CÓDIGO:");
         TextField txtCodigo = new TextField();
         txtCodigo.setMaxWidth(250);
         hbox3.getChildren().addAll(lblCodigo, txtCodigo);
@@ -60,7 +60,7 @@ public class TelaCadastroProduto {
 
         // H4
         // tipo
-        Label lblTipo = new Label("Tipo:");
+        Label lblTipo = new Label("TIPO:");
         TextField txtTipo = new TextField();
         txtTipo.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTipo, txtTipo);
@@ -72,7 +72,7 @@ public class TelaCadastroProduto {
 
         // H5
         // preço
-        Label lblPreco = new Label("Preço:");
+        Label lblPreco = new Label("PREÇO:");
         TextField txtPreco = new TextField();
         txtPreco.setMaxWidth(250);
         hbox5.getChildren().addAll(lblPreco, txtPreco);

@@ -26,7 +26,7 @@ public class TelaBuscarFuncionario {
     public void show(Stage stage) {
         st = stage;
         // texto informativo
-        Label lblInfo = new Label("Informe o CPF do funcionário que deseja realizar a alteração\ndo cadastro.\n(Exclusivo para uso do Gerente!)");
+        Label lblInfo = new Label("Informe o CPF do funcionário que deseja realizar a alteração\ndo cadastro. (Exclusivo para uso do Gerente!)");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
@@ -87,7 +87,7 @@ public class TelaBuscarFuncionario {
         Insets padding = new Insets(60);
         vbox.setPadding(padding);
 
-        Scene scene = new Scene(vbox, 600, 500);
+        Scene scene = new Scene(vbox, 600, 350);
         stage.setTitle("Supermercado - Buscar Funcionário");
         stage.setScene(scene);
         stage.show();

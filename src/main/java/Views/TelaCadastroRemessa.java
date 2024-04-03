@@ -1,22 +1,20 @@
 package Views;
 
-import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.geometry.Insets;
-import javafx.scene.control.TextField;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-// Adicionar imagem
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.geometry.Pos;
 
-public class TelaCadastroFornecedor {
+public class TelaCadastroRemessa {
     public void show(Stage stage) {
-
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
         HBox hbox3 = new HBox(10);
@@ -24,55 +22,54 @@ public class TelaCadastroFornecedor {
         HBox hbox5 = new HBox(10);
 
         // H1
-        // Nome
-        Label lblNome = new Label("NOME:");
-        TextField txtNome = new TextField();
-        txtNome.setMaxWidth(250);
-        hbox1.getChildren().addAll(lblNome, txtNome);
+        // Fornecedor
+        Label lblFornecedor = new Label("FORNECEDOR:");
+        TextField txtFornecedor = new TextField();
+        txtFornecedor.setMaxWidth(250);
+        hbox1.getChildren().addAll(lblFornecedor, txtFornecedor);
         hbox1.setMinHeight(20);
         hbox1.setAlignment(Pos.CENTER);
 
-        HBox.setHgrow(lblNome, Priority.NEVER);
-        HBox.setHgrow(txtNome, Priority.ALWAYS);
+        HBox.setHgrow(lblFornecedor, Priority.NEVER);
+        HBox.setHgrow(txtFornecedor, Priority.ALWAYS);
 
         // H2
-        // cnpj
-        Label lblCNPJ = new Label("CNPJ:");
-        TextField txtCNPJ = new TextField();
-        txtCNPJ.setMaxWidth(250);
-        txtCNPJ.setPromptText("Apenas números");
-        hbox2.getChildren().addAll(lblCNPJ, txtCNPJ);
+        // Data de envio
+        Label lblDataEnvio = new Label("DATA DE ENVIO:");
+        TextField txtDataEnvio = new TextField();
+        txtDataEnvio.setMaxWidth(250);
+        hbox2.getChildren().addAll(lblDataEnvio, txtDataEnvio);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);
 
-        HBox.setHgrow(lblCNPJ, Priority.NEVER);
-        HBox.setHgrow(txtCNPJ, Priority.ALWAYS);
+        HBox.setHgrow(lblDataEnvio, Priority.NEVER);
+        HBox.setHgrow(txtDataEnvio, Priority.ALWAYS);
 
         // H3
-        // email
-        Label lblEmail = new Label("E-MAIL:");
-        TextField txtEmail = new TextField();
-        txtEmail.setMaxWidth(250);
-        hbox3.getChildren().addAll(lblEmail, txtEmail);
+        // Data de recebimento
+        Label lblDataRecebimento = new Label("DATA DE RECEBIMENTO:");
+        TextField txtDataRecebimento = new TextField();
+        txtDataRecebimento.setMaxWidth(200);
+        hbox3.getChildren().addAll(lblDataRecebimento, txtDataRecebimento);
         hbox3.setMinHeight(20);
         hbox3.setAlignment(Pos.CENTER);
 
-        HBox.setHgrow(lblEmail, Priority.NEVER);
-        HBox.setHgrow(txtEmail, Priority.ALWAYS);
+        HBox.setHgrow(lblDataRecebimento, Priority.NEVER);
+        HBox.setHgrow(txtDataRecebimento, Priority.ALWAYS);
 
         // H4
-        // telefone
-        Label lblTelefone = new Label("TELEFONE:");
-        TextField txtTelefone = new TextField();
-        txtTelefone.setMaxWidth(250);
-        hbox4.getChildren().addAll(lblTelefone, txtTelefone);
+        // Status
+        Label lblStatus = new Label("STATUS:");
+        TextField txtStatus = new TextField();
+        txtStatus.setMaxWidth(250);
+        lblStatus.setPadding(new Insets(0, 0, 0, -40));
+        hbox4.getChildren().addAll(lblStatus, txtStatus);
         hbox4.setMinHeight(20);
-        hbox4.setPadding(new Insets(0, 0, 50,0));
+        hbox4.setPadding(new Insets(0, 0, 50, 0));
         hbox4.setAlignment(Pos.CENTER);
 
-        HBox.setHgrow(lblTelefone, Priority.NEVER);
-        HBox.setHgrow(txtTelefone, Priority.ALWAYS);
-
+        HBox.setHgrow(lblStatus, Priority.NEVER);
+        HBox.setHgrow(txtStatus, Priority.ALWAYS);
 
         // Adicionando botões
         Button btnCadastrar = new Button("CADASTRAR");
@@ -112,8 +109,8 @@ public class TelaCadastroFornecedor {
         });
 
         btnVoltar.setOnAction(e -> {
-            TelaFornecedores telaFornecedores = new TelaFornecedores();
-            telaFornecedores.show(stage);
+            TelaRemessaFornecimento telaRemessaFornecimento = new TelaRemessaFornecimento();
+            telaRemessaFornecimento.show(stage);
         });
 
         VBox vbox = new VBox();
@@ -126,9 +123,8 @@ public class TelaCadastroFornecedor {
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
-
         Scene scene = new Scene(vbox, 600, 400);
-        stage.setTitle("Supermercado - Cadastro de Fornecedor");
+        stage.setTitle("Supermercado - Cadastro de Remessa");
         stage.setScene(scene);
         stage.show();
     }

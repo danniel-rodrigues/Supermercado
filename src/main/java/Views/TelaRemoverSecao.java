@@ -1,53 +1,50 @@
 package Views;
 
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.geometry.Insets;
-import javafx.scene.text.Font;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-// Adicionar imagem
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+// Adicionar imagem
 
-public class TelaBuscarProduto {
 
+public class TelaRemoverSecao {
     public void show(Stage stage) {
         // Texto informativo
-        Label lblInfo = new Label("Informe o CÓDIGO referente ao produto que deseja realizar\na alteração de informações.");
+        Label lblInfo = new Label("Informe o NOME referente a seção que deseja realizar a remoção.");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
+        Label lblAviso = new Label("SEÇÃO NÃO ENCONTRADA!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
-        TextField txtCodigo = new TextField();
-        txtCodigo.setPrefHeight(40);
+        TextField txtNome = new TextField();
+        txtNome.setPrefHeight(40);
 
         // Adicionar botoes
-        Button btnBuscar = new Button("BUSCAR");
-        btnBuscar.setOnAction(e -> {
-
-        });
+        Button btnRemoverSecao = new Button("DESATIVAR");
 
         Button btnVoltar = new Button("VOLTAR");
         btnVoltar.setOnAction(e -> {
-            TelaProdutos telaProdutos = new TelaProdutos();
-            telaProdutos.show(stage);
+            TelaSecoes telaSecoes = new TelaSecoes();
+            telaSecoes.show(stage);
         });
 
-        // Adicionando ícone ao botão Buscar
-        Image glassICon = new Image("assets/images/icons/magnifying-glass.png");
-        ImageView glassIConView = new ImageView(glassICon);
-        glassIConView.setFitWidth(20);
-        glassIConView.setFitHeight(20);
-        btnBuscar.setGraphic(glassIConView);
+        // Adicionando ícone ao botão Desativar
+        Image disableIcon = new Image("assets/images/icons/desativar.png");
+        ImageView disableIconView = new ImageView(disableIcon);
+        disableIconView.setFitWidth(30);
+        disableIconView.setFitHeight(30);
+        btnRemoverSecao.setGraphic(disableIconView);
         // Definindo o background dos botões
-        btnBuscar.setStyle("-fx-background-color: #F79516;");
+        btnRemoverSecao.setStyle("-fx-background-color: #F79516;");
 
         // Adicionando ícone ao botão Voltar
         Image arrowIcon = new Image("assets/images/icons/arrow.png");
@@ -58,17 +55,17 @@ public class TelaBuscarProduto {
         // Definindo o background dos botões
         btnVoltar.setStyle("-fx-background-color: #F79516;");
 
-        btnBuscar.setMinWidth(235);
-        btnBuscar.setMinHeight(40);
+        btnRemoverSecao.setMinWidth(235);
+        btnRemoverSecao.setMinHeight(40);
         btnVoltar.setMinWidth(235);
         btnVoltar.setMinHeight(40);
 
         HBox hbox1 = new HBox(10);
-        hbox1.getChildren().addAll(btnBuscar, btnVoltar);
+        hbox1.getChildren().addAll(btnRemoverSecao, btnVoltar);
         hbox1.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, txtCodigo, hbox1, lblAviso);
+        vbox.getChildren().addAll(lblInfo, txtNome, hbox1, lblAviso);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -76,7 +73,7 @@ public class TelaBuscarProduto {
         vbox.setPadding(padding);
 
         Scene scene = new Scene(vbox, 600, 350);
-        stage.setTitle("Supermercado - Buscar Produto");
+        stage.setTitle("Supermercado - Remover Seção");
         stage.setScene(scene);
         stage.show();
     }

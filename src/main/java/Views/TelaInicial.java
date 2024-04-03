@@ -49,6 +49,21 @@ public class TelaInicial {
             telaProdutos.show(primaryStage);
         });
 
+        btnFornecimento.setOnAction(e -> {
+            TelaRemessaFornecimento telaRemessaFornecimento = new TelaRemessaFornecimento();
+            telaRemessaFornecimento.show(primaryStage);
+        });
+
+        btnSecao.setOnAction(e -> {
+            TelaSecoes telaSecoes = new TelaSecoes();
+            telaSecoes.show(primaryStage);
+        });
+
+        btnEstoque.setOnAction(e -> {
+            TelaEstoque telaEstoque = new TelaEstoque();
+            telaEstoque.show(primaryStage);
+        });
+
 
 
 

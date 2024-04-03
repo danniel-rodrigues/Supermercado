@@ -1,27 +1,27 @@
 package Views;
 
-import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.geometry.Insets;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 // Adicionar imagem
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-public class TelaCadastroFornecedor {
+
+public class TelaCadastroSecao {
     public void show(Stage stage) {
-
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
         HBox hbox3 = new HBox(10);
         HBox hbox4 = new HBox(10);
-        HBox hbox5 = new HBox(10);
+
 
         // H1
         // Nome
@@ -36,43 +36,29 @@ public class TelaCadastroFornecedor {
         HBox.setHgrow(txtNome, Priority.ALWAYS);
 
         // H2
-        // cnpj
-        Label lblCNPJ = new Label("CNPJ:");
-        TextField txtCNPJ = new TextField();
-        txtCNPJ.setMaxWidth(250);
-        txtCNPJ.setPromptText("Apenas números");
-        hbox2.getChildren().addAll(lblCNPJ, txtCNPJ);
+        // código
+        Label lblCodigo = new Label("CÓDIGO:");
+        TextField txtCodigo = new TextField();
+        txtCodigo.setMaxWidth(250);
+        hbox2.getChildren().addAll(lblCodigo, txtCodigo);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);
 
-        HBox.setHgrow(lblCNPJ, Priority.NEVER);
-        HBox.setHgrow(txtCNPJ, Priority.ALWAYS);
+        HBox.setHgrow(lblCodigo, Priority.NEVER);
+        HBox.setHgrow(txtCodigo, Priority.ALWAYS);
 
         // H3
-        // email
-        Label lblEmail = new Label("E-MAIL:");
-        TextField txtEmail = new TextField();
-        txtEmail.setMaxWidth(250);
-        hbox3.getChildren().addAll(lblEmail, txtEmail);
+        // Código do produto
+        Label lblCodProduto = new Label("CÓD. PRODUTO:");
+        TextField txtCodProduto = new TextField();
+        txtCodProduto.setMaxWidth(230);
+        hbox3.getChildren().addAll(lblCodProduto, txtCodProduto);
         hbox3.setMinHeight(20);
         hbox3.setAlignment(Pos.CENTER);
+        hbox3.setPadding(new Insets(0, 0, 80,0));
 
-        HBox.setHgrow(lblEmail, Priority.NEVER);
-        HBox.setHgrow(txtEmail, Priority.ALWAYS);
-
-        // H4
-        // telefone
-        Label lblTelefone = new Label("TELEFONE:");
-        TextField txtTelefone = new TextField();
-        txtTelefone.setMaxWidth(250);
-        hbox4.getChildren().addAll(lblTelefone, txtTelefone);
-        hbox4.setMinHeight(20);
-        hbox4.setPadding(new Insets(0, 0, 50,0));
-        hbox4.setAlignment(Pos.CENTER);
-
-        HBox.setHgrow(lblTelefone, Priority.NEVER);
-        HBox.setHgrow(txtTelefone, Priority.ALWAYS);
-
+        HBox.setHgrow(lblCodProduto, Priority.NEVER);
+        HBox.setHgrow(txtCodProduto, Priority.ALWAYS);
 
         // Adicionando botões
         Button btnCadastrar = new Button("CADASTRAR");
@@ -100,10 +86,10 @@ public class TelaCadastroFornecedor {
         btnVoltar.setMinWidth(250);
         btnVoltar.setMinHeight(50);
 
-        // H5
-        hbox5.getChildren().addAll(btnCadastrar, btnVoltar);
-        hbox5.setMinHeight(50);
-        hbox5.setAlignment(Pos.CENTER);
+        // H4
+        hbox4.getChildren().addAll(btnCadastrar, btnVoltar);
+        hbox4.setMinHeight(50);
+        hbox4.setAlignment(Pos.CENTER);
 
         Label resposta = new Label("");
         btnCadastrar.setOnAction(e -> {
@@ -112,8 +98,8 @@ public class TelaCadastroFornecedor {
         });
 
         btnVoltar.setOnAction(e -> {
-            TelaFornecedores telaFornecedores = new TelaFornecedores();
-            telaFornecedores.show(stage);
+            TelaSecoes telaSecoes = new TelaSecoes();
+            telaSecoes.show(stage);
         });
 
         VBox vbox = new VBox();
@@ -122,13 +108,12 @@ public class TelaCadastroFornecedor {
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
 
-        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, hbox5, resposta);
+        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, resposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
-
         Scene scene = new Scene(vbox, 600, 400);
-        stage.setTitle("Supermercado - Cadastro de Fornecedor");
+        stage.setTitle("Supermercado - Cadastro de Seção");
         stage.setScene(scene);
         stage.show();
     }

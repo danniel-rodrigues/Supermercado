@@ -32,7 +32,7 @@ public class TelaItens {
 
         btnCadastrar.setOnAction(e -> {
             TelaCadastroItem telaCadastroItem = new TelaCadastroItem();
-            //telaCadastroItem.show(stage);
+            telaCadastroItem.show(stage);
         });
 
         btnVoltarInicio.setOnAction(e -> {
@@ -63,14 +63,8 @@ public class TelaItens {
         //List<Item> itens = ItemDAO.listarItens();
         //ObservableList<Item> itensListados = FXCollections.observableArrayList(itens);
 
-        TableColumn<Item, String> loteColumn = new TableColumn<>("Lote");
-        loteColumn.setCellValueFactory(cellData -> cellData.getValue().loteProperty());
-
-        TableColumn<Item, String> dataValColumn = new TableColumn<>("Data de Validade");
-        dataValColumn.setCellValueFactory(cellData -> {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            return cellData.getValue().dataValProperty().asString(dateFormat.toPattern());
-        });
+        TableColumn<Item, Integer> codigoProdutoColumn = new TableColumn<>("Codigo do Produto");
+        codigoProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProdutoProperty());
 
         TableColumn<Item, String> dataFabColumn = new TableColumn<>("Data de Fabricação");
         dataFabColumn.setCellValueFactory(cellData -> {
@@ -78,8 +72,17 @@ public class TelaItens {
             return cellData.getValue().dataFabProperty().asString(dateFormat.toPattern());
         });
 
+        TableColumn<Item, String> dataValColumn = new TableColumn<>("Data de Validade");
+        dataValColumn.setCellValueFactory(cellData -> {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return cellData.getValue().dataValProperty().asString(dateFormat.toPattern());
+        });
+
         TableColumn<Item, Float> pesoColumn = new TableColumn<>("Peso");
         pesoColumn.setCellValueFactory(cellData -> cellData.getValue().pesoProperty());
+
+        TableColumn<Item, String> loteColumn = new TableColumn<>("Lote");
+        loteColumn.setCellValueFactory(cellData -> cellData.getValue().loteProperty());
 
         TableColumn<Item, Float> quantidadeColumn = new TableColumn<>("Quantidade");
         quantidadeColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeProperty());
@@ -87,7 +90,7 @@ public class TelaItens {
         //TableView<Item> tableView = null;
 
         TableView<Item> tableView = new TableView<>();
-        tableView.getColumns().addAll(loteColumn, dataValColumn, dataFabColumn, pesoColumn, quantidadeColumn);
+        tableView.getColumns().addAll(codigoProdutoColumn, dataFabColumn, dataValColumn, pesoColumn, loteColumn, quantidadeColumn);
 
         //loteColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
         //dataValColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));

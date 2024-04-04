@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import Models.Produto;
-import Models.Funcionario;
 
 public class ProdutoDAO {
     // URL de conexão com o BD SQLite
@@ -24,10 +23,7 @@ public class ProdutoDAO {
             "codigo INTEGER NOT NULL UNIQUE, " +
             "tipo TEXT NOT NULL, " +
             "preco REAL NOT NULL, " +
-            "status TEXT NOT NULL, " +
-            "id_funcionario INTEGER NOT NULL, " +
-            "FOREIGN KEY (id_funcionario) REFERENCES funcionario (id)" +
-            ")";
+            "status TEXT NOT NULL)";
 
     // Método para criar a tabela no banco de dados
     public static void criarTabela() {
@@ -42,11 +38,11 @@ public class ProdutoDAO {
     }
 
     // Método para adicionar um produto no banco de dados
-    public static void adicionarProduto(Produto produto) {
+    public static boolean adicionarProduto(Produto produto) {
         criarTabela();
         String sql = "INSERT INTO produto " +
-                     "(nome, marca, codigo, tipo, preco, status, id_funcionario) " +
-                     "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                     "(nome, marca, codigo, tipo, preco, status) " +
+                     "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -56,13 +52,15 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-            pstmt.setInt(7, produto.getFuncionario().getId());
+//            pstmt.setInt(7, produto.getFuncionario().getId());
 
             pstmt.executeUpdate();
             System.out.println("Produto adicionado com sucesso.");
+            return true;
         } catch (SQLException e) {
             System.err.println("Erro ao adicionar produto: " + e.getMessage());
         }
+        return false;
     }
 
     // Método para listar todos os funcionários do banco de dados
@@ -91,14 +89,15 @@ public class ProdutoDAO {
         String marca = rs.getString("marca");
         Integer codigo = rs.getInt("codigo");
         String tipo = rs.getString("tipo");
-        Float preco = rs.getFloat("preco");
+        float preco = rs.getFloat("preco");
         String status = rs.getString("status");
-        Integer id_funcionario = rs.getInt("id_funcionario");
+//        Integer id_funcionario = rs.getInt("id_funcionario");
 
         // Criando um objeto to tipo Funcionario para passar como parâmetro na criação do objeto Produto
-        Funcionario funcionario = FuncionarioDAO.buscarFuncionarioPorId(id_funcionario);
+//        Funcionario funcionario = FuncionarioDAO.buscarFuncionarioPorId(id_funcionario);
 
-        return new Produto(nome, marca, codigo, tipo, preco, status, funcionario);
+//        return new Produto(nome, marca, codigo, tipo, preco, status, funcionario);
+        return new Produto(nome, marca, codigo, tipo, preco, status);
     }
 
     // Método para buscar um produto pelo código
@@ -128,8 +127,7 @@ public class ProdutoDAO {
                                             "codigo = ?, " +
                                             "tipo = ?, " +
                                             "preco = ?, " +
-                                            "status = ?, " +
-                                            "id_funcionario = ?";
+                                            "status = ? ";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -139,7 +137,7 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-            pstmt.setObject(7, produto.getFuncionario().getId());
+//            pstmt.setObject(7, produto.getFuncionario().getId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

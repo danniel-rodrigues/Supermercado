@@ -3,28 +3,21 @@ package Models;
 import java.util.Date;
 import javafx.beans.property.*;
 
-public class Item{
-    protected Integer codigoProduto;
+public class Item extends Produto{
     protected String lote;
     protected Date dataVal;
     protected Date dataFab;
     protected float peso;
     protected float quantidade;
-    public Item(Integer codigoProduto, String lote, Date dataVal, Date dataFab, float peso, float quantidade) {
-        this.codigoProduto = codigoProduto;
+    public Item(String nome, String marca, Integer codigo, String tipo, float preco, String status, Funcionario funcionario, String lote, Date dataVal, Date dataFab, float peso, float quantidade) {
+        super(nome, marca, codigo, tipo, preco, status);
+
         this.lote = lote;
         this.dataVal = dataVal;
         this.dataFab = dataFab;
+        this.preco = preco;
         this.peso = peso;
         this.quantidade = quantidade;
-    }
-
-    public Integer getCodigoProduto() {
-        return codigoProduto;
-    }
-
-    public void setCodigoProduto(Integer codigoProduto) {
-        this.codigoProduto = codigoProduto;
     }
 
     public String getLote() {
@@ -67,24 +60,20 @@ public class Item{
         this.quantidade = quantidade;
     }
 
-    public ObjectProperty<Integer> codigoProdutoProperty(){
-        return new SimpleObjectProperty<>(codigoProduto);
-    }
-
-    public ObjectProperty<Date> dataFabProperty() {
-        return new SimpleObjectProperty<>(dataFab);
+    public StringProperty loteProperty() {
+        return new SimpleStringProperty(lote);
     }
 
     public ObjectProperty<Date> dataValProperty() {
         return new SimpleObjectProperty<>(dataVal);
     }
 
-    public ObjectProperty<Float> pesoProperty() {
-        return new SimpleObjectProperty<>(peso);
+    public ObjectProperty<Date> dataFabProperty() {
+        return new SimpleObjectProperty<>(dataFab);
     }
 
-    public StringProperty loteProperty() {
-        return new SimpleStringProperty(lote);
+    public ObjectProperty<Float> pesoProperty() {
+        return new SimpleObjectProperty<>(peso);
     }
 
     public ObjectProperty<Float> quantidadeProperty() {

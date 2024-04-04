@@ -1,9 +1,11 @@
 package Views;
 
+import Controllers.ControllerGerente;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,6 +16,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TelaCadastroProduto {
+    private TextField txtNome;
+    private TextField txtMarca;
+    private TextField txtCodigo;
+    private TextField txtTipo;
+    private TextField txtPreco;
+    private ComboBox<String> status;
+    private Button btnCadastrar;
+    private Button btnVoltar;
+    private Label resposta;
+    private ControllerGerente controllerGerente;
+
+
     public void show(Stage stage) {
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
@@ -21,11 +35,12 @@ public class TelaCadastroProduto {
         HBox hbox4 = new HBox(10);
         HBox hbox5 = new HBox(10);
         HBox hbox6 = new HBox(10);
+        HBox hbox7 = new HBox(10);
 
         // H1
         // Nome
         Label lblNome = new Label("NOME:");
-        TextField txtNome = new TextField();
+        txtNome = new TextField();
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
         hbox1.setMinHeight(20);
@@ -37,7 +52,7 @@ public class TelaCadastroProduto {
         // H2
         // marca
         Label lblMarca = new Label("MARCA:");
-        TextField txtMarca = new TextField();
+        txtMarca = new TextField();
         txtMarca.setMaxWidth(250);
         hbox2.getChildren().addAll(lblMarca, txtMarca);
         hbox2.setMinHeight(20);
@@ -49,7 +64,7 @@ public class TelaCadastroProduto {
         // H3
         // código
         Label lblCodigo = new Label("CÓDIGO:");
-        TextField txtCodigo = new TextField();
+        txtCodigo = new TextField();
         txtCodigo.setMaxWidth(250);
         hbox3.getChildren().addAll(lblCodigo, txtCodigo);
         hbox3.setMinHeight(20);
@@ -61,7 +76,7 @@ public class TelaCadastroProduto {
         // H4
         // tipo
         Label lblTipo = new Label("TIPO:");
-        TextField txtTipo = new TextField();
+        txtTipo = new TextField();
         txtTipo.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTipo, txtTipo);
         hbox4.setMinHeight(20);
@@ -73,19 +88,42 @@ public class TelaCadastroProduto {
         // H5
         // preço
         Label lblPreco = new Label("PREÇO:");
-        TextField txtPreco = new TextField();
+        txtPreco = new TextField();
         txtPreco.setMaxWidth(250);
         hbox5.getChildren().addAll(lblPreco, txtPreco);
         hbox5.setMinHeight(20);
-        hbox5.setPadding(new Insets(0, 0, 50,0));
         hbox5.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblPreco, Priority.NEVER);
         HBox.setHgrow(txtPreco, Priority.ALWAYS);
 
+        // H6
+        // Status
+        Label lblStatus = new Label("STATUS:");
+        status = new ComboBox<>();
+        status.setMaxWidth(200);
+        lblStatus.setPadding(new Insets(0, 0, 0, -40));
+        status.getItems().addAll("Ativo", "Inativo");
+        // Aplicando estilos CSS personalizados
+        status.setStyle(
+                "-fx-background-color: white;" + // Background branco
+                        "-fx-border-color: #a9a9a9;" +    // Cor da borda igual ao TextField
+                        "-fx-border-radius: 5;"           // Arredondamento da borda
+        );
+        // Configurando uma opção padrão
+        status.setValue("Selecione");
+
+        hbox6.getChildren().addAll(lblStatus, status);
+        hbox6.setMinHeight(40);
+        hbox6.setPadding(new Insets(0, 0, 50, 0));
+        hbox6.setAlignment(Pos.CENTER);
+
+        HBox.setHgrow(lblStatus, Priority.NEVER);
+        HBox.setHgrow(status, Priority.ALWAYS);
+
         // Adicionando botões
-        Button btnCadastrar = new Button("CADASTRAR");
-        Button btnVoltar = new Button("VOLTAR");
+        btnCadastrar = new Button("CADASTRAR");
+        btnVoltar = new Button("VOLTAR");
 
         // Adicionando ícone e cor de fundo ao botão Cadastrar
         Image plusIcon = new Image("assets/images/icons/plus.png");
@@ -109,16 +147,14 @@ public class TelaCadastroProduto {
         btnVoltar.setMinWidth(250);
         btnVoltar.setMinHeight(50);
 
-        // H6
-        hbox6.getChildren().addAll(btnCadastrar, btnVoltar);
-        hbox6.setMinHeight(50);
-        hbox6.setAlignment(Pos.CENTER);
+        // H7
+        hbox7.getChildren().addAll(btnCadastrar, btnVoltar);
+        hbox7.setMinHeight(50);
+        hbox7.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
-        btnCadastrar.setOnAction(e -> {
-            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
-            resposta.setStyle("-fx-text-fill: purple;");
-        });
+        controllerGerente = new ControllerGerente(this);
+
+        resposta = new Label("");
 
         btnVoltar.setOnAction(e -> {
             TelaProdutos telaProdutos = new TelaProdutos();
@@ -131,7 +167,7 @@ public class TelaCadastroProduto {
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
 
-        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, hbox5, hbox6, resposta);
+        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, hbox5, hbox6, hbox7, resposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -139,5 +175,24 @@ public class TelaCadastroProduto {
         stage.setTitle("Supermercado - Cadastro de Produto");
         stage.setScene(scene);
         stage.show();
+    }
+
+    // Métodos para recuperar os elementos da interface
+    public TextField getTxtNome() {return txtNome;}
+    public TextField getTxtMarca() {return txtMarca;}
+    public TextField getTxtCodigo() {return txtCodigo;}
+    public TextField getTxtTipo() {return txtTipo;}
+    public TextField getTxtPreco() {return txtPreco;}
+    public ComboBox<String> getStatus() {return status;}
+    public Button getBtnCadastrar() {return this.btnCadastrar;}
+    public Label getResposta() {return resposta;}
+
+    public void limparCampos() {
+        txtNome.clear();
+        txtMarca.clear();
+        txtCodigo.clear();
+        txtTipo.clear();
+        txtPreco.clear();
+        status.getSelectionModel().clearSelection();
     }
 }

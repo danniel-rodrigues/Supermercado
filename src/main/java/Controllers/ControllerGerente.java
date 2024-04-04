@@ -5,21 +5,24 @@ import Auxiliar.CPF;
 import Auxiliar.Data;
 import DAO.FuncionarioDAO;
 import DAO.EnderecoDAO;
+import DAO.ProdutoDAO;
 import Models.Endereco;
 
 
 import Models.Funcionario;
+import Models.Produto;
 import Views.TelaAlterarFuncionario;
 import Views.TelaBuscarFuncionario;
 import Views.TelaCadastroFuncionario;
+import Views.TelaCadastroProduto;
 
 import java.util.Objects;
 
 public class ControllerGerente {
     private TelaCadastroFuncionario view;
     private TelaBuscarFuncionario viewB;
-
     private TelaAlterarFuncionario viewC;
+    private TelaCadastroProduto viewD;
 
     public ControllerGerente(TelaCadastroFuncionario view) {
         this.view = view;
@@ -39,6 +42,40 @@ public class ControllerGerente {
         viewC = view;
 
         view.getBtnCadastrar().setOnAction(e -> AlterarDados());
+    }
+
+    // Cadastro de Produto
+    public ControllerGerente(TelaCadastroProduto view) {
+        viewD = view;
+        view.getBtnCadastrar().setOnAction(e -> cadastrarProduto());
+    }
+
+    // Método para realizar cadastro de um novo produto
+    private void cadastrarProduto() {
+        String nome = viewD.getTxtNome().getText();
+        String marca = viewD.getTxtMarca().getText();
+        Integer codigo = Integer.valueOf(viewD.getTxtCodigo().getText());
+        String tipo = viewD.getTxtTipo().getText();
+        Float preco = Float.valueOf(viewD.getTxtPreco().getText());
+        String status = viewD.getStatus().getValue();
+
+        Produto produto = new Produto(nome, marca, codigo, tipo, preco, status);
+
+        adicionarProduto(produto);
+    }
+
+    // Método para realizar a inserção do produto no banco de dados
+    public void adicionarProduto(Produto produto) {
+        if(ProdutoDAO.adicionarProduto(produto)) {
+            viewD.getResposta().setText("Produto cadastrado com sucesso!");
+            viewD.getResposta().setStyle("-fx-text-fill: green;");
+
+            // Limpa os campos de entrada após o cadastro
+            viewD.limparCampos();
+        } else {
+            viewD.getResposta().setText("Erro na inserção!");
+            viewD.getResposta().setStyle("-fx-text-fill: red;");
+        }
     }
 
     // Método para cadastrar um novo funcionário

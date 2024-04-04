@@ -1,7 +1,5 @@
 package Views;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -80,9 +78,18 @@ public class TelaCaixa {
         TableView<Item> tableView = new TableView<>();
         TableColumn<Item, String> nomeColumn = new TableColumn<>("Nome");
         TableColumn<Item, Float> precoColumn = new TableColumn<>("Preço");
-        ObservableList<String> items = FXCollections.observableArrayList( );
+        //ObservableList<String> items = FXCollections.observableArrayList( );
         //tableView.setItems(items);
         tableView.getColumns().addAll(nomeColumn, precoColumn);
+
+        // Redimensionando as colunas para preencher o espaço disponível igualmente
+        double larguraColuna = 1.0 / tableView.getColumns().size();
+        tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
+
+        // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
+        });
 
 
         // Criando VBox para organizar os elementos

@@ -113,4 +113,5 @@ public class Produto {
     public ObjectProperty<Float> precoProperty(){
         return new SimpleObjectProperty<>(preco);
     }
+    public ObjectProperty<String> statusProperty() {return new SimpleObjectProperty<>(status);}
 }

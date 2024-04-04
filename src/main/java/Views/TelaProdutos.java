@@ -89,10 +89,13 @@ public class TelaProdutos {
         TableColumn<Produto, Float> precoColumn = new TableColumn<>("Preco");
         precoColumn.setCellValueFactory(cellData -> cellData.getValue().precoProperty());
 
+        TableColumn<Produto, String> statusColumn = new TableColumn<>("Status");
+        statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+
 
         // Adicionando as colunas à TableView
         TableView<Produto> tableView = new TableView<>();
-        tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoColumn, tipoColumn, precoColumn);
+        tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoColumn, tipoColumn, precoColumn, statusColumn);
 
 //        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5)); // Coluna de nome ocupará do espaço
 //        marcaColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));

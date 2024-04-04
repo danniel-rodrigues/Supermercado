@@ -19,9 +19,10 @@ public class Funcionario {
     protected String senha;
     protected String status;
     protected Endereco endereco;
+    protected String cargo;
 
     public Funcionario(String nome, String cpf, Date dataNasc, String email, String telefone, String sexo, String login,
-                       String senha, String status, Endereco endereco) {
+                       String senha, String status, Endereco endereco, String cargo) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNasc = dataNasc;
@@ -32,6 +33,7 @@ public class Funcionario {
         this.senha = senha;
         this.status = status;
         this.endereco = endereco;
+        this.cargo = cargo;
     }
 
     // Retorna o id do funcionário
@@ -140,6 +142,12 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
+    // Retorna o cargo do funcionario
+    public String getCargo() { return cargo; }
+
+    // Define o cargo do funcionario
+    public void setCargo(String cargo) { this.cargo = cargo; }
+
     public StringProperty nomeProperty(){
         return new SimpleStringProperty(nome);
     }
@@ -153,7 +161,7 @@ public class Funcionario {
     }
 
     public StringProperty cargoProperty(){
-        return new SimpleStringProperty("cargo");
+        return new SimpleStringProperty(cargo);
     }
 
     public StringProperty statusProperty(){
@@ -166,6 +174,6 @@ public class Funcionario {
 
     @Override
     public String toString(){
-        return "Nome: " + nome + " / CPF: " + cpf  + " / Telefone: " + telefone +  " / Status: " + status + " / Cargo: cargo";
+        return "Nome: " + nome + " / CPF: " + cpf  + " / Telefone: " + telefone +  " / Status: " + status + " / Cargo: " + cargo;
     }
 }

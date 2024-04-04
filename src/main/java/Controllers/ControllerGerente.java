@@ -131,7 +131,8 @@ public class ControllerGerente {
                         "joao",
                         "senha123",
                         status,
-                        endereco
+                        endereco,
+                        cargo
                 );
 
                 adicionaFuncionario(funcionario, endereco);
@@ -212,7 +213,8 @@ public class ControllerGerente {
                         "joao",
                         "senha123",
                         status,
-                        endereco
+                        endereco,
+                        cargo
                 );
 
                 if (FuncionarioDAO.atualizarFuncionario(funcionario)) {

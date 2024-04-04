@@ -33,6 +33,7 @@ public class FuncionarioDAO {
             "senha TEXT NOT NULL," +
             "status TEXT NOT NULL," +
             "id_endereco TEXT NOT NULL," +
+            "cargo TEXT NOT NULL," +
             "FOREIGN KEY (id_endereco) REFERENCES endereco (id)" +
             ")";
 
@@ -51,7 +52,7 @@ public class FuncionarioDAO {
     // Método para adicionar um funcionario ao banco de dados
     public static boolean adicionarFuncionario(Funcionario funcionario) {
         criarTabela();
-        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO funcionario (nome, cpf, data_nasc, email, telefone, sexo, login, senha, status, id_endereco, cargo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -65,6 +66,7 @@ public class FuncionarioDAO {
             pstmt.setString(8, funcionario.getSenha());
             pstmt.setString(9, funcionario.getStatus());
             pstmt.setString(10, "@@IDENTITY");  // Utiliza o id do ultimo endereco cadastrado
+            pstmt.setString(11, funcionario.getCargo());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -111,8 +113,9 @@ public class FuncionarioDAO {
         String login = rs.getString("login");
         String senha = rs.getString("senha");
         String status = rs.getString("status");
+        String cargo = rs.getString("cargo");
         Endereco endereco = EnderecoDAO.buscarEnderecoPorCPF(cpf);
-        Funcionario funcionario = new Funcionario(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, endereco);
+        Funcionario funcionario = new Funcionario(nome, cpf, dataNasc, email, telefone, sexo, login, senha, status, endereco, cargo);
         funcionario.setId(id);
         return funcionario;
     }

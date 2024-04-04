@@ -127,8 +127,8 @@ public class TelaCadastroItem {
         });
 
         btnVoltar.setOnAction(e -> {
-            TelaProdutos telaProdutos = new TelaProdutos();
-            telaProdutos.show(stage);
+            TelaItens telaItens = new TelaItens();
+            telaItens.show(stage);
         });
 
         VBox vbox = new VBox();

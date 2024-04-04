@@ -1,0 +1,106 @@
+package Views;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+public class TelaRemoverItem {
+    public void show(Stage stage) {
+        HBox hbox1 = new HBox(10);
+        HBox hbox2 = new HBox(10);
+
+        // Texto informativo
+        Label lblInfo = new Label("Informe o código referente ao produto que deseja realizar\na remoção dos itens.");
+        lblInfo.setFont(Font.font("Arial", 14));
+        lblInfo.setStyle("-fx-font-weight: bold;");
+
+        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
+        lblAviso.setStyle("-fx-text-fill: white;");
+
+        // Codigo do Produto
+        Label lblCodigoProduto = new Label("CODIGO DO PRODUTO:");
+        TextField txtCodigoProduto  = new TextField();
+        txtCodigoProduto.setPrefHeight(40);
+        txtCodigoProduto.setMaxWidth(250);
+        hbox1.getChildren().addAll(lblCodigoProduto, txtCodigoProduto);
+        hbox1.setMinHeight(20);
+        hbox1.setAlignment(Pos.CENTER);
+
+        HBox.setHgrow(lblCodigoProduto, Priority.NEVER);
+        HBox.setHgrow(txtCodigoProduto, Priority.ALWAYS);
+
+        // Quantidade
+        Label lblQuantidade = new Label("QUANTIDADE:");
+        TextField txtQuantidade = new TextField();
+        txtQuantidade.setPrefHeight(40);
+        txtQuantidade.setMaxWidth(250);
+        hbox2.getChildren().addAll(lblQuantidade, txtQuantidade);
+        hbox2.setMinHeight(20);
+        hbox2.setAlignment(Pos.CENTER);
+
+        HBox.setHgrow(lblQuantidade, Priority.NEVER);
+        HBox.setHgrow(txtQuantidade, Priority.ALWAYS);
+
+        // Adicionar botoes
+        Button btnDesativar = new Button("DESATIVAR");
+        btnDesativar.setOnAction(e -> {
+
+        });
+
+        Button btnVoltar = new Button("VOLTAR");
+        btnVoltar.setOnAction(e -> {
+            TelaItens telaItens = new TelaItens();
+            telaItens.show(stage);
+        });
+
+        // Adicionando ícone ao botão Desativar
+        Image disableIcon = new Image("assets/images/icons/desativar.png");
+        ImageView disableIconView = new ImageView(disableIcon);
+        disableIconView.setFitWidth(30);
+        disableIconView.setFitHeight(30);
+        btnDesativar.setGraphic(disableIconView);
+        // Definindo o background dos botões
+        btnDesativar.setStyle("-fx-background-color: #F79516;");
+
+        // Adicionando ícone ao botão Voltar
+        Image arrowIcon = new Image("assets/images/icons/arrow.png");
+        ImageView arrowIconView = new ImageView(arrowIcon);
+        arrowIconView.setFitWidth(20);
+        arrowIconView.setFitHeight(20);
+        btnVoltar.setGraphic(arrowIconView);
+        // Definindo o background dos botões
+        btnVoltar.setStyle("-fx-background-color: #F79516;");
+
+        btnDesativar.setMinWidth(235);
+        btnDesativar.setMinHeight(40);
+        btnVoltar.setMinWidth(235);
+        btnVoltar.setMinHeight(40);
+
+        HBox hbox3 = new HBox(10);
+        hbox3.getChildren().addAll(btnDesativar, btnVoltar);
+        hbox3.setAlignment(Pos.CENTER);
+
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(lblInfo, hbox1, hbox2, hbox3, lblAviso);
+        vbox.setSpacing(20);
+        vbox.setAlignment(Pos.CENTER);
+
+        Insets padding = new Insets(50);
+        vbox.setPadding(padding);
+
+        Scene scene = new Scene(vbox, 600, 350);
+        stage.setTitle("Supermercado - Remover Itens");
+        stage.setScene(scene);
+        stage.show();
+    }
+}

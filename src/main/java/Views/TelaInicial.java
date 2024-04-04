@@ -69,6 +69,11 @@ public class TelaInicial {
             telaCaixa.show(primaryStage);
         });
 
+        btnItem.setOnAction(e -> {
+            TelaItens telaItens = new TelaItens();
+            telaItens.show(primaryStage);
+        });
+
 
 
 

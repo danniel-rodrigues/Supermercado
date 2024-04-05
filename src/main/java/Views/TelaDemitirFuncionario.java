@@ -19,7 +19,6 @@ public class TelaDemitirFuncionario{
     private ControllerGerente control;
     private Button btnBuscar;
     private TextField cpf;
-    private Label lblAviso;
     private Label lblSucesso;
     public void show(Stage stage) {
         // texto informativo
@@ -27,21 +26,16 @@ public class TelaDemitirFuncionario{
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
-        lblAviso.setStyle("-fx-text-fill: white;");
-
-        lblSucesso = new Label("");
-
         cpf = new TextField();
         cpf.setPrefHeight(40);
         cpf.setPromptText("Apenas números");
 
         // Adicionar botoes
         btnBuscar = new Button("BUSCAR");
-        btnBuscar.setOnAction(e -> {
-            //lblAviso.setStyle("-fx-text-fill: red;");
-            control = new ControllerGerente(this);
-        });
+
+        control = new ControllerGerente(this);
+
+        lblSucesso = new Label("");
 
         // Adicionando ícones aos botões
         Image glassIcon = new Image("assets/images/icons/magnifying-glass.png");
@@ -78,7 +72,7 @@ public class TelaDemitirFuncionario{
         hbox1.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, cpf, hbox1, lblAviso);
+        vbox.getChildren().addAll(lblInfo, cpf, hbox1, lblSucesso);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -94,8 +88,6 @@ public class TelaDemitirFuncionario{
     public Button getBtnBuscar(){ return btnBuscar; }
 
     public String getCPF(){ return cpf.getText(); }
-
-    public Label getAviso(){ return lblAviso; }
 
     public Label getRespostaLabel() { return lblSucesso; }
 

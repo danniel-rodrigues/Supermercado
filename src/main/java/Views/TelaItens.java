@@ -60,8 +60,8 @@ public class TelaItens {
 
         hbox.getChildren().addAll(btnCadastrar, btnRemover);
 
-        //List<Item> itens = ItemDAO.listarItens();
-        //ObservableList<Item> itensListados = FXCollections.observableArrayList(itens);
+        List<Item> itens = ItemDAO.listarItens();
+        ObservableList<Item> itensListados = FXCollections.observableArrayList(itens);
 
         TableColumn<Item, Integer> codigoProdutoColumn = new TableColumn<>("Codigo do Produto");
         codigoProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProdutoProperty());
@@ -105,7 +105,7 @@ public class TelaItens {
             tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
         });
 
-        //tableView.setItems(itensListados);
+        tableView.setItems(itensListados);
 
         VBox vbox = new VBox();
         Insets padding = new Insets(20);

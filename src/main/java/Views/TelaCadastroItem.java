@@ -142,7 +142,7 @@ public class TelaCadastroItem {
         vbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(vbox, 600, 400);
-        stage.setTitle("Supermercado - Cadastro de Produto");
+        stage.setTitle("Supermercado - Cadastro de Itens");
         stage.setScene(scene);
         stage.show();
     }

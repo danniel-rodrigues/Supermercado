@@ -43,7 +43,6 @@ public class TelaCadastroProduto {
         txtNome = new TextField();
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
-        hbox1.setMinHeight(20);
         hbox1.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblNome, Priority.NEVER);
@@ -55,7 +54,6 @@ public class TelaCadastroProduto {
         txtMarca = new TextField();
         txtMarca.setMaxWidth(250);
         hbox2.getChildren().addAll(lblMarca, txtMarca);
-        hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblMarca, Priority.NEVER);
@@ -67,7 +65,6 @@ public class TelaCadastroProduto {
         txtCodigo = new TextField();
         txtCodigo.setMaxWidth(250);
         hbox3.getChildren().addAll(lblCodigo, txtCodigo);
-        hbox3.setMinHeight(20);
         hbox3.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblCodigo, Priority.NEVER);
@@ -79,7 +76,6 @@ public class TelaCadastroProduto {
         txtTipo = new TextField();
         txtTipo.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTipo, txtTipo);
-        hbox4.setMinHeight(20);
         hbox4.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblTipo, Priority.NEVER);
@@ -91,7 +87,6 @@ public class TelaCadastroProduto {
         txtPreco = new TextField();
         txtPreco.setMaxWidth(250);
         hbox5.getChildren().addAll(lblPreco, txtPreco);
-        hbox5.setMinHeight(20);
         hbox5.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblPreco, Priority.NEVER);
@@ -114,8 +109,7 @@ public class TelaCadastroProduto {
         status.setValue("Selecione");
 
         hbox6.getChildren().addAll(lblStatus, status);
-        hbox6.setMinHeight(40);
-        hbox6.setPadding(new Insets(0, 0, 50, 0));
+        hbox6.setPadding(new Insets(0, 0, 20, 0));
         hbox6.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblStatus, Priority.NEVER);
@@ -149,7 +143,6 @@ public class TelaCadastroProduto {
 
         // H7
         hbox7.getChildren().addAll(btnCadastrar, btnVoltar);
-        hbox7.setMinHeight(50);
         hbox7.setAlignment(Pos.CENTER);
 
         controllerGerente = new ControllerGerente(this);

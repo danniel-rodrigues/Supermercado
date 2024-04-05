@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.ControllerGerente;
+import Controllers.ControllerProduto;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,7 +25,7 @@ public class TelaCadastroProduto {
     private Button btnCadastrar;
     private Button btnVoltar;
     private Label resposta;
-    private ControllerGerente controllerGerente;
+    private ControllerProduto controllerProduto;
 
 
     public void show(Stage stage) {
@@ -145,7 +145,7 @@ public class TelaCadastroProduto {
         hbox7.getChildren().addAll(btnCadastrar, btnVoltar);
         hbox7.setAlignment(Pos.CENTER);
 
-        controllerGerente = new ControllerGerente(this);
+        controllerProduto = new ControllerProduto(this);
 
         resposta = new Label("");
 

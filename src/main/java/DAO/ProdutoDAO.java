@@ -122,7 +122,7 @@ public class ProdutoDAO {
 
     // Método para atualizar um produto no banco de dados
     public static boolean atualizarProduto(Produto produto) {
-        String sql = "UPDATE funcionario SET nome = ?, " +
+        String sql = "UPDATE produto SET nome = ?, " +
                                             "marca = ?, " +
                                             "codigo = ?, " +
                                             "tipo = ?, " +

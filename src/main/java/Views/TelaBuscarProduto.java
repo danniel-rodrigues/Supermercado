@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerProduto;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,21 +16,28 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TelaBuscarProduto {
+    private Button btnBuscar;
+    private Label lblAviso;
+    private TextField txtCodigo;
+    private Stage st;
+    private ControllerProduto controllerProduto;
 
     public void show(Stage stage) {
+        st = stage;
+
         // Texto informativo
         Label lblInfo = new Label("Informe o CÓDIGO referente ao produto que deseja realizar\na alteração de informações.");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
+        lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
-        TextField txtCodigo = new TextField();
+        txtCodigo = new TextField();
         txtCodigo.setPrefHeight(40);
 
         // Adicionar botoes
-        Button btnBuscar = new Button("BUSCAR");
+        btnBuscar = new Button("BUSCAR");
         btnBuscar.setOnAction(e -> {
 
         });
@@ -39,6 +47,8 @@ public class TelaBuscarProduto {
             TelaProdutos telaProdutos = new TelaProdutos();
             telaProdutos.show(stage);
         });
+
+        controllerProduto = new ControllerProduto(this);
 
         // Adicionando ícone ao botão Buscar
         Image glassICon = new Image("assets/images/icons/magnifying-glass.png");
@@ -79,5 +89,21 @@ public class TelaBuscarProduto {
         stage.setTitle("Supermercado - Buscar Produto");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Button getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public Label getLblAviso() {
+        return lblAviso;
+    }
+
+    public TextField getTxtCodigo() {
+        return txtCodigo;
+    }
+
+    public Stage getSt() {
+        return st;
     }
 }

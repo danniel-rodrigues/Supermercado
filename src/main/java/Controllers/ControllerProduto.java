@@ -92,6 +92,9 @@ public class ControllerProduto {
                 TelaAlterarProduto telaAlterarProduto = new TelaAlterarProduto();
                 telaAlterarProduto.show(viewBuscarProduto.getSt(), produto);
             }
+        } else {
+            viewBuscarProduto.getLblAviso().setText("Por favor, preencha o campo com o código do produto!");
+            viewBuscarProduto.getLblAviso().setStyle("-fx-text-fill: red;");
         }
     }
 

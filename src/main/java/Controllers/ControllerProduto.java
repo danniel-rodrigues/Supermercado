@@ -42,7 +42,7 @@ public class ControllerProduto {
         String txtPreco = viewCadastroProduto.getTxtPreco().getText();
         String status = viewCadastroProduto.getStatus().getValue();
 
-        // Verifica se há campos não preenchidos
+        // Verifica se há campos não preenchidos no formulário
         if(nome.isEmpty() || marca.isEmpty() || txtCodigo.isEmpty() || tipo.isEmpty() ||
                 txtPreco.isEmpty() || status.isEmpty() || status.equals("Selecione")) {
 

@@ -54,14 +54,32 @@ public class ControllerGerente {
     private void cadastrarProduto() {
         String nome = viewD.getTxtNome().getText();
         String marca = viewD.getTxtMarca().getText();
-        Integer codigo = Integer.valueOf(viewD.getTxtCodigo().getText());
+        String txtCodigo = viewD.getTxtCodigo().getText();
         String tipo = viewD.getTxtTipo().getText();
-        Float preco = Float.valueOf(viewD.getTxtPreco().getText());
+        String txtPreco = viewD.getTxtPreco().getText();
         String status = viewD.getStatus().getValue();
 
-        Produto produto = new Produto(nome, marca, codigo, tipo, preco, status);
+        // Verifica se há campos não preenchidos
+        if(nome.isEmpty() || marca.isEmpty() || txtCodigo.isEmpty() || tipo.isEmpty() ||
+           txtPreco.isEmpty() || status.isEmpty() || status.equals("Selecione")) {
 
-        adicionarProduto(produto);
+            // Se algum campo estiver vazio, exibe uma mensagem de erro
+            viewD.getResposta().setText("Por favor, preencha todos os campos.");
+            viewD.getResposta().setStyle("-fx-text-fill: red;");
+        } else {
+            try {
+                Integer codigo = Integer.valueOf(txtCodigo);
+                float preco = Float.parseFloat(txtPreco);
+
+                // Se nenhum erro de conversão ocorrer, cria o produto
+                Produto produto = new Produto(nome, marca, codigo, tipo, preco, status);
+                adicionarProduto(produto);
+            } catch (NumberFormatException e) {
+                // Se houver erro de conversão, exibe uma mensagem de erro
+                viewD.getResposta().setText("Por favor, insira um número válido para o código ou preço.");
+                viewD.getResposta().setStyle("-fx-text-fill: red;");
+            }
+        }
     }
 
     // Método para realizar a inserção do produto no banco de dados

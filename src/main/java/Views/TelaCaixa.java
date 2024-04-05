@@ -9,7 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import modulos.funcionarios.Models.Item;
+import Models.Item;
 
 
 public class TelaCaixa {

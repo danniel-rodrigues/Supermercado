@@ -189,11 +189,11 @@ public class FuncionarioDAO {
 
     // Altera o status do Funcionario para "Desligado", mas mantem ele no banco
     public static boolean demitirFuncionario(String cpf){
-        String sql = "UPDATE funcionario SET status = ?";
+        String sql = "UPDATE funcionario SET status = 'Desligado' WHERE cpf = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, "Desligado");
+            pstmt.setString(1, cpf);
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

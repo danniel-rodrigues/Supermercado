@@ -10,6 +10,7 @@ import Models.Funcionario;
 import Views.TelaAlterarFuncionario;
 import Views.TelaBuscarFuncionario;
 import Views.TelaCadastroFuncionario;
+import Views.TelaDemitirFuncionario;
 
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ public class ControllerGerente {
     private TelaCadastroFuncionario view;
     private TelaBuscarFuncionario viewB;
     private TelaAlterarFuncionario viewC;
+    private TelaDemitirFuncionario viewD;
 
     public ControllerGerente(TelaCadastroFuncionario view) {
         this.view = view;
@@ -36,6 +38,12 @@ public class ControllerGerente {
         viewC = view;
 
         view.getBtnCadastrar().setOnAction(e -> AlterarDados());
+    }
+
+    public ControllerGerente(TelaDemitirFuncionario view){
+        viewD = view;
+
+        viewD.getBtnBuscar().setOnAction(e -> demitirFuncionario());
     }
 
     // Método para cadastrar um novo funcionário
@@ -204,6 +212,20 @@ public class ControllerGerente {
         } else {
             view.getRespostaLabel().setText("Erro na inserção!");
             view.getRespostaLabel().setStyle("-fx-text-fill: red;");
+        }
+    }
+
+    public void demitirFuncionario(){
+        String cpf = viewD.getCPF();
+
+        if(FuncionarioDAO.demitirFuncionario(cpf)){
+            viewD.getRespostaLabel().setText("Funcionário demitido com sucesso!");
+            viewD.getRespostaLabel().setStyle("-fx-text-fill: green;");
+            // Limpe os campos de entrada após o cadastro
+            viewD.limparCampos();
+        }else{
+            viewD.getRespostaLabel().setText("Funcionário não encontrado!");
+            viewD.getRespostaLabel().setStyle("-fx-text-fill: red;");
         }
     }
 

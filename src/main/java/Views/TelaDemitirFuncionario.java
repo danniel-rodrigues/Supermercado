@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerGerente;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,23 +16,31 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TelaDemitirFuncionario{
+    private ControllerGerente control;
+    private Button btnBuscar;
+    private TextField cpf;
+    private Label lblAviso;
+    private Label lblSucesso;
     public void show(Stage stage) {
         // texto informativo
         Label lblInfo = new Label("Informe o CPF do funcionário que deseja realizar\na demissão. (Exclusivo para uso do Gerente!)");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
+        lblAviso = new Label("FUNCIONÁRIO NÃO ENCONTRADO!");
         lblAviso.setStyle("-fx-text-fill: white;");
 
-        TextField cpf = new TextField();
+        lblSucesso = new Label("");
+
+        cpf = new TextField();
         cpf.setPrefHeight(40);
         cpf.setPromptText("Apenas números");
 
         // Adicionar botoes
-        Button btnBuscar = new Button("BUSCAR");
+        btnBuscar = new Button("BUSCAR");
         btnBuscar.setOnAction(e -> {
-            lblAviso.setStyle("-fx-text-fill: red;");
+            //lblAviso.setStyle("-fx-text-fill: red;");
+            control = new ControllerGerente(this);
         });
 
         // Adicionando ícones aos botões
@@ -80,5 +89,17 @@ public class TelaDemitirFuncionario{
         stage.setTitle("Supermercado - Demitir Funcionário");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Button getBtnBuscar(){ return btnBuscar; }
+
+    public String getCPF(){ return cpf.getText(); }
+
+    public Label getAviso(){ return lblAviso; }
+
+    public Label getRespostaLabel() { return lblSucesso; }
+
+    public void limparCampos(){
+        cpf.clear();
     }
 }

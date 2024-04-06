@@ -88,7 +88,7 @@ public class FuncionarioDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                Funcionario funcionario = criarFuncioario(rs);
+                Funcionario funcionario = criarFuncionario(rs);
                 funcionarios.add(funcionario);
             }
         } catch (SQLException e) {
@@ -100,7 +100,7 @@ public class FuncionarioDAO {
     }
 
     // Método para criar um funcionario a partir do ResultSet
-    private static Funcionario criarFuncioario(ResultSet rs) throws SQLException, ParseException {
+    private static Funcionario criarFuncionario(ResultSet rs) throws SQLException, ParseException {
         int id = rs.getInt("id");
         String nome = rs.getString("nome");
         String cpf = rs.getString("cpf");
@@ -130,7 +130,7 @@ public class FuncionarioDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return criarFuncioario(rs);
+                return criarFuncionario(rs);
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar funcionario por CPF: " + e.getMessage());
@@ -150,7 +150,7 @@ public class FuncionarioDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return criarFuncioario(rs);
+                return criarFuncionario(rs);
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar funcionario por ID: " + e.getMessage());

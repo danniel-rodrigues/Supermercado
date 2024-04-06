@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerItem;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +15,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class TelaCadastroItem {
+    private TextField txtCodigoProduto;
+    private TextField txtDataFab;
+    private TextField txtDataVal;
+    private TextField txtLote;
+    private TextField txtPeso;
+    private TextField txtQuantidade;
+    private Button btnCadastrar;
+    private Label resposta;
+    private ControllerItem controllerItem;
     public void show(Stage stage) {
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
@@ -25,7 +35,7 @@ public class TelaCadastroItem {
 
         // Codigo do Produto
         Label lblCodigoProduto = new Label("CODIGO DO PRODUTO:");
-        TextField txtCodigoProduto = new TextField();
+        txtCodigoProduto = new TextField();
         txtCodigoProduto.setMaxWidth(250);
         hbox1.getChildren().addAll(lblCodigoProduto, txtCodigoProduto);
         hbox1.setMinHeight(20);
@@ -36,7 +46,7 @@ public class TelaCadastroItem {
 
         // Data de Fabricação
         Label lblDataFab = new Label("DATA DE FABRICAÇÃO:");
-        TextField txtDataFab = new TextField();
+        txtDataFab = new TextField();
         txtDataFab.setMaxWidth(250);
         hbox2.getChildren().addAll(lblDataFab, txtDataFab);
         hbox2.setMinHeight(20);
@@ -47,7 +57,7 @@ public class TelaCadastroItem {
 
         // Data de Validade
         Label lblDataVal = new Label("DATA DE VALIDADE:");
-        TextField txtDataVal = new TextField();
+        txtDataVal = new TextField();
         txtDataVal.setMaxWidth(250);
         hbox3.getChildren().addAll(lblDataVal, txtDataVal);
         hbox3.setMinHeight(20);
@@ -58,7 +68,7 @@ public class TelaCadastroItem {
 
         // Lote
         Label lblLote = new Label("LOTE:");
-        TextField txtLote = new TextField();
+        txtLote = new TextField();
         txtLote.setMaxWidth(250);
         hbox4.getChildren().addAll(lblLote, txtLote);
         hbox4.setMinHeight(20);
@@ -69,7 +79,7 @@ public class TelaCadastroItem {
 
         // Peso
         Label lblPeso = new Label("PESO:");
-        TextField txtPeso = new TextField();
+        txtPeso = new TextField();
         txtPeso.setMaxWidth(250);
         hbox5.getChildren().addAll(lblPeso, txtPeso);
         hbox5.setMinHeight(20);
@@ -80,7 +90,7 @@ public class TelaCadastroItem {
 
         // Quantidade
         Label lblQuantidade = new Label("QUANTIDADE:");
-        TextField txtQuantidade = new TextField();
+        txtQuantidade = new TextField();
         txtQuantidade.setMaxWidth(250);
         hbox6.getChildren().addAll(lblQuantidade, txtQuantidade);
         hbox6.setMinHeight(20);
@@ -90,7 +100,7 @@ public class TelaCadastroItem {
         HBox.setHgrow(txtQuantidade, Priority.ALWAYS);
 
         // Adicionando botões
-        Button btnCadastrar = new Button("CADASTRAR");
+        btnCadastrar = new Button("CADASTRAR");
         Button btnVoltar = new Button("VOLTAR");
 
         // Adicionando ícone e cor de fundo ao botão Cadastrar
@@ -120,7 +130,9 @@ public class TelaCadastroItem {
         hbox7.setMinHeight(50);
         hbox7.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
+        controllerItem = new ControllerItem(this);
+
+        resposta = new Label("");
         btnCadastrar.setOnAction(e -> {
             resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
             resposta.setStyle("-fx-text-fill: purple;");
@@ -145,5 +157,46 @@ public class TelaCadastroItem {
         stage.setTitle("Supermercado - Cadastro de Itens");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public TextField getTxtCodigoProduto() {
+        return txtCodigoProduto;
+    }
+
+    public TextField getTxtDataFab() {
+        return txtDataFab;
+    }
+
+    public TextField getTxtDataVal() {
+        return txtDataVal;
+    }
+
+    public TextField getTxtLote() {
+        return txtLote;
+    }
+
+    public TextField getTxtPeso() {
+        return txtPeso;
+    }
+
+    public TextField getTxtQuantidade() {
+        return txtQuantidade;
+    }
+
+    public Button getBtnCadastrar() {
+        return btnCadastrar;
+    }
+
+    public Label getResposta() {
+        return resposta;
+    }
+
+    public void limparCampos() {
+        txtCodigoProduto.clear();
+        txtDataFab.clear();
+        txtDataVal.clear();
+        txtLote.clear();
+        txtPeso.clear();
+        txtQuantidade.clear();
     }
 }

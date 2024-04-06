@@ -84,7 +84,7 @@ public class TelaItens {
         TableColumn<Item, String> loteColumn = new TableColumn<>("Lote");
         loteColumn.setCellValueFactory(cellData -> cellData.getValue().loteProperty());
 
-        TableColumn<Item, Float> quantidadeColumn = new TableColumn<>("Quantidade");
+        TableColumn<Item, Integer> quantidadeColumn = new TableColumn<>("Quantidade");
         quantidadeColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeProperty());
 
         //TableView<Item> tableView = null;

@@ -9,8 +9,8 @@ public class Item{
     protected Date dataVal;
     protected Date dataFab;
     protected float peso;
-    protected float quantidade;
-    public Item(Integer codigoProduto, String lote, Date dataVal, Date dataFab, float peso, float quantidade) {
+    protected Integer quantidade;
+    public Item(Integer codigoProduto, String lote, Date dataVal, Date dataFab, float peso, Integer quantidade) {
         this.codigoProduto = codigoProduto;
         this.lote = lote;
         this.dataVal = dataVal;
@@ -59,11 +59,11 @@ public class Item{
         this.peso = peso;
     }
 
-    public float getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(float quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -87,7 +87,7 @@ public class Item{
         return new SimpleStringProperty(lote);
     }
 
-    public ObjectProperty<Float> quantidadeProperty() {
+    public ObjectProperty<Integer> quantidadeProperty() {
         return new SimpleObjectProperty<>(quantidade);
     }
 }

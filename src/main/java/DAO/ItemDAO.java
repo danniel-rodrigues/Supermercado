@@ -22,7 +22,7 @@ public class ItemDAO {
             "dataFabricacao TEXT NOT NULL, " +
             "peso REAL NOT NULL UNIQUE, " +
             "lote TEXT NOT NULL, " +
-            "quantidade REAL NOT NULL, " +
+            "quantidade INTEGER NOT NULL, " +
             "id_produto INTEGER NOT NULL," +
             "FOREIGN KEY (id_produto) REFERENCES produto (id)" +
             ")";
@@ -50,8 +50,8 @@ public class ItemDAO {
             pstmt.setString(2, item.getDataFab().toString());
             pstmt.setFloat(3, item.getPeso());
             pstmt.setString(4, item.getLote());
-            pstmt.setFloat(5, item.getQuantidade());
-            //pstmt.setString(6, item.getId_produto());
+            pstmt.setInt(5, item.getQuantidade());
+            //pstmt.setInt(6, item.getId_produto());
 
             pstmt.executeUpdate();
             System.out.println("Item adicionado com sucesso.");
@@ -87,7 +87,7 @@ public class ItemDAO {
         Date dataFabricacao = sdf.parse(rs.getString("dataFabricacao"));
         float peso = rs.getFloat("peso");
         String lote = rs.getString("lote");
-        float quantidade = rs.getFloat("quantidade");
+        Integer quantidade = rs.getInt("quantidade");
         Integer codigoProduto = rs.getInt("codigo");
 
         return new Item(codigoProduto, lote, dataValidade, dataFabricacao, peso, quantidade);

@@ -1,5 +1,6 @@
 package Models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javafx.beans.property.*;
 
@@ -71,12 +72,16 @@ public class Item{
         return new SimpleObjectProperty<>(codigoProduto);
     }
 
-    public ObjectProperty<Date> dataFabProperty() {
-        return new SimpleObjectProperty<>(dataFab);
+    public StringProperty dataFabProperty() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFabricacao = sdf.format(dataFab);
+        return new SimpleStringProperty(dataFabricacao);
     }
 
-    public ObjectProperty<Date> dataValProperty() {
-        return new SimpleObjectProperty<>(dataVal);
+    public StringProperty dataValProperty() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataValidade = sdf.format(dataVal);
+        return new SimpleStringProperty(dataValidade);
     }
 
     public ObjectProperty<Float> pesoProperty() {

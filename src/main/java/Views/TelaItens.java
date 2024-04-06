@@ -67,16 +67,10 @@ public class TelaItens {
         codigoProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProdutoProperty());
 
         TableColumn<Item, String> dataFabColumn = new TableColumn<>("Data de Fabricação");
-        dataFabColumn.setCellValueFactory(cellData -> {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            return cellData.getValue().dataFabProperty().asString(dateFormat.toPattern());
-        });
+        dataFabColumn.setCellValueFactory(cellData -> cellData.getValue().dataFabProperty());
 
         TableColumn<Item, String> dataValColumn = new TableColumn<>("Data de Validade");
-        dataValColumn.setCellValueFactory(cellData -> {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            return cellData.getValue().dataValProperty().asString(dateFormat.toPattern());
-        });
+        dataValColumn.setCellValueFactory(cellData -> cellData.getValue().dataValProperty());
 
         TableColumn<Item, Float> pesoColumn = new TableColumn<>("Peso");
         pesoColumn.setCellValueFactory(cellData -> cellData.getValue().pesoProperty());

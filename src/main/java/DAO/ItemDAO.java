@@ -20,10 +20,10 @@ public class ItemDAO {
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "dataValidade TEXT NOT NULL, " +
             "dataFabricacao TEXT NOT NULL, " +
-            "peso REAL NOT NULL UNIQUE, " +
+            "peso REAL NOT NULL, " +
             "lote TEXT NOT NULL, " +
             "quantidade INTEGER NOT NULL, " +
-            "id_produto INTEGER NOT NULL," +
+            "id_produto INTEGER NOT NULL UNIQUE," +
             "FOREIGN KEY (id_produto) REFERENCES produto (id)" +
             ")";
 
@@ -44,6 +44,8 @@ public class ItemDAO {
                 "(dataValidade, dataFabricacao, peso, lote, quantidade, id_produto) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
 
+        Integer idProduto = buscarIdPeloCodigo(item.getCodigoProduto());
+
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, item.getDataVal().toString());
@@ -51,7 +53,7 @@ public class ItemDAO {
             pstmt.setFloat(3, item.getPeso());
             pstmt.setString(4, item.getLote());
             pstmt.setInt(5, item.getQuantidade());
-            //pstmt.setInt(6, item.getId_produto());
+            pstmt.setInt(6, idProduto);
 
             pstmt.executeUpdate();
             System.out.println("Item adicionado com sucesso.");
@@ -88,13 +90,42 @@ public class ItemDAO {
         float peso = rs.getFloat("peso");
         String lote = rs.getString("lote");
         Integer quantidade = rs.getInt("quantidade");
-        Integer codigoProduto = rs.getInt("codigo");
+        Integer codigoProduto = buscarCodigoPeloId(rs.getInt("id_produto"));
 
         return new Item(codigoProduto, lote, dataValidade, dataFabricacao, peso, quantidade);
     }
 
+    public static Integer buscarIdPeloCodigo(Integer codigo) {
+        String sql = "SELECT id FROM produto WHERE codigo = ?";
 
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, codigo);
+            ResultSet rs = pstmt.executeQuery();
 
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar ID pelo código do produto: " + e.getMessage());
+        }
+        return null;
+    }
 
-    //Preciso de 2 metodos, 1 que passa o codigo do produto e retorno o seu id da tabela produto, e 1 que passa o id do produto e retorno o seu codigo da tabela produto
+    public static Integer buscarCodigoPeloId(Integer id) {
+        String sql = "SELECT codigo FROM produto WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("codigo");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar código pelo ID do produto: " + e.getMessage());
+        }
+        return null;
+    }
 }

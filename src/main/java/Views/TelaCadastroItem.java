@@ -48,6 +48,7 @@ public class TelaCadastroItem {
         Label lblDataFab = new Label("DATA DE FABRICAÇÃO:");
         txtDataFab = new TextField();
         txtDataFab.setMaxWidth(250);
+        txtDataFab.setPromptText("DD/MM/AAAA");
         hbox2.getChildren().addAll(lblDataFab, txtDataFab);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);
@@ -59,6 +60,7 @@ public class TelaCadastroItem {
         Label lblDataVal = new Label("DATA DE VALIDADE:");
         txtDataVal = new TextField();
         txtDataVal.setMaxWidth(250);
+        txtDataVal.setPromptText("DD/MM/AAAA");
         hbox3.getChildren().addAll(lblDataVal, txtDataVal);
         hbox3.setMinHeight(20);
         hbox3.setAlignment(Pos.CENTER);
@@ -133,10 +135,6 @@ public class TelaCadastroItem {
         controllerItem = new ControllerItem(this);
 
         resposta = new Label("");
-        btnCadastrar.setOnAction(e -> {
-            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
-            resposta.setStyle("-fx-text-fill: purple;");
-        });
 
         btnVoltar.setOnAction(e -> {
             TelaItens telaItens = new TelaItens();

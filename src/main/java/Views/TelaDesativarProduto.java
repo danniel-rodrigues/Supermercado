@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerProduto;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -15,20 +16,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TelaDesativarProduto {
+    private TextField txtCodigo;
+    private Button btnDesativar;
+    Label lblResposta;
     public void show(Stage stage) {
         // Texto informativo
         Label lblInfo = new Label("Informe o CÓDIGO referente ao produto que deseja realizar\na desativação.");
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
-        lblAviso.setStyle("-fx-text-fill: white;");
+        lblResposta = new Label("");
 
-        TextField txtCodigo = new TextField();
+        txtCodigo = new TextField();
         txtCodigo.setPrefHeight(40);
 
         // Adicionar botoes
-        Button btnDesativar = new Button("DESATIVAR");
+        btnDesativar = new Button("DESATIVAR");
         btnDesativar.setOnAction(e -> {
 
         });
@@ -66,8 +69,10 @@ public class TelaDesativarProduto {
         hbox1.getChildren().addAll(btnDesativar, btnVoltar);
         hbox1.setAlignment(Pos.CENTER);
 
+        ControllerProduto controllerProduto = new ControllerProduto(this);
+
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, txtCodigo, hbox1, lblAviso);
+        vbox.getChildren().addAll(lblInfo, txtCodigo, hbox1, lblResposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -79,4 +84,12 @@ public class TelaDesativarProduto {
         stage.setScene(scene);
         stage.show();
     }
+
+    public String getCodigo(){ return txtCodigo.getText(); }
+
+    public Button getBtnDesativarProduto(){ return btnDesativar; }
+
+    public Label getResposta() { return lblResposta; }
+
+    public void limparCampos() { txtCodigo.clear(); }
 }

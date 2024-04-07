@@ -6,10 +6,13 @@ import Models.Produto;
 import Views.TelaCadastroProduto;
 import Views.TelaBuscarProduto;
 import Views.TelaAlterarProduto;
+import Views.TelaDesativarProduto;
+
 public class ControllerProduto {
     private TelaCadastroProduto viewCadastroProduto;
     private TelaBuscarProduto viewBuscarProduto;
     private TelaAlterarProduto viewAlterarProduto;
+    private TelaDesativarProduto viewDesativarProduto;
 
     public ControllerProduto(TelaCadastroProduto viewCadastroProduto) {
         this.viewCadastroProduto = viewCadastroProduto;
@@ -30,6 +33,13 @@ public class ControllerProduto {
         this.viewAlterarProduto = viewAlterarProduto;
         viewAlterarProduto.getBtnAlterarCadastro().setOnAction(e -> {
             alterarDadosProduto();
+        });
+    }
+
+    public ControllerProduto(TelaDesativarProduto viewDesativarProduto){
+        this.viewDesativarProduto = viewDesativarProduto;
+        viewDesativarProduto.getBtnDesativarProduto().setOnAction(e -> {
+            desativarProduto();
         });
     }
 
@@ -134,6 +144,20 @@ public class ControllerProduto {
                 viewAlterarProduto.getResposta().setText("Por favor, insira um número válido para o código ou preço.");
                 viewAlterarProduto.getResposta().setStyle("-fx-text-fill: red;");
             }
+        }
+    }
+
+    public void desativarProduto(){
+        String codigo = viewDesativarProduto.getCodigo();
+
+        if (ProdutoDAO.desativarProduto(codigo)) {
+            viewDesativarProduto.getResposta().setText("Produto desativado com sucesso!".toUpperCase());
+            viewDesativarProduto.getResposta().setStyle("-fx-text-fill: green;");
+            // Limpa os campos após desativação
+            viewDesativarProduto.limparCampos();
+        }else{
+            viewDesativarProduto.getResposta().setText("Código do produto inválido!".toUpperCase());
+            viewDesativarProduto.getResposta().setStyle("-fx-text-fill: red;");
         }
     }
 

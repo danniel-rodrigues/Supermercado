@@ -149,4 +149,20 @@ public class ProdutoDAO {
         }
         return false;
     }
+
+    public static boolean desativarProduto(String codigo) {
+        String sql = "UPDATE produto SET status = 'Inativo' WHERE codigo = ? AND status = 'Ativo'";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1, codigo);
+
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) return true; // Retorna true se a operação for bem sucedida
+        } catch (SQLException e){
+            System.err.println("Erro ao desativar produto: " + e.getMessage());
+        }
+
+        return false;
+    }
 }

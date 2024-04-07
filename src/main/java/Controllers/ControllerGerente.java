@@ -235,5 +235,4 @@ public class ControllerGerente {
             viewD.getRespostaLabel().setStyle("-fx-text-fill: red;");
         }
     }
-
 }

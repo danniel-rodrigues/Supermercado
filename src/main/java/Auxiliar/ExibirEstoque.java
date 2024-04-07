@@ -20,7 +20,7 @@ public class ExibirEstoque {
 
     public List<ExibirEstoque> MontarEstoque() {
         List<Produto> produtos = ProdutoDAO.listarProdutos();
-        List<ExibirEstoque> estoque = List.of();
+        List<ExibirEstoque> estoque = new java.util.ArrayList<>(List.of());
 
         produtos.forEach(produto -> {
             ExibirEstoque exibirEstoque = new ExibirEstoque();

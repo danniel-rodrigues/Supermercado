@@ -42,7 +42,7 @@ public class TelaCadastroRemessa {
 
         // H1
         // Fornecedor
-        Label lblFornecedor = new Label("FORNECEDOR:");
+        Label lblFornecedor = new Label("ID DO FORNECEDOR:");
         txtFornecedor.setMaxWidth(250);
         hbox1.getChildren().addAll(lblFornecedor, txtFornecedor);
         hbox1.setMinHeight(20);

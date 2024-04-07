@@ -1,6 +1,7 @@
 package Controllers;
 
 import Auxiliar.Data;
+import DAO.FornecedorDAO;
 import DAO.RemessaDAO;
 import Models.Remessa;
 import Views.TelaCadastroRemessa;
@@ -20,18 +21,25 @@ public class ControllerRemessa {
     private void cadastrarRemessa() {
         // Obtenha os dados inseridos nos campos da tela
         // funcionario
-        String nome = view.getTxtFornecedor().getText();
+        String fornecedorId = view.getTxtFornecedor().getText();
         String envio = view.getTxtDataEnvio().getText();
         String recebimento = view.getTxtDataRecebimento().getText();
         String formato = "dd/MM/yyyy";
 
-        if (nome.isEmpty() || envio.isEmpty() || recebimento.isEmpty())  {
+        if (fornecedorId.isEmpty() || envio.isEmpty() || recebimento.isEmpty())  {
             // Se algum campo estiver em branco, exiba uma mensagem de erro.
             view.getResposta().setText("Por favor, preencha todos os campos.");
             view.getResposta().setStyle("-fx-text-fill: red;");
-        } else {
+            return;
+        }
             if (Data.validarData(recebimento, formato) && Data.validarData(envio, formato)) {
-                int id = Integer.parseInt(nome);
+                int id = Integer.parseInt(fornecedorId);
+                if(FornecedorDAO.buscarFornecedorPorId(id)==null){
+                    view.getResposta().setText("Fornecedor inválido");
+                    view.getResposta().setStyle("-fx-text-fill: red;");
+                    return;
+                }
+
                 Remessa remessa = new Remessa(
                         null,
                         id,
@@ -50,5 +58,5 @@ public class ControllerRemessa {
                 view.getResposta().setStyle("-fx-text-fill: red;");
             }
         }
-    }
+
 }

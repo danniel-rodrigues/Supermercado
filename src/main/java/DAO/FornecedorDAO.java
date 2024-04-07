@@ -104,6 +104,25 @@ public class FornecedorDAO {
         return null; // Retorna null se não encontrar nenhum fornecedor com o CNPJ fornecido
     }
 
+    public static Fornecedor buscarFornecedorPorId(int id) {
+        String sql = "SELECT * FROM fornecedor WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return criarFornecedor(rs);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar fornecedor por id: " + e.getMessage());
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return null; // Retorna null se não encontrar nenhum fornecedor com o id fornecido
+    }
+
     // Método para atualizar um fornecedor no banco de dados
     public static boolean atualizarFornecedor(Fornecedor fornecedor) {
         String sql = "UPDATE fornecedor SET nome = ?, email = ?, telefone = ? WHERE cnpj = ?";

@@ -13,7 +13,6 @@ public class Remessa {
     private int idFornecedor;
     private String dataEnvio;
     private String dataRecebimento;
-    private String status;
 
     public Remessa(Integer id,int idFornecedor,
                    String dataEnvio,

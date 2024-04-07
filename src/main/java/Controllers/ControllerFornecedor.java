@@ -5,13 +5,11 @@ import Models.Fornecedor;
 import Views.TelaCadastroFornecedor;
 
 public class ControllerFornecedor {
-    private TelaCadastroFornecedor viewCadastroFornecedor;
+    private final TelaCadastroFornecedor viewCadastroFornecedor;
 
     public ControllerFornecedor(TelaCadastroFornecedor viewCadastroFornecedor) {
         this.viewCadastroFornecedor = viewCadastroFornecedor;
-        viewCadastroFornecedor.getBtnCadastrar().setOnAction(e -> {
-            cadastrarFornecedor();
-        });
+        viewCadastroFornecedor.getBtnCadastrar().setOnAction(e -> cadastrarFornecedor());
     }
 
     // Método para realizar cadastro de um novo fornecedor

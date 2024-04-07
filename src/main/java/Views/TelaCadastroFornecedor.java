@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerFornecedor;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,6 +16,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TelaCadastroFornecedor {
+    private TextField txtNome;
+    private TextField txtCNPJ;
+    private TextField txtEmail;
+    private TextField txtTelefone;
+    private Button btnCadastrar;
+    private Label resposta;
+    private ControllerFornecedor controllerFornecedor;
+
     public void show(Stage stage) {
 
         HBox hbox1 = new HBox(10);
@@ -26,7 +35,7 @@ public class TelaCadastroFornecedor {
         // H1
         // Nome
         Label lblNome = new Label("NOME:");
-        TextField txtNome = new TextField();
+        txtNome = new TextField();
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
         hbox1.setMinHeight(20);
@@ -38,7 +47,7 @@ public class TelaCadastroFornecedor {
         // H2
         // cnpj
         Label lblCNPJ = new Label("CNPJ:");
-        TextField txtCNPJ = new TextField();
+        txtCNPJ = new TextField();
         txtCNPJ.setMaxWidth(250);
         txtCNPJ.setPromptText("Apenas números");
         hbox2.getChildren().addAll(lblCNPJ, txtCNPJ);
@@ -51,7 +60,7 @@ public class TelaCadastroFornecedor {
         // H3
         // email
         Label lblEmail = new Label("E-MAIL:");
-        TextField txtEmail = new TextField();
+        txtEmail = new TextField();
         txtEmail.setMaxWidth(250);
         hbox3.getChildren().addAll(lblEmail, txtEmail);
         hbox3.setMinHeight(20);
@@ -63,7 +72,7 @@ public class TelaCadastroFornecedor {
         // H4
         // telefone
         Label lblTelefone = new Label("TELEFONE:");
-        TextField txtTelefone = new TextField();
+        txtTelefone = new TextField();
         txtTelefone.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTelefone, txtTelefone);
         hbox4.setMinHeight(20);
@@ -75,8 +84,10 @@ public class TelaCadastroFornecedor {
 
 
         // Adicionando botões
-        Button btnCadastrar = new Button("CADASTRAR");
+        btnCadastrar = new Button("CADASTRAR");
         Button btnVoltar = new Button("VOLTAR");
+
+        controllerFornecedor = new ControllerFornecedor(this);
 
         // Adicionando ícone e cor de fundo ao botão Cadastrar
         Image plusIcon = new Image("assets/images/icons/plus.png");
@@ -105,7 +116,7 @@ public class TelaCadastroFornecedor {
         hbox5.setMinHeight(50);
         hbox5.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
+        resposta = new Label("");
         btnCadastrar.setOnAction(e -> {
             resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
             resposta.setStyle("-fx-text-fill: purple;");
@@ -131,5 +142,29 @@ public class TelaCadastroFornecedor {
         stage.setTitle("Supermercado - Cadastro de Fornecedor");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public TextField getTxtNome() {
+        return txtNome;
+    }
+
+    public TextField getTxtCNPJ() {
+        return txtCNPJ;
+    }
+
+    public TextField getTxtEmail() {
+        return txtEmail;
+    }
+
+    public TextField getTxtTelefone() {
+        return txtTelefone;
+    }
+
+    public Button getBtnCadastrar() {
+        return btnCadastrar;
+    }
+
+    public Label getResposta() {
+        return resposta;
     }
 }

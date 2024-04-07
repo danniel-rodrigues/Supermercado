@@ -109,7 +109,7 @@ public class ItemDAO {
 
     public static List<Item> listarItens() {
         List<Item> itens = new ArrayList<>();
-        String sql = "SELECT * FROM item";
+        String sql = "SELECT * FROM item WHERE quantidade > 0";
 
         try (Connection conn = DriverManager.getConnection(URL);
              Statement stmt = conn.createStatement();

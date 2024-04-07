@@ -101,7 +101,7 @@ public class ControllerItem {
                     // Limpa os campos de entrada após o cadastro
                     viewRemoverItem.limparCampos();
                 } else {
-                    viewRemoverItem.getResposta().setText("Erro na inserção!");
+                    viewRemoverItem.getResposta().setText("Erro na remoção!");
                     viewRemoverItem.getResposta().setStyle("-fx-text-fill: red;");
                 }
             } catch (NumberFormatException e) {

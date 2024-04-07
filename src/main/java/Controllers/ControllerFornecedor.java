@@ -32,7 +32,7 @@ public class ControllerFornecedor {
 
     private void adicionarFornecedor(Fornecedor fornecedor) {
         if(FornecedorDAO.adicionarFornecedor(fornecedor)) {
-            viewCadastroFornecedor.getResposta().setText("Produto cadastrado com sucesso!");
+            viewCadastroFornecedor.getResposta().setText("Fornecedor cadastrado com sucesso!");
             viewCadastroFornecedor.getResposta().setStyle("-fx-text-fill: green;");
 
             // Limpa os campos de entrada após o cadastro

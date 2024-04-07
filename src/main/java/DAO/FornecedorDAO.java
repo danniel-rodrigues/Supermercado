@@ -35,14 +35,14 @@ public class FornecedorDAO {
     // Método para adicionar um fornecedor ao banco de dados
     public static boolean adicionarFornecedor(Fornecedor fornecedor) {
         criarTabela();
-        String sql = "INSERT INTO fornecedor (nome, cnpj, email, contato) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO fornecedor (nome, cnpj, email, telefone) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, fornecedor.getNome());
             pstmt.setString(2, fornecedor.getCnpj());
             pstmt.setString(3, fornecedor.getEmail());
-            pstmt.setString(4, fornecedor.getContato());
+            pstmt.setString(4, fornecedor.getTelefone());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -106,13 +106,13 @@ public class FornecedorDAO {
 
     // Método para atualizar um fornecedor no banco de dados
     public static boolean atualizarFornecedor(Fornecedor fornecedor) {
-        String sql = "UPDATE fornecedor SET nome = ?, email = ?, contato = ? WHERE cnpj = ?";
+        String sql = "UPDATE fornecedor SET nome = ?, email = ?, telefone = ? WHERE cnpj = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, fornecedor.getNome());
-            pstmt.setString(2, fornecedor.getEmail());
-            pstmt.setString(3, fornecedor.getContato());
+            pstmt.setString(2, fornecedor.getTelefone());
+            pstmt.setString(3, fornecedor.getEmail());
             pstmt.setString(4, fornecedor.getCnpj());
 
             int rowsAffected = pstmt.executeUpdate();

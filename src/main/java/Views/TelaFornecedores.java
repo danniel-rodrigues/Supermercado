@@ -1,11 +1,15 @@
 package Views;
 
+import DAO.FornecedorDAO;
+import Models.Fornecedor;
+import Models.Produto;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -59,28 +63,45 @@ public class TelaFornecedores {
         hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro);
 
         // Criando uma lista de fornecedores
-        List<Integer> listaFornecedores = new ArrayList<>();
+        List<Fornecedor> fornecedores = FornecedorDAO.listarFornecedores();
 
-        listaFornecedores.add(1);
-        listaFornecedores.add(2);
-        listaFornecedores.add(3);
-        listaFornecedores.add(4);
+        ObservableList<Fornecedor> fornecedoresListados = FXCollections.observableArrayList(fornecedores);
 
-        ObservableList<Integer> fornecedores = FXCollections.observableArrayList(
-                listaFornecedores
-        );
+        // Criando as colunas da TableView
+        TableColumn<Fornecedor, String> nomeColumn = new TableColumn<>("Nome");
+        nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 
-        // Criando a ListView e passando a lista de fornecedores
-        ListView<Integer> listView = new ListView<>(fornecedores);
+        TableColumn<Fornecedor, String> CNPJColumn = new TableColumn<>("CNPJ");
+        CNPJColumn.setCellValueFactory(cellData -> cellData.getValue().CNPJProperty());
 
-        // Definindo a altura de cada item da ListView
-        listView.setFixedCellSize(40);
+        TableColumn<Fornecedor,String> emailColumn = new TableColumn<>("E-mail");
+        emailColumn.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
+
+        TableColumn<Fornecedor, String> telefoneColumn = new TableColumn<>("Telefone");
+        telefoneColumn.setCellValueFactory(cellData -> cellData.getValue().telefoneProperty());
+
+        // Adicionando as colunas à TableView
+        TableView<Fornecedor> tableView = new TableView<>();
+        tableView.getColumns().addAll(nomeColumn, CNPJColumn, emailColumn, telefoneColumn);
+
+
+        // Redimensionando as colunas para preencher o espaço disponível igualmente
+        double larguraColuna = 1.0 / tableView.getColumns().size();
+        tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
+
+        // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
+            tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
+        });
+
+        // Definindo os itens da TableView
+        tableView.setItems(fornecedoresListados);
 
         VBox vbox = new VBox();
         // Definindo o espaçamento interno
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
-        vbox.getChildren().addAll(hbox, listView, btnVoltarInicio);
+        vbox.getChildren().addAll(hbox, tableView, btnVoltarInicio);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

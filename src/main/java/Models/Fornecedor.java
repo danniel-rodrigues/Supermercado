@@ -1,17 +1,20 @@
 package Models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Fornecedor {
     private int id;
     private String nome;
     private String cnpj;
-    private String contato;
     private String email;
+    private String telefone;
 
-    public Fornecedor(String nome, String cnpj, String contato, String email) {
+    public Fornecedor(String nome, String cnpj, String email, String telefone) {
         this.nome = nome;
         this.cnpj = cnpj;
-        this.contato = contato;
         this.email = email;
+        this.telefone = telefone;
     }
 
     public int getId() {
@@ -38,27 +41,27 @@ public class Fornecedor {
         this.cnpj = cnpj;
     }
 
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String contato) {
         this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     // Implementação do método consultarFornecedor()
     public void consultarFornecedor() {
         System.out.println("Nome: " + nome);
-        System.out.println("Contato: " + contato);
         System.out.println("Email: " + email);
+        System.out.println("Telefone: " + telefone);
     }
 
     //implentação do método cadastrarFornecedor
@@ -68,5 +71,17 @@ public class Fornecedor {
         // 
        // 
       //
+    }
+    public StringProperty nomeProperty() {
+        return new SimpleStringProperty(nome);
+    }
+    public StringProperty CNPJProperty() {
+        return new SimpleStringProperty(cnpj);
+    }
+    public StringProperty emailProperty() {
+        return new SimpleStringProperty(email);
+    }
+    public StringProperty telefoneProperty() {
+        return new SimpleStringProperty(telefone);
     }
 }

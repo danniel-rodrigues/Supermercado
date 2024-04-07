@@ -26,12 +26,12 @@ public class ControllerRemessa {
         String formato = "dd/MM/yyyy";
 
         if (nome.isEmpty() || envio.isEmpty() || recebimento.isEmpty())  {
-            // Se algum campo estiver em branco, exiba uma mensagem de erro
+            // Se algum campo estiver em branco, exiba uma mensagem de erro.
             view.getResposta().setText("Por favor, preencha todos os campos.");
             view.getResposta().setStyle("-fx-text-fill: red;");
         } else {
             if (Data.validarData(recebimento, formato) && Data.validarData(envio, formato)) {
-                int id = Integer.valueOf(nome);
+                int id = Integer.parseInt(nome);
                 Remessa remessa = new Remessa(
                         null,
                         id,

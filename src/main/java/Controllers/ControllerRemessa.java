@@ -44,8 +44,8 @@ public class ControllerRemessa {
                 Remessa remessa = new Remessa(
                         null,
                         id,
-                        Data.converterStringParaDate(envio,formato) ,
-                        Data.converterStringParaDate(recebimento,formato),
+                        envio ,
+                        recebimento,
                         status
                 );
               if(RemessaDAO.adicionarRemessa(remessa)){

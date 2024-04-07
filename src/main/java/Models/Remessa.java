@@ -4,8 +4,6 @@ package Models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /*
  * Classe responsável pela lógica de negócios relacionada
@@ -14,13 +12,13 @@ import java.util.Date;
 public class Remessa {
     private final Integer id;
     private int idFornecedor;
-    private Date dataEnvio;
-    private Date dataRecebimento;
+    private String dataEnvio;
+    private String dataRecebimento;
     private String status;
 
     public Remessa(Integer id,int idFornecedor,
-                   Date dataEnvio,
-                   Date dataRecebimento,
+                   String dataEnvio,
+                   String dataRecebimento,
                    String status) {
         this.id = id;
         this.idFornecedor = idFornecedor;
@@ -40,22 +38,22 @@ public class Remessa {
     }
 
     // Retorna a data de envio da remessa
-    public Date getDataEnvio() {
+    public String getDataEnvio() {
         return dataEnvio;
     }
 
     // Define a data de envio da remessa
-    public void setDataEnvio(Date dataEnvio) {
+    public void setDataEnvio(String dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
 
     // Retorna a data de recebimento da remessa
-    public Date getDataRecebimento() {
+    public String getDataRecebimento() {
         return dataRecebimento;
     }
 
     // Define a data de recebimento da remessa
-    public void setDataRecebimento(Date dataRecebimento) {
+    public void setDataRecebimento(String dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
     }
 
@@ -73,15 +71,11 @@ public class Remessa {
         return id;
     }
 
-    public StringProperty dataEnvio() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataDeEnvio = sdf.format(dataEnvio);
-        return new SimpleStringProperty(dataDeEnvio);
+    public String dataEnvio() {
+        return this.dataEnvio;
     }
-    public StringProperty dataRecebimento() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String dataDeRecebimento = sdf.format(dataRecebimento);
-        return new SimpleStringProperty(dataDeRecebimento);
+    public String dataRecebimento() {
+        return this.dataRecebimento;
     }
 
 }

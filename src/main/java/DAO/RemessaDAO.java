@@ -78,10 +78,10 @@ public class RemessaDAO {
 
     // Método para criar um remessa a partir do ResultSet
     private static Remessa criarRemessa(ResultSet rs) throws SQLException, ParseException {
-        Date dataEnvio = Date.valueOf(rs.getString("dataEnvio"));
+        String dataEnvio= rs.getString("dataEnvio");
+        String dataRecebimento= rs.getString("dataRecebimento");
         int idFornecedor = rs.getInt("id_fornecedor");
         int id = rs.getInt("id");
-        Date dataRecebimento = Date.valueOf(rs.getString("dataRecebimento"));
         String status = rs.getString("status");
         return new Remessa(id,idFornecedor, dataEnvio, dataRecebimento, status);
     }

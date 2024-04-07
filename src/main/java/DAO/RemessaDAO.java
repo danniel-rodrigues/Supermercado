@@ -16,7 +16,7 @@ public class RemessaDAO {
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "dataEnvio TEXT NOT NULL," +
             "dataRecebimento TEXT NOT NULL," +
-            "estado TEXT NOT NULL," +
+            "status TEXT NOT NULL," +
             "id_fornecedor INTEGER NOT NULL," +
             "FOREIGN KEY (id_fornecedor) REFERENCES fornecedor (id)" +
             ")";
@@ -33,16 +33,16 @@ public class RemessaDAO {
         }
     }
 
-    // Método para adicionar um remessa ao banco de dados
+    // Método para adicionar uma remessa ao banco de dados
     public static boolean adicionarRemessa(Remessa remessa) {
         criarTabela();
-        String sql = "INSERT INTO remessa (dataEnvio, dataRecebimento, estado, id_fornecedor) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO remessa (dataEnvio, dataRecebimento, status, id_fornecedor) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, remessa.getDataEnvio());
-            pstmt.setString(2, remessa.getDataRecebimento());
-            pstmt.setString(3, remessa.getEstado());
+            pstmt.setString(1, remessa.getDataEnvio().toString());
+            pstmt.setString(2, remessa.getDataRecebimento().toString());
+            pstmt.setString(3, remessa.getStatus());
             pstmt.setInt(4, remessa.getFornecedorId());
 
             int rowsAffected = pstmt.executeUpdate();
@@ -78,15 +78,15 @@ public class RemessaDAO {
 
     // Método para criar um remessa a partir do ResultSet
     private static Remessa criarRemessa(ResultSet rs) throws SQLException, ParseException {
-        String dataEnvio = rs.getString("dataEnvio");
+        Date dataEnvio = Date.valueOf(rs.getString("dataEnvio"));
         int idFornecedor = rs.getInt("id_fornecedor");
         int id = rs.getInt("id");
-        String dataRecebimento = rs.getString("dataRecebimento");
-        String estado = rs.getString("estado");
-        return new Remessa(id,idFornecedor, dataEnvio, dataRecebimento, estado);
+        Date dataRecebimento = Date.valueOf(rs.getString("dataRecebimento"));
+        String status = rs.getString("status");
+        return new Remessa(id,idFornecedor, dataEnvio, dataRecebimento, status);
     }
 
-    // Método para buscar um remessa pelo Id
+    // Método para buscar uma remessa pelo Id
     public static Remessa buscarRemessaPorId(int id) {
         String sql = "SELECT * FROM remessa WHERE id = ?";
 
@@ -108,14 +108,14 @@ public class RemessaDAO {
 
     // Método para atualizar um remessa no banco de dados
     public static boolean atualizarRemessa(Remessa remessa) {
-        String sql = "UPDATE remessa SET idFornecedor = ?, dataEnvio = ?, dataRecebimento = ?, estado = ? WHERE id = ?";
+        String sql = "UPDATE remessa SET idFornecedor = ?, dataEnvio = ?, dataRecebimento = ?, status = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, remessa.getFornecedorId());
-            pstmt.setString(2, remessa.getDataEnvio());
-            pstmt.setString(3, remessa.getDataRecebimento());
-            pstmt.setString(4, remessa.getEstado());
+            pstmt.setString(2, remessa.getDataEnvio().toString());
+            pstmt.setString(3, remessa.getDataRecebimento().toString());
+            pstmt.setString(4, remessa.getStatus());
             pstmt.setInt(5, remessa.getId());
 
             int rowsAffected = pstmt.executeUpdate();

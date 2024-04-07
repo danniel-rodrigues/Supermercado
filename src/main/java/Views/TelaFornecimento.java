@@ -1,17 +1,18 @@
 package Views;
 
+import DAO.RemessaDAO;
+import Models.Remessa;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.geometry.Pos;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class TelaFornecimento {
@@ -48,28 +49,36 @@ public class TelaFornecimento {
 
         hbox.getChildren().addAll(btnCadastrar);
 
-        // Criando uma lista de funcionários
-        List<Integer> listaExemplo = new ArrayList<>();
-        listaExemplo.add(1);
-        listaExemplo.add(2);
-        listaExemplo.add(3);
-        listaExemplo.add(4);
+        // Criando uma lista de remessas
+        List<Remessa> remessas = RemessaDAO.listarRemessas();
 
-        ObservableList<Integer> exemplo = FXCollections.observableArrayList(
-                listaExemplo
-        );
+        ObservableList<Remessa> remessasListadas = FXCollections.observableArrayList(remessas);
 
-        // Criando a ListView e passando a lista de produtos
-        ListView<Integer> listView = new ListView<>(exemplo);
+        // Criando as colunas da TableView
+        TableColumn<Remessa, String> dataEnvioColumn = new TableColumn<>("Data de Envio");
+        dataEnvioColumn.setCellValueFactory(cellData -> cellData.getValue().dataEnvio());
 
-        // Definindo a altura de cada item da ListView
-        listView.setFixedCellSize(40);
+        TableColumn<Remessa, String> dataRecebimentoColumn = new TableColumn<>("Data de Recebimento");
+        dataRecebimentoColumn.setCellValueFactory(cellData -> cellData.getValue().dataRecebimento());
+
+        TableView<Remessa> tableView = new TableView<>();
+        tableView.getColumns().addAll(dataEnvioColumn, dataRecebimentoColumn);
+
+        // Redimensionando as colunas para preencher o espaço disponível igualmente
+        double larguraColuna = 1.0 / tableView.getColumns().size();
+        tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
+
+        // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna)));
+
+        // Definindo os itens da TableView
+        tableView.setItems(remessasListadas);
 
         VBox vbox = new VBox();
         // Definindo o espaçamento interno
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
-        vbox.getChildren().addAll(hbox, listView, btnVoltarInicio);
+        vbox.getChildren().addAll(hbox, tableView, btnVoltarInicio);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

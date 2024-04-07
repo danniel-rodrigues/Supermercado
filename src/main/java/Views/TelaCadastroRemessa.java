@@ -14,6 +14,12 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 
 public class TelaCadastroRemessa {
+    private TextField txtFornecedor;
+    private TextField txtDataEnvio;
+    private TextField txtDataRecebimento;
+    private Button btnCadastrar;
+    private Label resposta;
+
     public void show(Stage stage) {
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
@@ -24,7 +30,7 @@ public class TelaCadastroRemessa {
         // H1
         // Fornecedor
         Label lblFornecedor = new Label("FORNECEDOR:");
-        TextField txtFornecedor = new TextField();
+        txtFornecedor = new TextField();
         txtFornecedor.setMaxWidth(250);
         hbox1.getChildren().addAll(lblFornecedor, txtFornecedor);
         hbox1.setMinHeight(20);
@@ -36,7 +42,7 @@ public class TelaCadastroRemessa {
         // H2
         // Data de envio
         Label lblDataEnvio = new Label("DATA DE ENVIO:");
-        TextField txtDataEnvio = new TextField();
+        txtDataEnvio = new TextField();
         txtDataEnvio.setMaxWidth(250);
         hbox2.getChildren().addAll(lblDataEnvio, txtDataEnvio);
         hbox2.setMinHeight(20);
@@ -48,7 +54,7 @@ public class TelaCadastroRemessa {
         // H3
         // Data de recebimento
         Label lblDataRecebimento = new Label("DATA DE RECEBIMENTO:");
-        TextField txtDataRecebimento = new TextField();
+        txtDataRecebimento = new TextField();
         txtDataRecebimento.setMaxWidth(200);
         hbox3.getChildren().addAll(lblDataRecebimento, txtDataRecebimento);
         hbox3.setMinHeight(20);
@@ -72,7 +78,7 @@ public class TelaCadastroRemessa {
         HBox.setHgrow(txtStatus, Priority.ALWAYS);
 
         // Adicionando botões
-        Button btnCadastrar = new Button("CADASTRAR");
+        btnCadastrar = new Button("CADASTRAR");
         Button btnVoltar = new Button("VOLTAR");
 
         // Adicionando ícone e cor de fundo ao botão Cadastrar
@@ -102,7 +108,7 @@ public class TelaCadastroRemessa {
         hbox5.setMinHeight(50);
         hbox5.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
+        resposta = new Label("");
         btnCadastrar.setOnAction(e -> {
             resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
             resposta.setStyle("-fx-text-fill: purple;");
@@ -127,5 +133,25 @@ public class TelaCadastroRemessa {
         stage.setTitle("Supermercado - Cadastro de Remessa");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public TextField getTxtFornecedor() {
+        return txtFornecedor;
+    }
+
+    public TextField getTxtDataEnvio() {
+        return txtDataEnvio;
+    }
+
+    public TextField getTxtDataRecebimento() {
+        return txtDataRecebimento;
+    }
+
+    public Button getBtnCadastrar() {
+        return btnCadastrar;
+    }
+
+    public Label getResposta() {
+        return resposta;
     }
 }

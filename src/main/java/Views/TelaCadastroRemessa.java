@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.ControllerGerente;
 import Controllers.ControllerRemessa;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -56,6 +55,7 @@ public class TelaCadastroRemessa {
         // Data de envio
         Label lblDataEnvio = new Label("DATA DE ENVIO:");
         txtDataEnvio.setMaxWidth(250);
+        txtDataEnvio.setPromptText("DD/MM/AAAA");
         hbox2.getChildren().addAll(lblDataEnvio, txtDataEnvio);
         hbox2.setMinHeight(20);
         hbox2.setAlignment(Pos.CENTER);
@@ -66,26 +66,14 @@ public class TelaCadastroRemessa {
         // H3
         // Data de recebimento
         Label lblDataRecebimento = new Label("DATA DE RECEBIMENTO:");
-        txtDataRecebimento.setMaxWidth(200);
+        txtDataRecebimento.setMaxWidth(250);
+        txtDataRecebimento.setPromptText("DD/MM/AAAA");
         hbox3.getChildren().addAll(lblDataRecebimento, txtDataRecebimento);
         hbox3.setMinHeight(20);
         hbox3.setAlignment(Pos.CENTER);
 
         HBox.setHgrow(lblDataRecebimento, Priority.NEVER);
         HBox.setHgrow(txtDataRecebimento, Priority.ALWAYS);
-
-        // H4
-        // Status
-        Label lblStatus = new Label("STATUS:");
-        txtStatus.setMaxWidth(250);
-        lblStatus.setPadding(new Insets(0, 0, 0, -40));
-        hbox4.getChildren().addAll(lblStatus, txtStatus);
-        hbox4.setMinHeight(20);
-        hbox4.setPadding(new Insets(0, 0, 50, 0));
-        hbox4.setAlignment(Pos.CENTER);
-
-        HBox.setHgrow(lblStatus, Priority.NEVER);
-        HBox.setHgrow(txtStatus, Priority.ALWAYS);
 
         // Adicionando botões
         Button btnVoltar = new Button("VOLTAR");
@@ -112,15 +100,11 @@ public class TelaCadastroRemessa {
         btnVoltar.setMinWidth(250);
         btnVoltar.setMinHeight(50);
 
-        // H5
+        // H4
         hbox4.getChildren().addAll(btnCadastrar, btnVoltar);
         hbox4.setMinHeight(50);
         hbox4.setAlignment(Pos.CENTER);
 
-//        btnCadastrar.setOnAction(e -> {
-//            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
-//            resposta.setStyle("-fx-text-fill: purple;");
-//        });
 
         btnVoltar.setOnAction(e -> {
             TelaFornecimento telaFornecimento = new TelaFornecimento();

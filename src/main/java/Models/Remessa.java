@@ -5,10 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-/*
- * Classe responsável pela lógica de negócios relacionada
- * à entidFornecedorade 'Remessa'.
- * */
+
 public class Remessa {
     private final Integer id;
     private int idFornecedor;
@@ -24,7 +21,6 @@ public class Remessa {
         this.idFornecedor = idFornecedor;
         this.dataEnvio = dataEnvio;
         this.dataRecebimento = dataRecebimento;
-        this.status = status;
     }
 
     // Retorna o idFornecedor da remessa
@@ -55,16 +51,6 @@ public class Remessa {
     // Define a data de recebimento da remessa
     public void setDataRecebimento(String dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
-    }
-
-    // Retorna o estado da remessa
-    public String getStatus() {
-        return status;
-    }
-
-    // Define o estado da remessa
-    public void setEstado(String status) {
-        this.status = status;
     }
 
     public int getId() {

@@ -16,7 +16,6 @@ public class RemessaDAO {
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "dataEnvio TEXT NOT NULL," +
             "dataRecebimento TEXT NOT NULL," +
-            "status TEXT NOT NULL," +
             "id_fornecedor INTEGER NOT NULL," +
             "FOREIGN KEY (id_fornecedor) REFERENCES fornecedor (id)" +
             ")";
@@ -36,14 +35,13 @@ public class RemessaDAO {
     // Método para adicionar uma remessa ao banco de dados
     public static boolean adicionarRemessa(Remessa remessa) {
         criarTabela();
-        String sql = "INSERT INTO remessa (dataEnvio, dataRecebimento, status, id_fornecedor) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO remessa (dataEnvio, dataRecebimento, id_fornecedor) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, remessa.getDataEnvio().toString());
             pstmt.setString(2, remessa.getDataRecebimento().toString());
-            pstmt.setString(3, remessa.getStatus());
-            pstmt.setInt(4, remessa.getFornecedorId());
+            pstmt.setInt(3, remessa.getFornecedorId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -106,17 +104,16 @@ public class RemessaDAO {
         return null; // Retorna null se não encontrar nenhum remessa com o Id fornecido
     }
 
-    // Método para atualizar um remessa no banco de dados
+    // Método para atualizar uma remessa no banco de dados
     public static boolean atualizarRemessa(Remessa remessa) {
-        String sql = "UPDATE remessa SET idFornecedor = ?, dataEnvio = ?, dataRecebimento = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE remessa SET idFornecedor = ?, dataEnvio = ?, dataRecebimento = ? WHERE id = ?";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, remessa.getFornecedorId());
             pstmt.setString(2, remessa.getDataEnvio().toString());
             pstmt.setString(3, remessa.getDataRecebimento().toString());
-            pstmt.setString(4, remessa.getStatus());
-            pstmt.setInt(5, remessa.getId());
+            pstmt.setInt(4, remessa.getId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

@@ -7,26 +7,20 @@ import javafx.beans.property.StringProperty;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/*
- * Classe responsável pela lógica de negócios relacionada
- * à entidFornecedorade 'Remessa'.
- * */
+
 public class Remessa {
     private final Integer id;
     private int idFornecedor;
     private Date dataEnvio;
     private Date dataRecebimento;
-    private String status;
 
     public Remessa(Integer id,int idFornecedor,
                    Date dataEnvio,
-                   Date dataRecebimento,
-                   String status) {
+                   Date dataRecebimento) {
         this.id = id;
         this.idFornecedor = idFornecedor;
         this.dataEnvio = dataEnvio;
         this.dataRecebimento = dataRecebimento;
-        this.status = status;
     }
 
     // Retorna o idFornecedor da remessa
@@ -57,16 +51,6 @@ public class Remessa {
     // Define a data de recebimento da remessa
     public void setDataRecebimento(Date dataRecebimento) {
         this.dataRecebimento = dataRecebimento;
-    }
-
-    // Retorna o estado da remessa
-    public String getStatus() {
-        return status;
-    }
-
-    // Define o estado da remessa
-    public void setEstado(String status) {
-        this.status = status;
     }
 
     public int getId() {

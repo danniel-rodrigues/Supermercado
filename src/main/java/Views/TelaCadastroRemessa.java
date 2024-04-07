@@ -40,7 +40,6 @@ public class TelaCadastroRemessa {
         HBox hbox2 = new HBox(10);
         HBox hbox3 = new HBox(10);
         HBox hbox4 = new HBox(10);
-        HBox hbox5 = new HBox(10);
 
         // H1
         // Fornecedor
@@ -114,9 +113,9 @@ public class TelaCadastroRemessa {
         btnVoltar.setMinHeight(50);
 
         // H5
-        hbox5.getChildren().addAll(btnCadastrar, btnVoltar);
-        hbox5.setMinHeight(50);
-        hbox5.setAlignment(Pos.CENTER);
+        hbox4.getChildren().addAll(btnCadastrar, btnVoltar);
+        hbox4.setMinHeight(50);
+        hbox4.setAlignment(Pos.CENTER);
 
 //        btnCadastrar.setOnAction(e -> {
 //            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
@@ -134,7 +133,7 @@ public class TelaCadastroRemessa {
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
 
-        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, hbox5, resposta);
+        vbox.getChildren().addAll(hbox1, hbox2, hbox3, hbox4, resposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -163,6 +162,8 @@ public class TelaCadastroRemessa {
     public TextField getTxtStatus() {
         return txtStatus;
     }
+   
+
     public Label getResposta() {
         return resposta;
     }

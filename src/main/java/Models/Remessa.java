@@ -1,6 +1,8 @@
 package Models;
 
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -15,8 +17,7 @@ public class Remessa {
 
     public Remessa(Integer id,int idFornecedor,
                    String dataEnvio,
-                   String dataRecebimento,
-                   String status) {
+                   String dataRecebimento) {
         this.id = id;
         this.idFornecedor = idFornecedor;
         this.dataEnvio = dataEnvio;
@@ -57,11 +58,19 @@ public class Remessa {
         return id;
     }
 
-    public String dataEnvio() {
-        return this.dataEnvio;
+
+    public ObjectProperty<Integer> idFornecedorProperty() {
+        return new SimpleObjectProperty<>(idFornecedor);
     }
-    public String dataRecebimento() {
-        return this.dataRecebimento;
+
+    public StringProperty dataEnvioProperty() {
+        return new SimpleStringProperty(dataEnvio);
     }
+
+    public StringProperty dataRecebimentoProperty() {
+        return new SimpleStringProperty(dataRecebimento);
+    }
+
+
 
 }

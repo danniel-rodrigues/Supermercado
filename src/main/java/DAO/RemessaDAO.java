@@ -80,8 +80,7 @@ public class RemessaDAO {
         String dataRecebimento= rs.getString("dataRecebimento");
         int idFornecedor = rs.getInt("id_fornecedor");
         int id = rs.getInt("id");
-        String status = rs.getString("status");
-        return new Remessa(id,idFornecedor, dataEnvio, dataRecebimento, status);
+        return new Remessa(id,idFornecedor, dataEnvio, dataRecebimento);
     }
 
     // Método para buscar uma remessa pelo Id

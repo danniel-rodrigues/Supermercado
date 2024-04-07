@@ -23,11 +23,9 @@ public class ControllerRemessa {
         String nome = view.getTxtFornecedor().getText();
         String envio = view.getTxtDataEnvio().getText();
         String recebimento = view.getTxtDataRecebimento().getText();
-        String status = view.getTxtStatus().getText();
         String formato = "dd/MM/yyyy";
 
-        if (nome.isEmpty() || envio.isEmpty() || recebimento.isEmpty()||
-                nome == null || envio == null || recebimento == null)  {
+        if (nome.isEmpty() || envio.isEmpty() || recebimento.isEmpty())  {
             // Se algum campo estiver em branco, exiba uma mensagem de erro
             view.getResposta().setText("Por favor, preencha todos os campos.");
             view.getResposta().setStyle("-fx-text-fill: red;");
@@ -38,8 +36,7 @@ public class ControllerRemessa {
                         null,
                         id,
                         envio ,
-                        recebimento,
-                        status
+                        recebimento
                 );
               if(RemessaDAO.adicionarRemessa(remessa)){
                   view.getResposta().setText("Remessa adicionada com sucesso!");

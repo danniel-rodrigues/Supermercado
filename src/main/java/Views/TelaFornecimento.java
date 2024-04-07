@@ -55,14 +55,17 @@ public class TelaFornecimento {
         ObservableList<Remessa> remessasListadas = FXCollections.observableArrayList(remessas);
 
         // Criando as colunas da TableView
+        TableColumn<Remessa, Integer> idFornecedor = new TableColumn<>("ID do Fornecedor");
+        idFornecedor.setCellValueFactory(cellData -> cellData.getValue().idFornecedorProperty());
+
         TableColumn<Remessa, String> dataEnvioColumn = new TableColumn<>("Data de Envio");
-        dataEnvioColumn.setCellValueFactory(cellData -> cellData.getValue().dataEnvio());
+        dataEnvioColumn.setCellValueFactory(cellData -> cellData.getValue().dataEnvioProperty());
 
         TableColumn<Remessa, String> dataRecebimentoColumn = new TableColumn<>("Data de Recebimento");
-        dataRecebimentoColumn.setCellValueFactory(cellData -> cellData.getValue().dataRecebimento());
+        dataRecebimentoColumn.setCellValueFactory(cellData -> cellData.getValue().dataRecebimentoProperty());
 
         TableView<Remessa> tableView = new TableView<>();
-        tableView.getColumns().addAll(dataEnvioColumn, dataRecebimentoColumn);
+        tableView.getColumns().addAll(idFornecedor, dataEnvioColumn, dataRecebimentoColumn);
 
         // Redimensionando as colunas para preencher o espaço disponível igualmente
         double larguraColuna = 1.0 / tableView.getColumns().size();

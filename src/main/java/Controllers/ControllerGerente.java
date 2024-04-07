@@ -12,6 +12,7 @@ import Views.TelaBuscarFuncionario;
 import Views.TelaCadastroFuncionario;
 import Views.TelaDemitirFuncionario;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class ControllerGerente {
@@ -43,7 +44,13 @@ public class ControllerGerente {
     public ControllerGerente(TelaDemitirFuncionario view){
         viewD = view;
 
-        viewD.getBtnBuscar().setOnAction(e -> demitirFuncionario());
+        viewD.getBtnBuscar().setOnAction(e -> {
+            try {
+                demitirFuncionario();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
     // Método para cadastrar um novo funcionário
@@ -215,10 +222,10 @@ public class ControllerGerente {
         }
     }
 
-    public void demitirFuncionario(){
+    public void demitirFuncionario() throws SQLException {
         String cpf = viewD.getCPF();
 
-        if(FuncionarioDAO.demitirFuncionario(cpf)){
+        if(FuncionarioDAO.estaAtivo(cpf) && FuncionarioDAO.demitirFuncionario(cpf)){
             viewD.getRespostaLabel().setText("Funcionário demitido com sucesso!");
             viewD.getRespostaLabel().setStyle("-fx-text-fill: green;");
             // Limpe os campos de entrada após o cadastro

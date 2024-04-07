@@ -205,4 +205,18 @@ public class FuncionarioDAO {
         }
         return false; // Retorna false se a operação falhar por algum motivo
     }
+
+    // Retorna true se o funcionario estiver com o status 'Ativo'
+    public static boolean estaAtivo(String cpf) throws SQLException {
+        String sql = "SELECT * FROM funcionario WHERE cpf = ? AND status = 'Ativo'";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cpf);
+
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) return true;  // Retorna true se a operação foi bem-sucedida
+        }
+        return false; // Retorna falso se o funcionario nao estiver ativo ou nao estiver no banco
+    }
 }

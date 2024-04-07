@@ -10,12 +10,12 @@ import javafx.beans.property.StringProperty;
 
 
 public class Item{
-    protected Integer codigoProduto;
-    protected String lote;
-    protected Date dataVal;
-    protected Date dataFab;
-    protected float peso;
-    protected Integer quantidade;
+    private Integer codigoProduto;
+    private String lote;
+    private Date dataVal;
+    private Date dataFab;
+    private float peso;
+    private Integer quantidade;
 
     private StringProperty qtdItens;
 

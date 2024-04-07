@@ -64,7 +64,7 @@ public class TelaInicial {
             telaEstoque.show(primaryStage);
         });
 
-	btnCaixa.setOnAction(e -> {
+	    btnCaixa.setOnAction(e -> {
             TelaCaixa telaCaixa = new TelaCaixa();
             telaCaixa.show(primaryStage);
         });
@@ -72,6 +72,11 @@ public class TelaInicial {
         btnItem.setOnAction(e -> {
             TelaItens telaItens = new TelaItens();
             telaItens.show(primaryStage);
+        });
+
+        btnVenda.setOnAction(e -> {
+            TelaVendas telaVendas = new TelaVendas();
+            telaVendas.show(primaryStage);
         });
 
 

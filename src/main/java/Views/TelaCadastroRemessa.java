@@ -1,5 +1,7 @@
 package Views;
 
+import Controllers.ControllerGerente;
+import Controllers.ControllerRemessa;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +16,26 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 
 public class TelaCadastroRemessa {
+
+    private ControllerRemessa controller;
+    private Button btnCadastrar=new Button("CADASTRAR");
+
+    private TextField txtFornecedor =new TextField();;
+
+    private TextField txtDataEnvio = new TextField();
+
+
+
+
+    private Label resposta = new Label("");
+
+    private TextField txtDataRecebimento = new TextField();
+
+    private TextField txtStatus = new TextField();
     public void show(Stage stage) {
+
+
+        controller = new ControllerRemessa(this);
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
         HBox hbox3 = new HBox(10);
@@ -24,7 +45,6 @@ public class TelaCadastroRemessa {
         // H1
         // Fornecedor
         Label lblFornecedor = new Label("FORNECEDOR:");
-        TextField txtFornecedor = new TextField();
         txtFornecedor.setMaxWidth(250);
         hbox1.getChildren().addAll(lblFornecedor, txtFornecedor);
         hbox1.setMinHeight(20);
@@ -36,7 +56,6 @@ public class TelaCadastroRemessa {
         // H2
         // Data de envio
         Label lblDataEnvio = new Label("DATA DE ENVIO:");
-        TextField txtDataEnvio = new TextField();
         txtDataEnvio.setMaxWidth(250);
         hbox2.getChildren().addAll(lblDataEnvio, txtDataEnvio);
         hbox2.setMinHeight(20);
@@ -48,7 +67,6 @@ public class TelaCadastroRemessa {
         // H3
         // Data de recebimento
         Label lblDataRecebimento = new Label("DATA DE RECEBIMENTO:");
-        TextField txtDataRecebimento = new TextField();
         txtDataRecebimento.setMaxWidth(200);
         hbox3.getChildren().addAll(lblDataRecebimento, txtDataRecebimento);
         hbox3.setMinHeight(20);
@@ -60,7 +78,6 @@ public class TelaCadastroRemessa {
         // H4
         // Status
         Label lblStatus = new Label("STATUS:");
-        TextField txtStatus = new TextField();
         txtStatus.setMaxWidth(250);
         lblStatus.setPadding(new Insets(0, 0, 0, -40));
         hbox4.getChildren().addAll(lblStatus, txtStatus);
@@ -72,7 +89,6 @@ public class TelaCadastroRemessa {
         HBox.setHgrow(txtStatus, Priority.ALWAYS);
 
         // Adicionando botões
-        Button btnCadastrar = new Button("CADASTRAR");
         Button btnVoltar = new Button("VOLTAR");
 
         // Adicionando ícone e cor de fundo ao botão Cadastrar
@@ -102,11 +118,10 @@ public class TelaCadastroRemessa {
         hbox5.setMinHeight(50);
         hbox5.setAlignment(Pos.CENTER);
 
-        Label resposta = new Label("");
-        btnCadastrar.setOnAction(e -> {
-            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
-            resposta.setStyle("-fx-text-fill: purple;");
-        });
+//        btnCadastrar.setOnAction(e -> {
+//            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
+//            resposta.setStyle("-fx-text-fill: purple;");
+//        });
 
         btnVoltar.setOnAction(e -> {
             TelaFornecimento telaFornecimento = new TelaFornecimento();
@@ -128,4 +143,28 @@ public class TelaCadastroRemessa {
         stage.setScene(scene);
         stage.show();
     }
+
+
+    public Button getBtnCadastrar(){
+        return btnCadastrar;
+    }
+    public TextField getTxtFornecedor() {
+        return txtFornecedor;
+    }
+
+    public TextField getTxtDataEnvio() {
+        return txtDataEnvio;
+    }
+
+    public TextField getTxtDataRecebimento() {
+        return txtDataRecebimento;
+    }
+
+    public TextField getTxtStatus() {
+        return txtStatus;
+    }
+    public Label getResposta() {
+        return resposta;
+    }
 }
+

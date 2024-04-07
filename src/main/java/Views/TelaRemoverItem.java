@@ -32,9 +32,6 @@ public class TelaRemoverItem {
         lblInfo.setFont(Font.font("Arial", 14));
         lblInfo.setStyle("-fx-font-weight: bold;");
 
-        Label lblAviso = new Label("PRODUTO NÃO ENCONTRADO!");
-        lblAviso.setStyle("-fx-text-fill: white;");
-
         // Codigo do Produto
         Label lblCodigoProduto = new Label("CODIGO DO PRODUTO:");
         txtCodigoProduto  = new TextField();
@@ -99,7 +96,7 @@ public class TelaRemoverItem {
         hbox3.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, hbox1, hbox2, hbox3, lblAviso, resposta);
+        vbox.getChildren().addAll(lblInfo, hbox1, hbox2, hbox3, resposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

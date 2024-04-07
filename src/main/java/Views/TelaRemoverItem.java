@@ -59,12 +59,12 @@ public class TelaRemoverItem {
         HBox.setHgrow(lblQuantidade, Priority.NEVER);
         HBox.setHgrow(txtQuantidade, Priority.ALWAYS);
 
-        controllerItem = new ControllerItem(this);
-
         resposta = new Label("");
 
         // Adicionar botoes
         btnRemover = new Button("REMOVER");
+
+        controllerItem = new ControllerItem(this);
 
         Button btnVoltar = new Button("VOLTAR");
         btnVoltar.setOnAction(e -> {

@@ -24,6 +24,9 @@ public class ControllerItem {
     }
     public ControllerItem(TelaRemoverItem viewRemoverItem) {
         this.viewRemoverItem = viewRemoverItem;
+        viewRemoverItem.getBtnRemover().setOnAction(e -> {
+            removerItem();
+        });
     }
 
 
@@ -74,6 +77,38 @@ public class ControllerItem {
         } catch (NullPointerException e) {
             viewCadastroItem.getResposta().setText("Erro: Código do produto não existe!");
             viewCadastroItem.getResposta().setStyle("-fx-text-fill: red;");
+        }
+    }
+
+    public void removerItem() {
+        String txtCodigoProduto = viewRemoverItem.getTxtCodigoProduto().getText();
+        String txtQuantidade = viewRemoverItem.getTxtQuantidade().getText();
+
+        // Verifica se há campos não preenchidos no formulário
+        if(txtCodigoProduto.isEmpty() || txtQuantidade.isEmpty()) {
+            // Se algum campo estiver vazio, exibe uma mensagem de erro
+            viewRemoverItem.getResposta().setText("Por favor, preencha todos os campos.");
+            viewRemoverItem.getResposta().setStyle("-fx-text-fill: red;");
+        } else {
+            try {
+                Integer codigoProduto = Integer.valueOf(txtCodigoProduto);
+                Integer quantidade = Integer.valueOf(txtQuantidade);
+
+                if (ItemDAO.removerItem(codigoProduto, quantidade)) {
+                    viewRemoverItem.getResposta().setText("Item removido com sucesso!");
+                    viewRemoverItem.getResposta().setStyle("-fx-text-fill: green;");
+
+                    // Limpa os campos de entrada após o cadastro
+                    viewRemoverItem.limparCampos();
+                } else {
+                    viewRemoverItem.getResposta().setText("Erro na inserção!");
+                    viewRemoverItem.getResposta().setStyle("-fx-text-fill: red;");
+                }
+            } catch (NumberFormatException e) {
+                // Se houver erro de conversão, exibe uma mensagem de erro
+                viewRemoverItem.getResposta().setText("Por favor, corrija os dados e tente novamente.");
+                viewRemoverItem.getResposta().setStyle("-fx-text-fill: red;");
+            }
         }
     }
 }

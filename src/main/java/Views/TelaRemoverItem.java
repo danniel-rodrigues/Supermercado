@@ -1,5 +1,6 @@
 package Views;
 
+import Controllers.ControllerItem;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +16,13 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class TelaRemoverItem {
+    private TextField txtCodigoProduto;
+    private TextField txtQuantidade;
+    private Button btnRemover;
+    private Label resposta;
+
+    private ControllerItem controllerItem;
+
     public void show(Stage stage) {
         HBox hbox1 = new HBox(10);
         HBox hbox2 = new HBox(10);
@@ -29,7 +37,7 @@ public class TelaRemoverItem {
 
         // Codigo do Produto
         Label lblCodigoProduto = new Label("CODIGO DO PRODUTO:");
-        TextField txtCodigoProduto  = new TextField();
+        txtCodigoProduto  = new TextField();
         txtCodigoProduto.setPrefHeight(40);
         txtCodigoProduto.setMaxWidth(250);
         hbox1.getChildren().addAll(lblCodigoProduto, txtCodigoProduto);
@@ -41,7 +49,7 @@ public class TelaRemoverItem {
 
         // Quantidade
         Label lblQuantidade = new Label("QUANTIDADE:");
-        TextField txtQuantidade = new TextField();
+        txtQuantidade = new TextField();
         txtQuantidade.setPrefHeight(40);
         txtQuantidade.setMaxWidth(250);
         hbox2.getChildren().addAll(lblQuantidade, txtQuantidade);
@@ -51,11 +59,12 @@ public class TelaRemoverItem {
         HBox.setHgrow(lblQuantidade, Priority.NEVER);
         HBox.setHgrow(txtQuantidade, Priority.ALWAYS);
 
-        // Adicionar botoes
-        Button btnDesativar = new Button("DESATIVAR");
-        btnDesativar.setOnAction(e -> {
+        controllerItem = new ControllerItem(this);
 
-        });
+        resposta = new Label("");
+
+        // Adicionar botoes
+        btnRemover = new Button("REMOVER");
 
         Button btnVoltar = new Button("VOLTAR");
         btnVoltar.setOnAction(e -> {
@@ -63,14 +72,13 @@ public class TelaRemoverItem {
             telaItens.show(stage);
         });
 
-        // Adicionando ícone ao botão Desativar
+        // Adicionando ícone ao botão Remover
         Image disableIcon = new Image("assets/images/icons/desativar.png");
         ImageView disableIconView = new ImageView(disableIcon);
         disableIconView.setFitWidth(30);
         disableIconView.setFitHeight(30);
-        btnDesativar.setGraphic(disableIconView);
-        // Definindo o background dos botões
-        btnDesativar.setStyle("-fx-background-color: #F79516;");
+        btnRemover.setGraphic(disableIconView);
+        btnRemover.setStyle("-fx-background-color: #F79516;");
 
         // Adicionando ícone ao botão Voltar
         Image arrowIcon = new Image("assets/images/icons/arrow.png");
@@ -81,17 +89,17 @@ public class TelaRemoverItem {
         // Definindo o background dos botões
         btnVoltar.setStyle("-fx-background-color: #F79516;");
 
-        btnDesativar.setMinWidth(235);
-        btnDesativar.setMinHeight(40);
+        btnRemover.setMinWidth(235);
+        btnRemover.setMinHeight(40);
         btnVoltar.setMinWidth(235);
         btnVoltar.setMinHeight(40);
 
         HBox hbox3 = new HBox(10);
-        hbox3.getChildren().addAll(btnDesativar, btnVoltar);
+        hbox3.getChildren().addAll(btnRemover, btnVoltar);
         hbox3.setAlignment(Pos.CENTER);
 
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(lblInfo, hbox1, hbox2, hbox3, lblAviso);
+        vbox.getChildren().addAll(lblInfo, hbox1, hbox2, hbox3, lblAviso, resposta);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 
@@ -102,5 +110,26 @@ public class TelaRemoverItem {
         stage.setTitle("Supermercado - Remover Itens");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public TextField getTxtCodigoProduto() {
+        return txtCodigoProduto;
+    }
+
+    public TextField getTxtQuantidade() {
+        return txtQuantidade;
+    }
+
+    public Button getBtnRemover() {
+        return btnRemover;
+    }
+
+    public Label getResposta() {
+        return resposta;
+    }
+
+    public void limparCampos() {
+        txtCodigoProduto.clear();
+        txtQuantidade.clear();
     }
 }

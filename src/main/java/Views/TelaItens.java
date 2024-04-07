@@ -41,8 +41,8 @@ public class TelaItens {
         });
 
         btnRemover.setOnAction(e -> {
-            TelaRemoverItem TelaRemoverItem = new TelaRemoverItem();
-            TelaRemoverItem.show(stage);
+            TelaRemoverItem telaRemoverItem = new TelaRemoverItem();
+            telaRemoverItem.show(stage);
         });
 
         btnCadastrar.setMinWidth(150);

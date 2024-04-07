@@ -34,23 +34,31 @@ public class TelaEstoque {
         btnVoltarInicio.setStyle("-fx-background-color: #F79516;");
         ExibirEstoque estoque = new ExibirEstoque();
         TableView<ExibirEstoque> tableView = new TableView<>();
+        ObservableList<ExibirEstoque> observableListaProdutos = FXCollections.observableArrayList();
         List<ExibirEstoque> listaProdutos = estoque.MontarEstoque();
+        observableListaProdutos.addAll(listaProdutos);
+        tableView.setItems(observableListaProdutos);
+
 
         // Adicionando itens de exemplo à TableView
-        ObservableList<ExibirEstoque> produtosListados = FXCollections.observableArrayList(
-                listaProdutos
-        );
-
         TableColumn<ExibirEstoque, String> columnNome = new TableColumn<>("Nome");
-        columnNome.setCellValueFactory(cellData -> cellData.getValue().nomeItem());
+        columnNome.setCellValueFactory(cellData -> cellData.getValue().nomeItemProperty());
+
         TableColumn<ExibirEstoque, String> columnMarca = new TableColumn<>("Marca");
-        columnMarca.setCellValueFactory(cellData -> cellData.getValue().marcaItem());
+        columnMarca.setCellValueFactory(cellData -> cellData.getValue().marcaItemProperty());
+
         TableColumn<ExibirEstoque, String> columnCodigo = new TableColumn<>("Código");
-        columnCodigo.setCellValueFactory(cellData -> cellData.getValue().codigoItem());
+        columnCodigo.setCellValueFactory(cellData -> cellData.getValue().codigoItemProperty());
+
         TableColumn<ExibirEstoque, String> columnQtdItens = new TableColumn<>("Qtd. de Itens");
-        columnQtdItens.setCellValueFactory(cellData -> cellData.getValue().qtdItem());
+        columnQtdItens.setCellValueFactory(cellData -> cellData.getValue().qtdItemProperty());
+
+
         TableColumn<ExibirEstoque, String> columnValorTotal = new TableColumn<>("Valor Total");
-        columnValorTotal.setCellValueFactory(cellData -> cellData.getValue().valorTotal());
+        columnValorTotal.setCellValueFactory(cellData -> cellData.getValue().valorTotalProperty());
+
+
+
 
         // Adicionando as colunas à TableView
         tableView.getColumns().addAll(columnNome, columnMarca, columnCodigo, columnQtdItens, columnValorTotal);

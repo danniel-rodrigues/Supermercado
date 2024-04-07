@@ -1,64 +1,101 @@
 package Auxiliar;
 
-import Models.Produto;
-import Models.Item;
-import DAO.ProdutoDAO;
 import DAO.ItemDAO;
-
-import java.util.List;
-
+import DAO.ProdutoDAO;
+import Models.Item;
+import Models.Produto;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExibirEstoque {
     private String nomeItem;
     private String marcaItem;
     private Integer codigoItem;
     private Integer qtdItem;
-    private Float valorTotal;
     private Float valorItem;
 
     public List<ExibirEstoque> MontarEstoque() {
         List<Produto> produtos = ProdutoDAO.listarProdutos();
-        List<ExibirEstoque> estoque = new java.util.ArrayList<>(List.of());
+        List<ExibirEstoque> estoque = new ArrayList<>();
 
-        produtos.forEach(produto -> {
+        for(Produto produto : produtos){
             ExibirEstoque exibirEstoque = new ExibirEstoque();
-            exibirEstoque.nomeItem = produto.getNome();
-            exibirEstoque.marcaItem = produto.getMarca();
-            exibirEstoque.codigoItem = produto.getCodigo();
-            exibirEstoque.valorItem = produto.getPreco();
-
-            // pegar a quantidade de items
-            Integer itemId = ItemDAO.buscarIdPeloCodigo(codigoItem);
-            Item item = ItemDAO.buscarItemPeloIdProduto(itemId);
-            exibirEstoque.qtdItem = item.getQuantidade();
+            exibirEstoque.setNomeItem(produto.getNome());
+            exibirEstoque.setMarcaItem(produto.getMarca());
+            exibirEstoque.setCodigoItem(produto.getCodigo());
+            Integer id = ItemDAO.buscarIdPeloCodigo(exibirEstoque.getCodigoItem());
+            Item item = ItemDAO.buscarItemPeloIdProduto(id);
+            exibirEstoque.setQtdItem(item.getQuantidade());
+            exibirEstoque.setValorItem(produto.getPreco());
 
             estoque.add(exibirEstoque);
-        });
+        }
 
         return estoque;
     }
 
+    // Getters e setters para os atributos
+    public String getNomeItem() {
+        return nomeItem;
+    }
 
-    public StringProperty nomeItem() {
+    public void setNomeItem(String nomeItem) {
+        this.nomeItem = nomeItem;
+    }
+
+    public String getMarcaItem() {
+        return marcaItem;
+    }
+
+    public void setMarcaItem(String marcaItem) {
+        this.marcaItem = marcaItem;
+    }
+
+    public Integer getCodigoItem() {
+        return codigoItem;
+    }
+
+    public void setCodigoItem(Integer codigoItem) {
+        this.codigoItem = codigoItem;
+    }
+
+    public Integer getQtdItem() {
+        return qtdItem;
+    }
+
+    public void setQtdItem(Integer qtdItem) {
+        this.qtdItem = qtdItem;
+    }
+
+    public Float getValorItem() {
+        return valorItem;
+    }
+
+    public void setValorItem(Float valorItem) {
+        this.valorItem = valorItem;
+    }
+
+    // Getters para propriedades observáveis
+    public StringProperty nomeItemProperty() {
         return new SimpleStringProperty(nomeItem);
     }
 
-    public StringProperty marcaItem() {
+    public StringProperty marcaItemProperty() {
         return new SimpleStringProperty(marcaItem);
     }
 
-    public StringProperty codigoItem() {
-        return new SimpleStringProperty(marcaItem);
+    public StringProperty codigoItemProperty() {
+        return new SimpleStringProperty(Integer.toString(codigoItem));
     }
 
-    public StringProperty qtdItem() {
+    public StringProperty qtdItemProperty() {
         return new SimpleStringProperty(Integer.toString(qtdItem));
     }
 
-    public StringProperty valorTotal(){
-        return new SimpleStringProperty(Float.toString(qtdItem * valorItem));
+    public StringProperty valorTotalProperty() {
+        return new SimpleStringProperty("R$ " + Float.toString(qtdItem * valorItem));
     }
-
 }

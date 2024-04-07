@@ -225,7 +225,7 @@ public class ControllerGerente {
     public void demitirFuncionario() throws SQLException {
         String cpf = viewD.getCPF();
 
-        if(FuncionarioDAO.estaAtivo(cpf) && FuncionarioDAO.demitirFuncionario(cpf)){
+        if(FuncionarioDAO.demitirFuncionario(cpf)){
             viewD.getRespostaLabel().setText("Funcionário demitido com sucesso!");
             viewD.getRespostaLabel().setStyle("-fx-text-fill: green;");
             // Limpe os campos de entrada após o cadastro

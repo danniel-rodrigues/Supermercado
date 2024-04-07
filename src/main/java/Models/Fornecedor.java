@@ -57,21 +57,21 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    // Implementação do método consultarFornecedor()
-    public void consultarFornecedor() {
-        System.out.println("Nome: " + nome);
-        System.out.println("Email: " + email);
-        System.out.println("Telefone: " + telefone);
-    }
-
-    //implentação do método cadastrarFornecedor
-    public void cadastrarFornecedor() {
-
-         // lógica para cadastrar o fornecedor
-        // 
-       // 
-      //
-    }
+//    // Implementação do método consultarFornecedor()
+//    public void consultarFornecedor() {
+//        System.out.println("Nome: " + nome);
+//        System.out.println("Email: " + email);
+//        System.out.println("Telefone: " + telefone);
+//    }
+//
+//    //implentação do método cadastrarFornecedor
+//    public void cadastrarFornecedor() {
+//
+//         // lógica para cadastrar o fornecedor
+//        //
+//       //
+//      //
+//    }
     public StringProperty nomeProperty() {
         return new SimpleStringProperty(nome);
     }

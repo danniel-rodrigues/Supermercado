@@ -2,7 +2,6 @@ package Views;
 
 import DAO.FornecedorDAO;
 import Models.Fornecedor;
-import Models.Produto;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -14,9 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
-import java.util.Date;
 import java.util.List;
-import java.util.ArrayList;
 
 public class TelaFornecedores {
     public void show(Stage stage) {
@@ -26,17 +23,12 @@ public class TelaFornecedores {
 
         // Adicionando botões ao HBox
         Button btnCadastrar = new Button("CADASTRAR");
-        Button btnAlterarCadastro = new Button("ALTERAR CADASTRO");
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
 
         // Definindo ações dos botões
         btnCadastrar.setOnAction(e -> {
             TelaCadastroFornecedor telaCadastroFornecedor = new TelaCadastroFornecedor();
             telaCadastroFornecedor.show(stage);
-        });
-
-        btnAlterarCadastro.setOnAction(e -> {
-            //TO DO
         });
 
         btnVoltarInicio.setOnAction(e -> {
@@ -49,18 +41,14 @@ public class TelaFornecedores {
         btnCadastrar.setMinWidth(150);
         btnCadastrar.setMinHeight(50);
 
-        btnAlterarCadastro.setMinWidth(150);
-        btnAlterarCadastro.setMinHeight(50);
-
         btnVoltarInicio.setMinWidth(450);
         btnVoltarInicio.setMinHeight(50);
 
         // Definindo o background dos botões
         btnCadastrar.setStyle("-fx-background-color: #F79516;");
-        btnAlterarCadastro.setStyle("-fx-background-color: #F79516;");
         btnVoltarInicio.setStyle("-fx-background-color: #F79516;");
 
-        hbox.getChildren().addAll(btnCadastrar, btnAlterarCadastro);
+        hbox.getChildren().addAll(btnCadastrar);
 
         // Criando uma lista de fornecedores
         List<Fornecedor> fornecedores = FornecedorDAO.listarFornecedores();

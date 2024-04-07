@@ -117,10 +117,6 @@ public class TelaCadastroFornecedor {
         hbox5.setAlignment(Pos.CENTER);
 
         resposta = new Label("");
-        btnCadastrar.setOnAction(e -> {
-            resposta.setText("Existem campos inválidos ou não preenchidos!".toUpperCase());
-            resposta.setStyle("-fx-text-fill: purple;");
-        });
 
         btnVoltar.setOnAction(e -> {
             TelaFornecedores telaFornecedores = new TelaFornecedores();
@@ -166,5 +162,12 @@ public class TelaCadastroFornecedor {
 
     public Label getResposta() {
         return resposta;
+    }
+
+    public void limparCampos() {
+        txtNome.clear();
+        txtCNPJ.clear();
+        txtEmail.clear();
+        txtTelefone.clear();
     }
 }

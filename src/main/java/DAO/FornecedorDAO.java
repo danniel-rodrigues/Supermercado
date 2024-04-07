@@ -17,7 +17,7 @@ public class FornecedorDAO {
             "nome TEXT NOT NULL," +
             "cnpj TEXT NOT NULL UNIQUE," +
             "email TEXT NOT NULL," +
-            "contato TEXT NOT NULL" +
+            "telefone TEXT NOT NULL" +
             ")";
 
     // Metodo para criar a tabela no banco de dados
@@ -64,7 +64,7 @@ public class FornecedorDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                Fornecedor fornecedor = criarFuncioario(rs);
+                Fornecedor fornecedor = criarFornecedor(rs);
                 fornecedores.add(fornecedor);
             }
         } catch (SQLException e) {
@@ -76,12 +76,12 @@ public class FornecedorDAO {
     }
 
     // Método para criar um fornecedor a partir do ResultSet
-    private static Fornecedor criarFuncioario(ResultSet rs) throws SQLException, ParseException {
+    private static Fornecedor criarFornecedor(ResultSet rs) throws SQLException, ParseException {
         String nome = rs.getString("nome");
         String cnpj = rs.getString("cnpj");
         String email = rs.getString("email");
-        String contato = rs.getString("contato");
-        return new Fornecedor(nome, cnpj, contato, email);
+        String telefone = rs.getString("telefone");
+        return new Fornecedor(nome, cnpj, email, telefone);
     }
 
     // Método para buscar um fornecedor pelo CNPJ
@@ -94,7 +94,7 @@ public class FornecedorDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return criarFuncioario(rs);
+                return criarFornecedor(rs);
             }
         } catch (SQLException e) {
             System.err.println("Erro ao buscar fornecedor por CNPJ: " + e.getMessage());

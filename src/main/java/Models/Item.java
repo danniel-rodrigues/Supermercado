@@ -2,22 +2,35 @@ package Models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javafx.beans.property.*;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+
 public class Item{
-    protected Integer codigoProduto;
-    protected String lote;
-    protected Date dataVal;
-    protected Date dataFab;
-    protected float peso;
-    protected Integer quantidade;
+    private Integer codigoProduto;
+    private String lote;
+    private Date dataVal;
+    private Date dataFab;
+    private float peso;
+    private Integer quantidade;
+
+    private StringProperty qtdItens;
+
     public Item(Integer codigoProduto, String lote, Date dataVal, Date dataFab, float peso, Integer quantidade) {
+
         this.codigoProduto = codigoProduto;
         this.lote = lote;
         this.dataVal = dataVal;
         this.dataFab = dataFab;
         this.peso = peso;
         this.quantidade = quantidade;
+
+        qtdItens = new SimpleStringProperty(Integer.toString(quantidade));
+
+
     }
 
     public Integer getCodigoProduto() {
@@ -68,7 +81,7 @@ public class Item{
         this.quantidade = quantidade;
     }
 
-    public ObjectProperty<Integer> codigoProdutoProperty(){
+    public ObjectProperty<Integer> codigoProdutoProperty() {
         return new SimpleObjectProperty<>(codigoProduto);
     }
 
@@ -95,4 +108,6 @@ public class Item{
     public ObjectProperty<Integer> quantidadeProperty() {
         return new SimpleObjectProperty<>(quantidade);
     }
+
+    public StringProperty getQtdItens(){ return qtdItens;}
 }

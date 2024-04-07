@@ -2,6 +2,7 @@ package Views;
 
 import DAO.ItemDAO;
 import DAO.ProdutoDAO;
+import Models.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -37,7 +38,7 @@ public class TelaVendas {
 
         btnAdicionar.setOnAction(e -> {
             TelaVendaItem telaVendaItem = new TelaVendaItem();
-            //telaVendaItem.show(stage);
+            telaVendaItem.show(stage);
         });
 
         btnVoltarInicio.setOnAction(e -> {
@@ -69,50 +70,43 @@ public class TelaVendas {
 
         hbox.getChildren().addAll(btnVender, hbox2, btnAdicionar);
 
-        List<Produto> produtos = ProdutoDAO.listarProdutos();
-        ObservableList<Produto> produtosListados = FXCollections.observableArrayList(produtos);
+        //List<Venda> venda = VendaDAO.listarCarrinho();
+        //ObservableList<Venda> itensListados = FXCollections.observableArrayList(venda);
 
-        List<Item> itens = ItemDAO.listarItens();
-        ObservableList<Item> itensListados = FXCollections.observableArrayList(itens);
-
-        TableColumn<Produto, String> nomeColumn = new TableColumn<>("Nome");
+        TableColumn<Venda, String> nomeColumn = new TableColumn<>("Nome");
         nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 
-        TableColumn<Produto, String> marcaColumn = new TableColumn<>("Marca");
+        TableColumn<Venda, String> marcaColumn = new TableColumn<>("Marca");
         marcaColumn.setCellValueFactory(cellData -> cellData.getValue().marcaProperty());
 
-        TableColumn<Item, Integer> codigoProdutoColumn = new TableColumn<>("Codigo do Produto");
+        TableColumn<Venda, Integer> codigoProdutoColumn = new TableColumn<>("Codigo do Produto");
         codigoProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProdutoProperty());
 
-        TableColumn<Produto, String> tipoColumn = new TableColumn<>("Tipo");
+        TableColumn<Venda, String> tipoColumn = new TableColumn<>("Tipo");
         tipoColumn.setCellValueFactory(cellData -> cellData.getValue().tipoProperty());
 
-        TableColumn<Item, Integer> quantidadeColumn = new TableColumn<>("Quantidade");
+        TableColumn<Venda, Integer> quantidadeColumn = new TableColumn<>("Quantidade");
         quantidadeColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeProperty());
 
-        TableColumn<Produto, Float> precoColumn = new TableColumn<>("Preco");
+        TableColumn<Venda, Float> precoColumn = new TableColumn<>("Preco");
         precoColumn.setCellValueFactory(cellData -> cellData.getValue().precoProperty());
 
-        TableView<Produto> produtosTableView = new TableView<>();
-        produtosTableView.getColumns().addAll(nomeColumn, marcaColumn, tipoColumn, precoColumn);
+        TableView<Venda> tableView = new TableView<>();
+        tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoProdutoColumn, tipoColumn, quantidadeColumn, precoColumn);
 
-        TableView<Item> itensTableView = new TableView<>();
-        itensTableView.getColumns().addAll(codigoProdutoColumn, quantidadeColumn);;
-
-        /*double larguraColuna = 1.0 / tableView.getColumns().size();
+        double larguraColuna = 1.0 / tableView.getColumns().size();
         tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
 
         tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
-        });*/
+        });
 
-        produtosTableView.setItems(produtosListados);
-        itensTableView.setItems(itensListados);
+        //tableView.setItems(itensListados);
 
         VBox vbox = new VBox();
         Insets padding = new Insets(20);
         vbox.setPadding(padding);
-        vbox.getChildren().addAll(hbox, produtosTableView, itensTableView, btnVoltarInicio);
+        vbox.getChildren().addAll(hbox, tableView, btnVoltarInicio);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

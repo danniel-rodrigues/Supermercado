@@ -97,20 +97,13 @@ public class TelaProdutos {
         TableView<Produto> tableView = new TableView<>();
         tableView.getColumns().addAll(nomeColumn, marcaColumn, codigoColumn, tipoColumn, precoColumn, statusColumn);
 
-//        nomeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5)); // Coluna de nome ocupará do espaço
-//        marcaColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-//        codigoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-//        tipoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-//        precoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
 
         // Redimensionando as colunas para preencher o espaço disponível igualmente
         double larguraColuna = 1.0 / tableView.getColumns().size();
         tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));
 
         // Adicionando listener para redimensionar as colunas quando a tabela for redimensionada
-        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
-        });
+        tableView.widthProperty().addListener((obs, oldWidth, newWidth) -> tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna)));
 
         // Definindo os itens da TableView
         tableView.setItems(produtosListados);

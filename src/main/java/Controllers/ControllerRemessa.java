@@ -48,6 +48,8 @@ public class ControllerRemessa {
                 );
               if(RemessaDAO.adicionarRemessa(remessa)){
                   view.getResposta().setText("Remessa adicionada com sucesso!");
+                  view.getResposta().setStyle("-fx-text-fill: green;");
+                    
 
               } else {
                   view.getResposta().setText("Erro ao cadastrar remessa");

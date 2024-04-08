@@ -1,5 +1,6 @@
 package Views;
 
+import DAO.VendaDAO;
 import Models.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,8 +27,8 @@ public class TelaVendas {
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
 
         btnVender.setOnAction(e -> {
-//            VendaDAO.salvarVenda(); // Implementar função de salvar venda no banco
-            carrinho.clear(); // Limpa o carrinho de compras
+            VendaDAO.salvarVenda(carrinho);
+            carrinho.clear(); 
         });
 
         btnAdicionar.setOnAction(e -> {

@@ -1,10 +1,13 @@
 package DAO;
 
 import Models.Venda;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import static Views.TelaVendas.calcularSomaValorTotalCarrinho;
 
 public class VendaDAO {
     // URL de conexão com o BD SQLite
@@ -27,42 +30,54 @@ public class VendaDAO {
         }
     }
 
-    public static void salvarVenda(Venda venda, float totalVenda) {
-        adicionarVenda(venda, totalVenda);
-
-        Integer codProduto = venda.getCodigoProdutoItem();
-        Integer qtdItensVendidos = venda.getQuantidadeItens();
-
-        if(ItemDAO.removerItem(codProduto, qtdItensVendidos)) {
-            System.out.println("Quantidade de itens vendidos removidos.");
-        } else {
-            System.out.println("Não foi possível remover a qtd de itens informada!");
-        }
-    }
-
-    public static boolean adicionarVenda(Venda venda, float totalVenda) {
+    public static void salvarVenda(ObservableList<Venda> carrinho) {
         criarTabela();
+
         LocalDate dataAtual = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dataFormatada = dataAtual.format(formatter);
 
-        Integer idProduto = venda.getCodigoProdutoItem();
-        var item = ItemDAO.buscarItemPeloIdProduto(idProduto);
-        if(item != null) {
-            String sql = "INSERT INTO venda (data, valor) VALUES (?, ?)";
+        String sql = "INSERT INTO venda (data, valor) VALUES (?, ?)";
 
-            try (Connection conn = DriverManager.getConnection(URL);
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                    pstmt.setString(1, dataFormatada);
-                    pstmt.setFloat(2, totalVenda);
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, dataFormatada);
+            pstmt.setFloat(2, Float.parseFloat(calcularSomaValorTotalCarrinho()));
 
-                    pstmt.executeUpdate();
-                    System.out.println("Item adicionado com sucesso.");
-                    return true;
-                } catch (SQLException e) {
-                    System.err.println("Erro ao adicionar item: " + e.getMessage());
-                }
+            pstmt.executeUpdate();
+            System.out.println("Item adicionado com sucesso.");
+        } catch (SQLException e) {
+            System.err.println("Erro ao adicionar item: " + e.getMessage());
+        }
+
+        for (Venda venda : carrinho) {
+            Integer codProduto = venda.getCodigoProdutoItem();
+            Integer qtdItensVendidos = venda.getQuantidadeItens();
+
+            if (ItemDAO.removerItem(codProduto, qtdItensVendidos)) {
+                System.out.println("Quantidade de itens vendidos removida para o produto com código " + codProduto);
+            } else {
+                System.out.println("Não foi possível remover a quantidade de itens vendidos para o produto com código " + codProduto);
             }
-        return false;
         }
     }
+
+    public static String calcularSomaValorTotal() {
+        String resultado = "0.00";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             Statement stmt = conn.createStatement()) {
+            String sql = "SELECT SUM(valor) AS total FROM venda";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            if (rs.next()) {
+                double total = rs.getDouble("total");
+                resultado = String.format("%.2f", total);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao calcular a soma do valor total das vendas: " + e.getMessage());
+        }
+
+        return resultado;
+    }
+}

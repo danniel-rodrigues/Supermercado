@@ -28,11 +28,6 @@ public class ControllerVenda {
         viewVendas.getBtnVender().setOnAction(e -> {} );
     }
 
-    private void efetuarVenda() {
-
-    }
-
-
     private void adicionarItem() {
         String txtCodigoProduto = viewAdicionarItem.getTxtCodigoProduto().getText();
         String txtQuantidade = viewAdicionarItem.getTxtQuantidade().getText();

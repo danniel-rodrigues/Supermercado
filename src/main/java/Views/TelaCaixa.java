@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import Models.Item;
 
+import static DAO.VendaDAO.calcularSomaValorTotal;
 import static Views.TelaVendas.calcularSomaValorTotalCarrinho;
 
 
@@ -24,7 +25,7 @@ public class TelaCaixa {
         stage.setTitle("Tela de Caixa");
 
         Label lblValorTotal = new Label("O VALOR TOTAL ACUMULADO É DE R$: ");
-        Label lblValorTotalValue = new Label(calcularSomaValorTotalCarrinho());
+        Label lblValorTotalValue = new Label(calcularSomaValorTotal());
         lblValorTotal.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
         lblValorTotalValue.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 

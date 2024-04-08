@@ -206,4 +206,21 @@ public class FuncionarioDAO {
         return false; // Retorna false se a operação falhar por algum motivo
     }
 
+    public static boolean verificarLogin(String login, String senha) {
+        String sql = "SELECT * FROM funcionario WHERE login = ? AND senha = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, login);
+            pstmt.setString(2, senha);
+
+            ResultSet rs = pstmt.executeQuery();
+            if(rs.next()) return true;
+        } catch (SQLException e) {
+            System.err.println("Login ou senha inválidos: " + e.getMessage());
+        }
+
+        return false;
+    }
+
 }

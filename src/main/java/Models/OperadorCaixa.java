@@ -22,7 +22,7 @@ public class OperadorCaixa extends Funcionario{
         cpf_a = new SimpleStringProperty(CPF.formatarCPF(cpf));
         status_a = new SimpleStringProperty(status);
         telefone_a = new SimpleStringProperty(telefone);
-        cargo_a = new SimpleStringProperty("Operador Caixa");
+        cargo_a = new SimpleStringProperty(cargo);
         emailPropety = new SimpleStringProperty(email);
 
 

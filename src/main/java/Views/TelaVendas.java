@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 public class TelaVendas {
     private  Label lblValorTotalValue;
     private static ObservableList<Venda> carrinho = FXCollections.observableArrayList();
-    private Button btnVender;
 
     public void show(Stage stage) {
         HBox hbox = new HBox();
@@ -126,9 +125,5 @@ public class TelaVendas {
             soma += venda.getValorTotal();
         }
         return String.valueOf(soma);
-    }
-
-    public Button getBtnVender() {
-        return btnVender;
     }
 }

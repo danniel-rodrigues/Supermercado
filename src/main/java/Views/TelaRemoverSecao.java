@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
-// Adicionar imagem
 
 
 public class TelaRemoverSecao {

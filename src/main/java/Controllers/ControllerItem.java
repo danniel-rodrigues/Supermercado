@@ -2,14 +2,9 @@ package Controllers;
 
 import Auxiliar.Data;
 import DAO.ItemDAO;
-import DAO.ProdutoDAO;
 import Models.Item;
-import Models.Produto;
 import Views.TelaCadastroItem;
 import Views.TelaRemoverItem;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ControllerItem {
     private TelaCadastroItem viewCadastroItem;

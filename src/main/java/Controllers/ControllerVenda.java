@@ -4,16 +4,12 @@ package Controllers;
 import Models.Produto;
 import Models.Venda;
 import Views.TelaVendaItem;
-import Views.TelaVendas;
 
-import static DAO.ItemDAO.buscarIdPeloCodigo;
 import static DAO.ProdutoDAO.buscarProdutoPorCodigo;
 import static Views.TelaVendas.adicionarItemAoCarrinho;
-import static Views.TelaVendas.calcularSomaValorTotalCarrinho;
 
 public class ControllerVenda {
-    private TelaVendaItem viewAdicionarItem;
-    private TelaVendas viewVendas;
+    private final TelaVendaItem viewAdicionarItem;
 
     public ControllerVenda(TelaVendaItem viewVendaItem) {
         this.viewAdicionarItem = viewVendaItem;
@@ -23,16 +19,9 @@ public class ControllerVenda {
         });
     }
 
-    public ControllerVenda(TelaVendas viewVendas) {
-        this.viewVendas = viewVendas;
-        viewVendas.getBtnVender().setOnAction(e -> {} );
-    }
-
     private void adicionarItem() {
         String txtCodigoProduto = viewAdicionarItem.getTxtCodigoProduto().getText();
         String txtQuantidade = viewAdicionarItem.getTxtQuantidade().getText();
-
-        String formato = "dd/MM/yyyy";
 
         // Verifica se há campos não preenchidos no formulário
         if(txtCodigoProduto.isEmpty() || txtQuantidade.isEmpty()) {
@@ -43,8 +32,7 @@ public class ControllerVenda {
             try {
                 Integer codigoProduto = Integer.valueOf(txtCodigoProduto);
                 Integer quantidade = Integer.valueOf(txtQuantidade);
-                Integer id_produto = buscarIdPeloCodigo(codigoProduto);
-                //Item item = buscarItemPeloIdProduto(id_produto);
+
                 Produto produto = buscarProdutoPorCodigo(codigoProduto);
 
                 // Se nenhum erro de conversão ocorrer, cria o item

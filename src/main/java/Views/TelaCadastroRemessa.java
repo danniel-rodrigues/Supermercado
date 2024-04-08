@@ -17,14 +17,11 @@ import javafx.geometry.Pos;
 public class TelaCadastroRemessa {
 
     private ControllerRemessa controller;
-    private Button btnCadastrar=new Button("CADASTRAR");
+    private Button btnCadastrar = new Button("CADASTRAR");
 
-    private TextField txtFornecedor =new TextField();;
+    private TextField txtFornecedor = new TextField();;
 
     private TextField txtDataEnvio = new TextField();
-
-
-
 
     private Label resposta = new Label("");
 

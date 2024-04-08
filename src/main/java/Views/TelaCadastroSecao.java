@@ -12,7 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-// Adicionar imagem
 
 
 public class TelaCadastroSecao {

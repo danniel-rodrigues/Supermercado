@@ -2,9 +2,6 @@ package Views;
 
 import DAO.ItemDAO;
 import Models.Item;
-import Models.Produto;
-import Views.TelaCadastroItem;
-import Views.TelaInicial;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -17,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TelaItens {
@@ -85,12 +81,6 @@ public class TelaItens {
 
         TableView<Item> tableView = new TableView<>();
         tableView.getColumns().addAll(codigoProdutoColumn, dataFabColumn, dataValColumn, pesoColumn, loteColumn, quantidadeColumn);
-
-        //loteColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        //dataValColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        //dataFabColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        //pesoColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
-        //quantidadeColumn.prefWidthProperty().bind(tableView.widthProperty().divide(5));
 
         double larguraColuna = 1.0 / tableView.getColumns().size();
         tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(tableView.getWidth() * larguraColuna));

@@ -1,7 +1,6 @@
 package DAO;
 
 import Models.Item;
-import Models.Produto;
 
 import java.sql.*;
 import java.text.ParseException;

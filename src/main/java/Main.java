@@ -10,16 +10,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         TelaInicial telaInicial = new TelaInicial();
         telaInicial.show(primaryStage);
-
-
-        //TelaFuncionarios telaFuncionarios = new TelaFuncionarios();
-        //telaFuncionarios.show(primaryStage);
-
-        //TelaCadastroFuncionario telaCadasFuncionario = new TelaCadastroFuncionario();
-        //telaCadasFuncionario.show(primaryStage);
-
-        //TelaBuscaFuncionario telaBuscaFuncionario = new TelaBuscaFuncionario();
-        //telaBuscaFuncionario.show(primaryStage);
     }
 
     public static void main(String[] args) {

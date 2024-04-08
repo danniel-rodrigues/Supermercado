@@ -1,21 +1,14 @@
 package Views;
 
-import Models.Produto;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import Models.Item;
 
 import static DAO.VendaDAO.calcularSomaValorTotal;
-import static Views.TelaVendas.calcularSomaValorTotalCarrinho;
 
 
 public class TelaCaixa {

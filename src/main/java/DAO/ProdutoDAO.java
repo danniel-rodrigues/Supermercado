@@ -52,7 +52,6 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-//            pstmt.setInt(7, produto.getFuncionario().getId());
 
             pstmt.executeUpdate();
             System.out.println("Produto adicionado com sucesso.");
@@ -91,12 +90,7 @@ public class ProdutoDAO {
         String tipo = rs.getString("tipo");
         float preco = rs.getFloat("preco");
         String status = rs.getString("status");
-//        Integer id_funcionario = rs.getInt("id_funcionario");
 
-        // Criando um objeto to tipo Funcionario para passar como parâmetro na criação do objeto Produto
-//        Funcionario funcionario = FuncionarioDAO.buscarFuncionarioPorId(id_funcionario);
-
-//        return new Produto(nome, marca, codigo, tipo, preco, status, funcionario);
         return new Produto(nome, marca, codigo, tipo, preco, status);
     }
 
@@ -137,7 +131,6 @@ public class ProdutoDAO {
             pstmt.setString(4, produto.getTipo());
             pstmt.setFloat(5, produto.getPreco());
             pstmt.setString(6, produto.getStatus());
-//            pstmt.setObject(7, produto.getFuncionario().getId());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

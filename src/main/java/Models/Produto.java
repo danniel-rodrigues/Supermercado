@@ -13,7 +13,7 @@ public class Produto {
     protected String tipo;
     protected float preco;
     protected String status;
-//    protected Funcionario funcionario;
+
     public Produto(String nome,
                    String marca,
                    Integer codigo,
@@ -87,12 +87,6 @@ public class Produto {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    // Retorna o funcionario que cadastrou o produto
-//    public Funcionario getFuncionario() {return funcionario;}
-
-    // Define o funcionário que cadastrou o produto
-//    public void setFuncionario(Funcionario funcionario) {this.funcionario = funcionario;}
 
     public StringProperty nomeProperty(){
         return new SimpleStringProperty(nome);

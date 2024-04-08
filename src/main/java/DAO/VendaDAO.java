@@ -27,8 +27,7 @@ public class VendaDAO {
     }
 
     public static void salvarVenda() {
-
+        //Remove a quantidade de itens na tabela de item
+        //Insere a venda na tabela
     }
-
-
 }

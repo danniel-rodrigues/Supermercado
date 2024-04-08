@@ -125,7 +125,7 @@ public class TelaVendas {
         this.lblValorTotalValue = new Label(lblValorTotalValue);
     }
 
-    private static String calcularSomaValorTotalCarrinho() {
+    public static String calcularSomaValorTotalCarrinho() {
         float soma = 0;
         for (Venda venda : carrinho) {
             soma += venda.getValorTotal();

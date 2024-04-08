@@ -61,7 +61,7 @@ public class TelaInicial {
 
 	    btnCaixa.setOnAction(e -> {
             TelaCaixa telaCaixa = new TelaCaixa();
-            telaCaixa.show(primaryStage);
+            telaCaixa.show();
         });
 
         btnItem.setOnAction(e -> {

@@ -19,7 +19,7 @@ public class ModalProdutos {
     public void abrirModal() {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Modal Exemplo");
+        stage.setTitle("Lista de Produtos");
 
         TableView<Produto> tabelaProdutos = criarTabelaProdutos();
 

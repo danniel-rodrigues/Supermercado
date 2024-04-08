@@ -1,6 +1,7 @@
 package Views;
 
 import Controllers.ControllerItem;
+import Controllers.ControllerVenda;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ public class TelaVendaItem {
     private Button btnAdicionar;
     private Label resposta;
 
-    private ControllerItem controllerItem;
+    private ControllerVenda controllerVenda;
 
     public void show(Stage stage) {
         HBox hbox1 = new HBox(10);
@@ -61,7 +62,7 @@ public class TelaVendaItem {
         // Adicionar botoes
         btnAdicionar = new Button("ADICIONAR");
 
-        //controllerVenda = new ControllerVenda(this);
+        controllerVenda = new ControllerVenda(this);
 
         Button btnListar = new Button("LISTAR PRODUTOS");
         btnListar.setOnAction(e -> {

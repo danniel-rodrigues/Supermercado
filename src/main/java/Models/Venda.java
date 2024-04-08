@@ -19,15 +19,16 @@ public class Venda {
     private float precoProduto;
     private float valorTotal;
 
-    public Venda(int id,
+    public Venda(
                  String nomeProduto,
                  String marcaProduto,
                  Integer codigoProdutoItem,
                  String tipoProduto,
                  Integer quantidadeItens,
                  float precoProduto,
-                 float valorTotal) {
-        this.id = id;
+                 float valorTotal
+                 ) {
+        //this.id = id;
         this.nomeProduto = nomeProduto;
         this.marcaProduto = marcaProduto;
         this.codigoProdutoItem = codigoProdutoItem;

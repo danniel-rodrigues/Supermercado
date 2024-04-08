@@ -147,6 +147,8 @@ public class ControllerGerente {
         String status = viewC.getStatusComboBox().getValue();
         String cargo = viewC.getCargoComboBox().getValue();
         String nascimento = viewC.getDataNascimentoField().getText();
+        String login = cpf;
+        String senha = cpf;
 
         // endereco
         String rua = viewC.getRuaField().getText();
@@ -185,8 +187,8 @@ public class ControllerGerente {
                         email,
                         cep,
                         sexo,
-                        "joao",
-                        "senha123",
+                        login,
+                        senha,
                         status,
                         endereco,
                         cargo

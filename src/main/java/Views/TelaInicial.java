@@ -29,7 +29,7 @@ public class TelaInicial {
         Button btnVenda = new Button("VENDA");
         Button btnItem = new Button("ITEM");
         Button btnFornecimento = new Button("FORNECIMENTO");
-        Button btnSecao = new Button("SEÇÃO");
+
         Button btnFuncionarios = new Button("FUNCIONÁRIOS");
         Button btnCaixa = new Button("CAIXA");
         Button btnFornecedor = new Button("FORNECEDOR");
@@ -52,11 +52,6 @@ public class TelaInicial {
         btnFornecimento.setOnAction(e -> {
             TelaFornecimento telaFornecimento = new TelaFornecimento();
             telaFornecimento.show(primaryStage);
-        });
-
-        btnSecao.setOnAction(e -> {
-            // TelaSecoes telaSecoes = new TelaSecoes();
-            // telaSecoes.show(primaryStage);
         });
 
         btnEstoque.setOnAction(e -> {
@@ -113,12 +108,6 @@ public class TelaInicial {
         fornecimentoIconView.setFitHeight(20);
         btnFornecimento.setGraphic(fornecimentoIconView);
 
-        Image secaoIcon = new Image("assets/images/icons/secao.png");
-        ImageView secaoIconView = new ImageView(secaoIcon);
-        secaoIconView.setFitWidth(20);
-        secaoIconView.setFitHeight(20);
-        btnSecao.setGraphic(secaoIconView);
-
         Image funcionariosIcon = new Image("assets/images/icons/funcionarios.png");
         ImageView funcionariosIconView = new ImageView(funcionariosIcon);
         funcionariosIconView.setFitWidth(20);
@@ -154,8 +143,6 @@ public class TelaInicial {
 
         btnFornecimento.setMinWidth(250);
         btnFornecimento.setMinHeight(50);
-        btnSecao.setMinWidth(250);
-        btnSecao.setMinHeight(50);
 
 
         btnFuncionarios.setMinWidth(250);
@@ -163,7 +150,7 @@ public class TelaInicial {
         btnCaixa.setMinWidth(250);
         btnCaixa.setMinHeight(50);
 
-        btnFornecedor.setMinWidth(450);
+        btnFornecedor.setMinWidth(250);
         btnFornecedor.setMinHeight(50);
 
         // Definindo o background dos botões
@@ -174,7 +161,6 @@ public class TelaInicial {
         btnItem.setStyle("-fx-background-color: #F79516;");
 
         btnFornecimento.setStyle("-fx-background-color: #F79516;");
-        btnSecao.setStyle("-fx-background-color: #A69F9F;");
 
         btnFuncionarios.setStyle("-fx-background-color: #F79516;");
         btnCaixa.setStyle("-fx-background-color: #F79516;");
@@ -189,7 +175,7 @@ public class TelaInicial {
         buttonGrid.add(btnFuncionarios, 0, 3);
         buttonGrid.add(btnProduto, 1, 0); // Segunda coluna
         buttonGrid.add(btnItem, 1, 1);
-        buttonGrid.add(btnSecao, 1, 2);
+        buttonGrid.add(btnFornecedor, 1, 2);
         buttonGrid.add(btnCaixa, 1, 3);
 
         buttonGrid.setAlignment(Pos.CENTER);
@@ -199,7 +185,7 @@ public class TelaInicial {
 
 
         // Configurando o layout da VBox para conter a imagem e a grid de botões
-        vbox = new VBox(logo, buttonGrid, btnFornecedor);
+        vbox = new VBox(logo, buttonGrid);
         vbox.setSpacing(20);
         vbox.setAlignment(Pos.CENTER);
 

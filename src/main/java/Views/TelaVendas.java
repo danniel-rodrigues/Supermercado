@@ -1,7 +1,6 @@
 package Views;
 
-import DAO.ItemDAO;
-import DAO.ProdutoDAO;
+import DAO.VendaDAO;
 import Models.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +15,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Models.Item;
-import Models.Produto;
 
 import java.util.List;
 
 public class TelaVendas {
+    private ObservableList<Venda> carrinho = FXCollections.observableArrayList();
 
     public void show(Stage stage) {
         HBox hbox = new HBox();
@@ -33,7 +31,8 @@ public class TelaVendas {
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
 
         btnVender.setOnAction(e -> {
-
+            VendaDAO.salvarVenda(); // Implementar função de salvar venda no banco
+            carrinho.clear(); // Limpa o carrinho de compras
         });
 
         btnAdicionar.setOnAction(e -> {
@@ -70,9 +69,6 @@ public class TelaVendas {
 
         hbox.getChildren().addAll(btnVender, hbox2, btnAdicionar);
 
-        //List<Venda> venda = VendaDAO.listarCarrinho();
-        //ObservableList<Venda> itensListados = FXCollections.observableArrayList(venda);
-
         TableColumn<Venda, String> nomeColumn = new TableColumn<>("Nome");
         nomeColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 
@@ -101,7 +97,8 @@ public class TelaVendas {
             tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
         });
 
-        //tableView.setItems(itensListados);
+        // Exibir os itens do carrinho na tabela
+        tableView.setItems(carrinho);
 
         VBox vbox = new VBox();
         Insets padding = new Insets(20);
@@ -114,5 +111,9 @@ public class TelaVendas {
         stage.setTitle("Supermercado - Vendas");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void adicionarItemAoCarrinho(Venda venda) {
+        carrinho.add(venda);
     }
 }

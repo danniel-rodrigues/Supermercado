@@ -55,8 +55,8 @@ public class TelaInicial {
         });
 
         btnSecao.setOnAction(e -> {
-            TelaSecoes telaSecoes = new TelaSecoes();
-            telaSecoes.show(primaryStage);
+            // TelaSecoes telaSecoes = new TelaSecoes();
+            // telaSecoes.show(primaryStage);
         });
 
         btnEstoque.setOnAction(e -> {
@@ -174,7 +174,7 @@ public class TelaInicial {
         btnItem.setStyle("-fx-background-color: #F79516;");
 
         btnFornecimento.setStyle("-fx-background-color: #F79516;");
-        btnSecao.setStyle("-fx-background-color: #F79516;");
+        btnSecao.setStyle("-fx-background-color: #A69F9F;");
 
         btnFuncionarios.setStyle("-fx-background-color: #F79516;");
         btnCaixa.setStyle("-fx-background-color: #F79516;");

@@ -19,7 +19,8 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class TelaVendas {
-    private ObservableList<Venda> carrinho = FXCollections.observableArrayList();
+    private  Label lblValorTotalValue;
+    private static ObservableList<Venda> carrinho = FXCollections.observableArrayList();
 
     public void show(Stage stage) {
         HBox hbox = new HBox();
@@ -59,7 +60,8 @@ public class TelaVendas {
         btnVoltarInicio.setStyle("-fx-background-color: #F79516;");
 
         Label lblValorTotal = new Label("VALOR TOTAL R$: ");
-        Label lblValorTotalValue = new Label("0,00");
+        lblValorTotalValue = new Label("0,00");
+        this.setLblValorTotalValue(calcularSomaValorTotalCarrinho());
         lblValorTotal.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
         lblValorTotalValue.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
@@ -97,6 +99,8 @@ public class TelaVendas {
             tableView.getColumns().forEach(coluna -> coluna.setPrefWidth(newWidth.doubleValue() * larguraColuna));
         });
 
+        //adicionarItemAoCarrinho(new Venda("Produto1", "Marca1", 123, "Tipo1", 5, 10.5f));
+
         // Exibir os itens do carrinho na tabela
         tableView.setItems(carrinho);
 
@@ -113,7 +117,19 @@ public class TelaVendas {
         stage.show();
     }
 
-    public void adicionarItemAoCarrinho(Venda venda) {
+    public static void adicionarItemAoCarrinho(Venda venda) {
         carrinho.add(venda);
+    }
+
+    public void setLblValorTotalValue(String lblValorTotalValue) {
+        this.lblValorTotalValue = new Label(lblValorTotalValue);
+    }
+
+    private static String calcularSomaValorTotalCarrinho() {
+        float soma = 0;
+        for (Venda venda : carrinho) {
+            soma += venda.getValorTotal();
+        }
+        return String.valueOf(soma);
     }
 }

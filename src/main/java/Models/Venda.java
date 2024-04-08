@@ -25,9 +25,10 @@ public class Venda {
                  Integer codigoProdutoItem,
                  String tipoProduto,
                  Integer quantidadeItens,
-                 float precoProduto
+                 float precoProduto,
+                 float valorTotal
                  ) {
-        this.id = id;
+        //this.id = id;
         this.nomeProduto = nomeProduto;
         this.marcaProduto = marcaProduto;
         this.codigoProdutoItem = codigoProdutoItem;

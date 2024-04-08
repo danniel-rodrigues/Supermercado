@@ -207,7 +207,7 @@ public class FuncionarioDAO {
     }
 
     public static boolean verificarLogin(String login, String senha) {
-        String sql = "SELECT * FROM funcionario WHERE login = ? AND senha = ?";
+        String sql = "SELECT * FROM funcionario WHERE login = ? AND senha = ? AND status = 'Ativo'";
 
         try (Connection conn = DriverManager.getConnection(URL);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

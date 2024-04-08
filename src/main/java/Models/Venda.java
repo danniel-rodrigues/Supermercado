@@ -34,7 +34,7 @@ public class Venda {
         this.tipoProduto = tipoProduto;
         this.quantidadeItens = quantidadeItens;
         this.precoProduto = precoProduto;
-        this.valorTotal = valorTotal;
+        this.valorTotal = quantidadeItens * precoProduto;
     }
 
     public int getId() {

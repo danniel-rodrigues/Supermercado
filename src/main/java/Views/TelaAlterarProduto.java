@@ -41,6 +41,7 @@ public class TelaAlterarProduto {
         // Nome
         Label lblNome = new Label("NOME:");
         txtNome = new TextField();
+        txtNome.setText(produto.getNome());
         txtNome.setMaxWidth(250);
         hbox1.getChildren().addAll(lblNome, txtNome);
         hbox1.setMinHeight(20);
@@ -53,6 +54,7 @@ public class TelaAlterarProduto {
         // marca
         Label lblMarca = new Label("MARCA:");
         txtMarca = new TextField();
+        txtMarca.setText(produto.getMarca());
         txtMarca.setMaxWidth(250);
         hbox2.getChildren().addAll(lblMarca, txtMarca);
         hbox2.setMinHeight(20);
@@ -65,6 +67,7 @@ public class TelaAlterarProduto {
         // código
         Label lblCodigo = new Label("CÓDIGO:");
         txtCodigo = new TextField();
+        txtCodigo.setText(Integer.toString(produto.getCodigo()));
         txtCodigo.setMaxWidth(250);
         hbox3.getChildren().addAll(lblCodigo, txtCodigo);
         hbox3.setMinHeight(20);
@@ -77,6 +80,7 @@ public class TelaAlterarProduto {
         // tipo
         Label lblTipo = new Label("TIPO:");
         txtTipo = new TextField();
+        txtTipo.setText(produto.getTipo());
         txtTipo.setMaxWidth(250);
         hbox4.getChildren().addAll(lblTipo, txtTipo);
         hbox4.setMinHeight(20);
@@ -89,6 +93,7 @@ public class TelaAlterarProduto {
         // preço
         Label lblPreco = new Label("PREÇO:");
         txtPreco = new TextField();
+        txtPreco.setText(Float.toString(produto.getPreco()));
         txtPreco.setMaxWidth(250);
         hbox5.getChildren().addAll(lblPreco, txtPreco);
         hbox5.setMinHeight(20);
@@ -111,7 +116,7 @@ public class TelaAlterarProduto {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        status.setValue("Selecione");
+        status.setValue(produto.getStatus());
 
         hbox6.getChildren().addAll(lblStatus, status);
         hbox6.setPadding(new Insets(0, 0, 50, 0));

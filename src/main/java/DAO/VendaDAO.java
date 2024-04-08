@@ -1,9 +1,10 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Models.Venda;
+
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class VendaDAO {
     // URL de conexão com o BD SQLite
@@ -26,8 +27,42 @@ public class VendaDAO {
         }
     }
 
-    public static void salvarVenda() {
-        //Remove a quantidade de itens na tabela de item
-        //Insere a venda na tabela
+    public static void salvarVenda(Venda venda, float totalVenda) {
+        adicionarVenda(venda, totalVenda);
+
+        Integer codProduto = venda.getCodigoProdutoItem();
+        Integer qtdItensVendidos = venda.getQuantidadeItens();
+
+        if(ItemDAO.removerItem(codProduto, qtdItensVendidos)) {
+            System.out.println("Quantidade de itens vendidos removidos.");
+        } else {
+            System.out.println("Não foi possível remover a qtd de itens informada!");
+        }
     }
-}
+
+    public static boolean adicionarVenda(Venda venda, float totalVenda) {
+        criarTabela();
+        LocalDate dataAtual = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = dataAtual.format(formatter);
+
+        Integer idProduto = venda.getCodigoProdutoItem();
+        var item = ItemDAO.buscarItemPeloIdProduto(idProduto);
+        if(item != null) {
+            String sql = "INSERT INTO venda (data, valor) VALUES (?, ?)";
+
+            try (Connection conn = DriverManager.getConnection(URL);
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                    pstmt.setString(1, dataFormatada);
+                    pstmt.setFloat(2, totalVenda);
+
+                    pstmt.executeUpdate();
+                    System.out.println("Item adicionado com sucesso.");
+                    return true;
+                } catch (SQLException e) {
+                    System.err.println("Erro ao adicionar item: " + e.getMessage());
+                }
+            }
+        return false;
+        }
+    }

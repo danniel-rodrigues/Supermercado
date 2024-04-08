@@ -146,7 +146,7 @@ public class TelaAlterarFuncionario {
                         "-fx-border-radius: 5;"           // Arredondamento da borda
         );
         // Configurando uma opção padrão
-        cargo.setValue("OperadorCaixa");
+        cargo.setValue(funcionario.getCargo());
 
         HBox.setHgrow(lblCargo, Priority.NEVER);
         HBox.setHgrow(cargo, Priority.ALWAYS);

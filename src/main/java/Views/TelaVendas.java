@@ -1,26 +1,20 @@
 package Views;
 
-import DAO.VendaDAO;
 import Models.Venda;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.List;
-
 public class TelaVendas {
     private  Label lblValorTotalValue;
     private static ObservableList<Venda> carrinho = FXCollections.observableArrayList();
+    private Button btnVender;
 
     public void show(Stage stage) {
         HBox hbox = new HBox();
@@ -32,7 +26,7 @@ public class TelaVendas {
         Button btnVoltarInicio = new Button("VOLTAR AO INÍCIO");
 
         btnVender.setOnAction(e -> {
-            VendaDAO.salvarVenda(); // Implementar função de salvar venda no banco
+//            VendaDAO.salvarVenda(); // Implementar função de salvar venda no banco
             carrinho.clear(); // Limpa o carrinho de compras
         });
 
@@ -131,5 +125,9 @@ public class TelaVendas {
             soma += venda.getValorTotal();
         }
         return String.valueOf(soma);
+    }
+
+    public Button getBtnVender() {
+        return btnVender;
     }
 }

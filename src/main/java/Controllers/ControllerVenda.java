@@ -1,19 +1,19 @@
 package Controllers;
 
-import Auxiliar.Data;
-import DAO.ItemDAO;
-import Models.Item;
+
 import Models.Produto;
 import Models.Venda;
 import Views.TelaVendaItem;
+import Views.TelaVendas;
 
 import static DAO.ItemDAO.buscarIdPeloCodigo;
-import static DAO.ItemDAO.buscarItemPeloIdProduto;
 import static DAO.ProdutoDAO.buscarProdutoPorCodigo;
 import static Views.TelaVendas.adicionarItemAoCarrinho;
+import static Views.TelaVendas.calcularSomaValorTotalCarrinho;
 
 public class ControllerVenda {
     private TelaVendaItem viewAdicionarItem;
+    private TelaVendas viewVendas;
 
     public ControllerVenda(TelaVendaItem viewVendaItem) {
         this.viewAdicionarItem = viewVendaItem;
@@ -22,6 +22,16 @@ public class ControllerVenda {
             adicionarItem();
         });
     }
+
+    public ControllerVenda(TelaVendas viewVendas) {
+        this.viewVendas = viewVendas;
+        viewVendas.getBtnVender().setOnAction(e -> {} );
+    }
+
+    private void efetuarVenda() {
+
+    }
+
 
     private void adicionarItem() {
         String txtCodigoProduto = viewAdicionarItem.getTxtCodigoProduto().getText();

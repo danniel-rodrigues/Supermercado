@@ -37,7 +37,7 @@ public class TelaCaixa {
         vbox.getChildren().addAll(hbox2);
         vbox.setAlignment(Pos.CENTER);
 
-        Scene scene = new Scene(vbox, 600, 400);
+        Scene scene = new Scene(vbox, 500, 300);
         stage.setScene(scene);
         stage.showAndWait();
     }

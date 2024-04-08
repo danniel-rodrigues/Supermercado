@@ -50,7 +50,8 @@ public class ControllerVenda {
                 // Se nenhum erro de conversão ocorrer, cria o item
                 Venda venda = new Venda(produto.getNome(), produto.getMarca(), codigoProduto, produto.getTipo(), quantidade, produto.getPreco(), (quantidade * produto.getPreco()));
                 adicionarItemAoCarrinho(venda);
-
+                viewAdicionarItem.getResposta().setText("Adicionado ao carrinho com sucesso!");
+                viewAdicionarItem.getResposta().setStyle("-fx-text-fill: green;");
 
             } catch (NumberFormatException e) {
                 // Se houver erro de conversão, exibe uma mensagem de erro
